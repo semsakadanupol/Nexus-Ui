@@ -87,24 +87,26 @@
     <!-- Nexus-UI JS from GitHub Pages CDN -->
     <script src="https://semsakadanupol.github.io/Nexus-Ui/index.js"></script>
     <script>
-      import { ThemeManager } from "https://semsakadanupol.github.io/Nexus-Ui/index.js";
+      // Wait for scripts to load, then access global ThemeManager
+      window.addEventListener("load", () => {
+        const themeLight = document.getElementById("themeLight");
+        const themeDark = document.getElementById("themeDark");
+        const themeHighContrast = document.getElementById("themeHighContrast");
 
-      document.getElementById("themeLight").addEventListener("click", () => {
-        ThemeManager.setTheme("light");
-        document.body.setAttribute("data-theme", "light");
+        if (themeLight && window.ThemeManager) {
+          themeLight.addEventListener("click", () => {
+            window.ThemeManager.setTheme("light");
+          });
+
+          themeDark.addEventListener("click", () => {
+            window.ThemeManager.setTheme("dark");
+          });
+
+          themeHighContrast.addEventListener("click", () => {
+            window.ThemeManager.setTheme("high-contrast");
+          });
+        }
       });
-
-      document.getElementById("themeDark").addEventListener("click", () => {
-        ThemeManager.setTheme("dark");
-        document.body.setAttribute("data-theme", "dark");
-      });
-
-      document
-        .getElementById("themeHighContrast")
-        .addEventListener("click", () => {
-          ThemeManager.setTheme("high-contrast");
-          document.body.setAttribute("data-theme", "high-contrast");
-        });
     </script>
   </body>
 </html>
