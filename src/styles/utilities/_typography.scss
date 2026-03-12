@@ -1,0 +1,135 @@
+// ============================================
+// NEXUS-UI Typography Utilities
+// ============================================
+
+@use "../variables" as *;
+@use "../mixins" as *;
+
+// Font size utilities
+@each $key, $size in $font-sizes {
+  .text-#{$key} {
+    font-size: $size;
+  }
+}
+
+// Font weight utilities
+@each $key, $weight in $font-weights {
+  .font-#{$key} {
+    font-weight: $weight;
+  }
+}
+
+// Line height utilities
+@each $key, $height in $line-heights {
+  .leading-#{$key} {
+    line-height: $height;
+  }
+}
+
+// Text alignment
+.text-left {
+  text-align: left;
+}
+.text-center {
+  text-align: center;
+}
+.text-right {
+  text-align: right;
+}
+.text-justify {
+  text-align: justify;
+}
+
+// Text transform
+.uppercase {
+  text-transform: uppercase;
+}
+.lowercase {
+  text-transform: lowercase;
+}
+.capitalize {
+  text-transform: capitalize;
+}
+.normal-case {
+  text-transform: none;
+}
+
+// Text decoration
+.underline {
+  text-decoration: underline;
+}
+.line-through {
+  text-decoration: line-through;
+}
+.no-underline {
+  text-decoration: none;
+}
+
+// Letter spacing
+.tracking-tight {
+  letter-spacing: -0.02em;
+}
+.tracking-normal {
+  letter-spacing: 0;
+}
+.tracking-wide {
+  letter-spacing: 0.02em;
+}
+.tracking-wider {
+  letter-spacing: 0.05em;
+}
+
+// Word spacing
+.space-normal {
+  word-spacing: normal;
+}
+.space-wide {
+  word-spacing: 0.1em;
+}
+
+// Text truncation
+.truncate {
+  @include truncate;
+}
+.line-clamp-1 {
+  @include line-clamp(1);
+}
+.line-clamp-2 {
+  @include line-clamp(2);
+}
+.line-clamp-3 {
+  @include line-clamp(3);
+}
+
+// Font family
+.font-sans {
+  font-family: $font-family-base;
+}
+.font-mono {
+  font-family: $font-family-mono;
+}
+
+// Responsive typography
+@include respond-to("lg") {
+  @each $key, $size in $font-sizes {
+    .lg\:text-#{$key} {
+      font-size: $size;
+    }
+  }
+}
+
+@include respond-to("md") {
+  @each $key, $size in $font-sizes {
+    .md\:text-#{$key} {
+      font-size: $size;
+    }
+  }
+}
+
+@include respond-to("sm") {
+  @each $key, $size in $font-sizes {
+    .sm\:text-#{$key} {
+      font-size: $size;
+    }
+  }
+}

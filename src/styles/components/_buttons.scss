@@ -1,0 +1,185 @@
+// ============================================
+// NEXUS-UI Button Component
+// ============================================
+
+@use "sass:color";
+@use "../variables" as *;
+@use "../mixins" as *;
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  font-weight: $font-weight-medium;
+  padding: $spacing-sm $spacing-lg;
+  border: 2px solid transparent;
+  border-radius: $radius-lg;
+  cursor: pointer;
+  @include transition(all);
+  transition: all $transition-base;
+  transform: translateY(0);
+
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+
+  &:focus {
+    @include focus-ring;
+  }
+
+  &:disabled {
+    opacity: var(--opacity-disabled);
+    cursor: not-allowed;
+  }
+}
+
+// Button variants
+.btn-primary {
+  background-color: var(--color-primary);
+  color: white;
+
+  &:hover:not(:disabled) {
+    background-color: var(--color-primary-dark);
+    box-shadow: $shadow-lg;
+  }
+}
+
+.btn-secondary {
+  background-color: var(--color-secondary);
+  color: white;
+
+  &:hover:not(:disabled) {
+    background-color: var(--color-secondary-dark);
+    box-shadow: $shadow-lg;
+  }
+}
+
+.btn-success {
+  background-color: var(--color-success);
+  color: white;
+
+  &:hover:not(:disabled) {
+    background-color: var(--color-success);
+    opacity: 0.9;
+    box-shadow: $shadow-lg;
+  }
+}
+
+.btn-danger {
+  background-color: var(--color-danger);
+  color: white;
+
+  &:hover:not(:disabled) {
+    background-color: var(--color-danger);
+    opacity: 0.9;
+    box-shadow: $shadow-lg;
+  }
+}
+
+.btn-warning {
+  background-color: var(--color-warning);
+  color: white;
+
+  &:hover:not(:disabled) {
+    background-color: var(--color-warning);
+    opacity: 0.9;
+    box-shadow: $shadow-lg;
+  }
+}
+
+// Button outline
+.btn-outline {
+  background-color: transparent;
+  border-color: currentColor;
+
+  &.btn-primary {
+    color: $primary;
+
+    &:hover:not(:disabled) {
+      background-color: $primary;
+      color: white;
+    }
+  }
+
+  &.btn-secondary {
+    color: $secondary;
+
+    &:hover:not(:disabled) {
+      background-color: $secondary;
+      color: white;
+    }
+  }
+}
+
+// Button sizes
+.btn-xs {
+  font-size: $font-size-xs;
+  padding: $spacing-xs $spacing-sm;
+}
+
+.btn-sm {
+  font-size: $font-size-sm;
+  padding: $spacing-sm $spacing-md;
+}
+
+.btn-lg {
+  font-size: $font-size-lg;
+  padding: $spacing-md $spacing-2xl;
+}
+
+.btn-xl {
+  font-size: $font-size-xl;
+  padding: $spacing-lg $spacing-3xl;
+}
+
+// Full width button
+.btn-block {
+  width: 100%;
+}
+
+// Button icon
+.btn-icon {
+  padding: $spacing-sm;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+}
+
+// Button group
+.btn-group {
+  display: inline-flex;
+  gap: 0;
+
+  .btn {
+    border-radius: 0;
+    margin-right: -2px;
+
+    &:first-child {
+      border-top-left-radius: $radius-lg;
+      border-bottom-left-radius: $radius-lg;
+    }
+
+    &:last-child {
+      border-top-right-radius: $radius-lg;
+      border-bottom-right-radius: $radius-lg;
+    }
+  }
+}
+
+// Responsive buttons
+@include respond-to("sm") {
+  .sm\:btn-block {
+    width: 100%;
+  }
+
+  .sm\:btn-lg {
+    font-size: $font-size-base;
+    padding: $spacing-sm $spacing-md;
+  }
+}

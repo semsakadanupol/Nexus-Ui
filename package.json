@@ -1,0 +1,37 @@
+{
+  "name": "nexus-ui",
+  "version": "1.0.0",
+  "description": "A desktop-first utility CSS framework with built-in TypeScript components",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "style": "dist/nexus-ui.css",
+  "scripts": {
+    "build": "npm run build:css && npm run build:ts",
+    "build:css": "sass src/styles:dist --style=compressed",
+    "build:ts": "tsc",
+    "dev": "npm run dev:css & npm run dev:ts",
+    "dev:css": "sass src/styles:dist --watch",
+    "dev:ts": "tsc --watch",
+    "watch": "npm run dev",
+    "clean": "rimraf dist"
+  },
+  "keywords": [
+    "css",
+    "framework",
+    "utility-first",
+    "responsive",
+    "components",
+    "typescript"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "rimraf": "^5.0.0",
+    "sass": "^1.70.0",
+    "typescript": "^5.3.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

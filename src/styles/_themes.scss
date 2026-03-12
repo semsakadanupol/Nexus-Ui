@@ -1,0 +1,393 @@
+// ============================================
+// NEXUS-UI Theme System
+// ============================================
+
+@use "./variables" as *;
+
+// Default Light Theme
+:root,
+[data-theme="light"] {
+  // Primary colors
+  --color-primary: #{$primary};
+  --color-primary-light: #3b82f6;
+  --color-primary-dark: #1e40af;
+  --color-primary-rgb: 37, 99, 235;
+
+  // Secondary colors
+  --color-secondary: #{$secondary};
+  --color-secondary-light: #a78bfa;
+  --color-secondary-dark: #7c3aed;
+  --color-secondary-rgb: 139, 92, 246;
+
+  // Semantic colors
+  --color-success: #{$success};
+  --color-danger: #{$danger};
+  --color-warning: #{$warning};
+  --color-info: #{$info};
+
+  // Neutral colors
+  --color-text: #{$gray-900};
+  --color-text-secondary: #{$gray-600};
+  --color-text-muted: #{$gray-500};
+  --color-text-light: #{$gray-400};
+
+  --color-bg: #ffffff;
+  --color-bg-secondary: #{$gray-50};
+  --color-bg-tertiary: #{$gray-100};
+  --color-bg-hover: #{$gray-100};
+
+  --color-border: #{$gray-200};
+  --color-border-light: #{$gray-100};
+  --color-border-dark: #{$gray-300};
+
+  // Shadow colors
+  --color-shadow: rgba(0, 0, 0, 0.1);
+  --color-shadow-dark: rgba(0, 0, 0, 0.2);
+
+  // Component specific
+  --color-input-bg: #ffffff;
+  --color-input-border: #{$gray-300};
+  --color-input-text: #{$gray-900};
+  --color-input-disabled-bg: #{$gray-100};
+  --color-input-disabled-text: #{$gray-500};
+
+  --color-button-hover: #{$gray-100};
+  --color-button-active: #{$gray-200};
+
+  --color-card-bg: #ffffff;
+  --color-card-border: #{$gray-200};
+
+  --color-modal-overlay: rgba(0, 0, 0, 0.5);
+  --color-modal-bg: #ffffff;
+
+  // Carousel colors
+  --color-carousel-control-bg: rgba(0, 0, 0, 0.5);
+  --color-carousel-control-text: #ffffff;
+  --color-carousel-control-hover: rgba(0, 0, 0, 0.7);
+  --color-carousel-indicators-bg: rgba(0, 0, 0, 0.4);
+  --color-carousel-indicator: rgba(255, 255, 255, 0.5);
+  --color-carousel-indicator-hover: rgba(255, 255, 255, 0.8);
+
+  // Opacity values
+  --opacity-disabled: 0.6;
+  --opacity-hover: 0.9;
+  --opacity-focus: 0.8;
+}
+
+// Dark Theme
+[data-theme="dark"] {
+  // Primary colors
+  --color-primary: #60a5fa;
+  --color-primary-light: #93c5fd;
+  --color-primary-dark: #3b82f6;
+  --color-primary-rgb: 96, 165, 250;
+
+  // Secondary colors
+  --color-secondary: #c4b5fd;
+  --color-secondary-light: #ddd6fe;
+  --color-secondary-dark: #a78bfa;
+  --color-secondary-rgb: 196, 181, 253;
+
+  // Semantic colors
+  --color-success: #34d399;
+  --color-danger: #f87171;
+  --color-warning: #fbbf24;
+  --color-info: #38bdf8;
+
+  // Neutral colors
+  --color-text: #{$gray-100};
+  --color-text-secondary: #{$gray-300};
+  --color-text-muted: #{$gray-400};
+  --color-text-light: #{$gray-500};
+
+  --color-bg: #{$gray-900};
+  --color-bg-secondary: #{$gray-800};
+  --color-bg-tertiary: #{$gray-700};
+  --color-bg-hover: #{$gray-800};
+
+  --color-border: #{$gray-700};
+  --color-border-light: #{$gray-600};
+  --color-border-dark: #{$gray-800};
+
+  // Shadow colors
+  --color-shadow: rgba(0, 0, 0, 0.3);
+  --color-shadow-dark: rgba(0, 0, 0, 0.5);
+
+  // Component specific
+  --color-input-bg: #{$gray-800};
+  --color-input-border: #{$gray-700};
+  --color-input-text: #{$gray-100};
+  --color-input-disabled-bg: #{$gray-900};
+  --color-input-disabled-text: #{$gray-600};
+
+  --color-button-hover: #{$gray-800};
+  --color-button-active: #{$gray-700};
+
+  --color-card-bg: #{$gray-800};
+  --color-card-border: #{$gray-700};
+
+  --color-modal-overlay: rgba(0, 0, 0, 0.7);
+  --color-modal-bg: #{$gray-800};
+
+  // Carousel colors
+  --color-carousel-control-bg: rgba(0, 0, 0, 0.6);
+  --color-carousel-control-text: #ffffff;
+  --color-carousel-control-hover: rgba(0, 0, 0, 0.8);
+  --color-carousel-indicators-bg: rgba(0, 0, 0, 0.5);
+  --color-carousel-indicator: rgba(255, 255, 255, 0.4);
+  --color-carousel-indicator-hover: rgba(255, 255, 255, 0.7);
+
+  // Opacity values
+  --opacity-disabled: 0.5;
+  --opacity-hover: 1;
+  --opacity-focus: 0.9;
+}
+
+// High Contrast Theme
+[data-theme="high-contrast"] {
+  // Primary colors (more vibrant)
+  --color-primary: #0000ff;
+  --color-primary-light: #4444ff;
+  --color-primary-dark: #0000aa;
+  --color-primary-rgb: 0, 0, 255;
+
+  // Secondary colors
+  --color-secondary: #ff00ff;
+  --color-secondary-light: #ff44ff;
+  --color-secondary-dark: #aa00aa;
+  --color-secondary-rgb: 255, 0, 255;
+
+  // Semantic colors
+  --color-success: #00cc00;
+  --color-danger: #ff0000;
+  --color-warning: #ff8800;
+  --color-info: #0088ff;
+
+  // Neutral colors
+  --color-text: #000000;
+  --color-text-secondary: #333333;
+  --color-text-muted: #666666;
+  --color-text-light: #999999;
+
+  --color-bg: #ffffff;
+  --color-bg-secondary: #f0f0f0;
+  --color-bg-tertiary: #e0e0e0;
+  --color-bg-hover: #eeeeee;
+
+  --color-border: #000000;
+  --color-border-light: #333333;
+  --color-border-dark: #000000;
+
+  // Shadow colors
+  --color-shadow: rgba(0, 0, 0, 0.3);
+  --color-shadow-dark: rgba(0, 0, 0, 0.5);
+
+  // Component specific
+  --color-input-bg: #ffffff;
+  --color-input-border: #000000;
+  --color-input-text: #000000;
+  --color-input-disabled-bg: #cccccc;
+  --color-input-disabled-text: #666666;
+
+  --color-button-hover: #e0e0e0;
+  --color-button-active: #cccccc;
+
+  --color-card-bg: #ffffff;
+  --color-card-border: #000000;
+
+  --color-modal-overlay: rgba(0, 0, 0, 0.8);
+  --color-modal-bg: #ffffff;
+
+  // Carousel colors
+  --color-carousel-control-bg: rgba(0, 0, 0, 0.9);
+  --color-carousel-control-text: #ffffff;
+  --color-carousel-control-hover: rgba(0, 0, 0, 1);
+  --color-carousel-indicators-bg: rgba(0, 0, 0, 0.7);
+  --color-carousel-indicator: rgba(255, 255, 255, 0.6);
+  --color-carousel-indicator-hover: rgba(255, 255, 255, 0.9);
+
+  // Opacity values
+  --opacity-disabled: 0.5;
+  --opacity-hover: 1;
+  --opacity-focus: 0.9;
+}
+
+// Utility classes for theme switching
+.theme-light {
+  color-scheme: light;
+}
+
+.theme-dark {
+  color-scheme: dark;
+}
+
+// Respects prefers-color-scheme for users without explicit theme setting
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    // Apply dark theme variables
+    --color-primary: #60a5fa;
+    --color-primary-light: #93c5fd;
+    --color-primary-dark: #3b82f6;
+    --color-primary-rgb: 96, 165, 250;
+
+    --color-secondary: #c4b5fd;
+    --color-secondary-light: #ddd6fe;
+    --color-secondary-dark: #a78bfa;
+    --color-secondary-rgb: 196, 181, 253;
+
+    --color-success: #34d399;
+    --color-danger: #f87171;
+    --color-warning: #fbbf24;
+    --color-info: #38bdf8;
+
+    --color-text: #{$gray-100};
+    --color-text-secondary: #{$gray-300};
+    --color-text-muted: #{$gray-400};
+    --color-text-light: #{$gray-500};
+
+    --color-bg: #{$gray-900};
+    --color-bg-secondary: #{$gray-800};
+    --color-bg-tertiary: #{$gray-700};
+    --color-bg-hover: #{$gray-800};
+
+    --color-border: #{$gray-700};
+    --color-border-light: #{$gray-600};
+    --color-border-dark: #{$gray-800};
+
+    --color-shadow: rgba(0, 0, 0, 0.3);
+    --color-shadow-dark: rgba(0, 0, 0, 0.5);
+
+    --color-input-bg: #{$gray-800};
+    --color-input-border: #{$gray-700};
+    --color-input-text: #{$gray-100};
+    --color-input-disabled-bg: #{$gray-900};
+    --color-input-disabled-text: #{$gray-600};
+
+    --color-button-hover: #{$gray-800};
+    --color-button-active: #{$gray-700};
+
+    --color-card-bg: #{$gray-800};
+    --color-card-border: #{$gray-700};
+
+    --color-modal-overlay: rgba(0, 0, 0, 0.7);
+    --color-modal-bg: #{$gray-800};
+
+    --opacity-disabled: 0.5;
+    --opacity-hover: 1;
+    --opacity-focus: 0.9;
+
+    color-scheme: dark;
+  }
+}
+
+// Theme transition support
+.theme-transition,
+.theme-transition *,
+.theme-transition *::before,
+.theme-transition *::after {
+  transition:
+    color 300ms $ease-out,
+    background-color 300ms $ease-out,
+    border-color 300ms $ease-out,
+    box-shadow 300ms $ease-out,
+    fill 300ms $ease-out,
+    stroke 300ms $ease-out !important;
+}
+
+// Disable animations during transitions
+.theme-transition * {
+  animation-duration: 0s !important;
+}
+
+// Theme utilities using CSS variables
+.text-primary {
+  color: var(--color-primary);
+}
+
+.text-secondary {
+  color: var(--color-secondary);
+}
+
+.text-success {
+  color: var(--color-success);
+}
+
+.text-danger {
+  color: var(--color-danger);
+}
+
+.text-warning {
+  color: var(--color-warning);
+}
+
+.text-info {
+  color: var(--color-info);
+}
+
+.text-muted {
+  color: var(--color-text-muted);
+}
+
+.bg-primary {
+  background-color: var(--color-primary);
+  color: #ffffff;
+}
+
+.bg-secondary {
+  background-color: var(--color-secondary);
+  color: #ffffff;
+}
+
+.bg-success {
+  background-color: var(--color-success);
+  color: #ffffff;
+}
+
+.bg-danger {
+  background-color: var(--color-danger);
+  color: #ffffff;
+}
+
+.bg-warning {
+  background-color: var(--color-warning);
+  color: #000000;
+}
+
+.bg-info {
+  background-color: var(--color-info);
+  color: #ffffff;
+}
+
+.bg-light {
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text);
+}
+
+.bg-dark {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+.border-primary {
+  border-color: var(--color-primary);
+}
+
+.border-secondary {
+  border-color: var(--color-secondary);
+}
+
+.border-success {
+  border-color: var(--color-success);
+}
+
+.border-danger {
+  border-color: var(--color-danger);
+}
+
+.border-warning {
+  border-color: var(--color-warning);
+}
+
+.border-info {
+  border-color: var(--color-info);
+}

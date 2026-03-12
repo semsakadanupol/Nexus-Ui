@@ -1,0 +1,161 @@
+// ============================================
+// NEXUS-UI Card Component
+// ============================================
+
+@use "../variables" as *;
+@use "../mixins" as *;
+
+.card {
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: $radius-lg;
+  overflow: hidden;
+  @include transition(all);
+  transition: all $transition-base;
+  transform: translateY(0);
+  box-shadow: 0 1px 3px var(--color-shadow);
+
+  &:hover {
+    box-shadow: 0 8px 20px var(--color-shadow-dark);
+    transform: translateY(-4px);
+  }
+}
+
+// Card header
+.card-header {
+  padding: $spacing-lg;
+  border-bottom: 1px solid var(--color-border);
+  background-color: var(--color-bg-secondary);
+  transition: all $transition-base;
+
+  h3 {
+    margin: 0;
+    font-size: $font-size-lg;
+    font-weight: $font-weight-bold;
+    color: var(--color-text);
+  }
+}
+
+// Card body
+.card-body {
+  padding: $spacing-lg;
+  color: var(--color-text);
+  transition: all $transition-base;
+}
+
+// Card footer
+.card-footer {
+  padding: $spacing-lg;
+  border-top: 1px solid var(--color-border);
+  background-color: var(--color-bg-secondary);
+  transition: all $transition-base;
+}
+
+// Card image
+.card-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+// Card with top image
+.card-img-top {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+// Card with bottom image
+.card-img-bottom {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  order: 1;
+}
+
+// Card title and text
+.card-title {
+  margin: 0 0 $spacing-sm 0;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-bold;
+}
+
+.card-subtitle {
+  margin: 0 0 $spacing-md 0;
+  font-size: $font-size-sm;
+  color: var(--color-text-secondary);
+}
+
+.card-text {
+  margin: 0;
+  color: var(--color-text-secondary);
+}
+
+// Card link
+.card-link {
+  color: var(--color-primary);
+  text-decoration: none;
+  margin-right: $spacing-md;
+  transition: all $transition-base;
+
+  &:hover {
+    text-decoration: underline;
+    opacity: 0.8;
+  }
+}
+
+// Card layout variants
+.card-horizontal {
+  display: flex;
+
+  .card-image {
+    flex: 0 0 40%;
+    height: 200px;
+    object-fit: cover;
+  }
+
+  .card-body {
+    flex: 1;
+  }
+}
+
+// Card elevated
+.card-elevated {
+  box-shadow: 0 10px 25px var(--color-shadow-dark);
+  border: 1px solid var(--color-border);
+  transition: all $transition-base;
+
+  &:hover {
+    box-shadow: 0 20px 40px var(--color-shadow-dark);
+  }
+}
+
+// Card outline
+.card-outline {
+  background-color: transparent;
+  border: 2px solid var(--color-border);
+  box-shadow: none;
+  transition: all $transition-base;
+
+  &:hover {
+    border-color: var(--color-primary);
+    box-shadow: 0 4px 12px var(--color-shadow);
+  }
+}
+
+// Responsive cards
+@include respond-to("md") {
+  .md\:card-cols-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $spacing-lg;
+  }
+
+  .md\:card-horizontal {
+    flex-direction: column;
+
+    .card-image {
+      flex: 0 0 auto;
+    }
+  }
+}

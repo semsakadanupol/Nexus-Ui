@@ -1,0 +1,895 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nexus-UI - Framework Demo</title>
+    <link rel="stylesheet" href="../dist/index.css" />
+  </head>
+  <body class="bg-gradient-light">
+    <!-- Enhanced Professional Navbar -->
+    <nav class="navbar animate-slide-down">
+      <div class="navbar-brand animate-fade-in duration-300">
+        <span style="font-size: 1.5rem">✨</span>
+        Nexus-UI
+      </div>
+
+      <button class="navbar-toggler" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a href="#buttons" class="nav-link active delay-75"> Buttons </a>
+        </li>
+        <li class="nav-item">
+          <a href="#cards" class="nav-link delay-100"> Cards </a>
+        </li>
+        <li class="nav-item">
+          <a href="#modal" class="nav-link delay-150"> Modal </a>
+        </li>
+        <li class="nav-item">
+          <a href="#carousel" class="nav-link delay-200"> Carousel </a>
+        </li>
+        <li class="nav-item">
+          <a href="#animations" class="nav-link delay-300"> Animations </a>
+        </li>
+        <li class="nav-item">
+          <a href="#durations" class="nav-link delay-300"> Durations </a>
+        </li>
+        <li class="nav-item">
+          <a href="#theme" class="nav-link delay-300"> Theme </a>
+        </li>
+      </ul>
+
+      <div class="navbar-end">
+        <button
+          id="themeToggleNav"
+          class="btn btn-primary"
+          title="Toggle theme"
+          aria-label="Toggle dark mode"
+        >
+          🌙 Theme
+        </button>
+      </div>
+    </nav>
+
+    <div class="p-2xl">
+      <div class="max-w-6xl mx-auto">
+        <!-- Navbar Showcase Section -->
+        <section
+          class="mb-3xl p-2xl rounded-lg bg-default text-default border border-default shadow-base animate-slide-up"
+        >
+          <h2
+            class="text-3xl font-bold mb-lg pb-lg border-b-2 border-primary text-primary animate-fade-in"
+          >
+            Modern Navbar
+          </h2>
+          <p
+            class="text-lg text-secondary-color mb-lg animate-fade-in delay-100"
+          >
+            The Nexus-UI navbar is designed with a professional, modern
+            aesthetic that instantly elevates your project. Built with smooth
+            animations, responsive design, and theme support.
+          </p>
+
+          <div class="grid grid-cols-3 gap-lg md:grid-cols-1 mb-lg">
+            <div
+              class="p-lg rounded-lg border-2 border-primary bg-default animate-scale-in"
+            >
+              <h4 class="font-bold text-primary mb-sm">✨ Modern Design</h4>
+              <p class="text-sm text-default">
+                Subtle gradients and glassmorphism effects create a professional
+                look that works across all themes.
+              </p>
+            </div>
+            <div
+              class="p-lg rounded-lg border-2 border-secondary bg-default animate-scale-in delay-100"
+            >
+              <h4 class="font-bold text-secondary mb-sm">
+                ⚡ Smooth Animations
+              </h4>
+              <p class="text-sm text-default">
+                Entrance animations, hover effects, and staggered delays create
+                engaging interactions.
+              </p>
+            </div>
+            <div
+              class="p-lg rounded-lg border-2 border-info bg-default animate-scale-in delay-200"
+            >
+              <h4 class="font-bold text-info mb-sm">🎨 Theme Ready</h4>
+              <p class="text-sm text-default">
+                Fully supports light, dark, and high-contrast themes with smooth
+                CSS transitions.
+              </p>
+            </div>
+          </div>
+
+          <h3
+            class="text-xl font-semibold mt-lg mb-md text-default animate-fade-in"
+          >
+            > Key Features
+          </h3>
+          <div
+            class="p-lg rounded-lg bg-secondary-color border border-default animate-fade-in delay-100"
+          >
+            >
+            <ul class="list-none p-0 m-0 space-y-sm">
+              <li class="flex items-center gap-md animate-slide-up delay-75">
+                <span
+                  class="inline-block w-2 h-2 rounded-full bg-primary"
+                ></span>
+                Sticky positioning with slide-down animation on page load
+              </li>
+              <li class="flex items-center gap-md animate-slide-up delay-100">
+                <span
+                  class="inline-block w-2 h-2 rounded-full bg-primary"
+                ></span>
+                Gradient brand with interactive hover effects and scale
+                transforms
+              </li>
+              <li class="flex items-center gap-md animate-slide-up delay-150">
+                <span
+                  class="inline-block w-2 h-2 rounded-full bg-primary"
+                ></span>
+                Animated underline on nav links with scaleX animation
+              </li>
+              <li class="flex items-center gap-md animate-slide-up delay-200">
+                <span
+                  class="inline-block w-2 h-2 rounded-full bg-primary"
+                ></span>
+                Responsive mobile menu with smooth hamburger animation
+              </li>
+              <li class="flex items-center gap-md animate-slide-up delay-300">
+                <span
+                  class="inline-block w-2 h-2 rounded-full bg-primary"
+                ></span>
+                Dropdown menus with smooth transitions and scale animations
+              </li>
+              <li class="flex items-center gap-md animate-slide-up delay-300">
+                <span
+                  class="inline-block w-2 h-2 rounded-full bg-primary"
+                ></span>
+                Full theme support with CSS variables for easy customization
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Buttons Section -->
+        <section
+          id="buttons"
+          class="mb-3xl p-2xl rounded-lg bg-default text-default border border-default shadow-base animate-slide-up"
+        >
+          <h2
+            class="text-3xl font-bold mb-lg pb-lg border-b-2 border-primary text-primary animate-fade-in"
+          >
+            Buttons
+          </h2>
+          <div class="flex flex-wrap gap-md mb-lg animate-scale-in">
+            <button class="btn btn-primary">Primary</button>
+            <button class="btn btn-secondary">Secondary</button>
+            <button class="btn btn-success">Success</button>
+            <button class="btn btn-danger">Danger</button>
+            <button class="btn btn-warning">Warning</button>
+          </div>
+
+          <h3
+            class="text-xl font-semibold mt-lg mb-md text-default animate-fade-in"
+          >
+            Outline Buttons
+          </h3>
+          <div class="flex flex-wrap gap-md mb-lg animate-scale-in">
+            <button class="btn btn-primary btn-outline">Primary Outline</button>
+            <button class="btn btn-secondary btn-outline">
+              Secondary Outline
+            </button>
+          </div>
+
+          <h3
+            class="text-xl font-semibold mt-lg mb-md text-default animate-fade-in"
+          >
+            Button Sizes
+          </h3>
+          <div class="flex flex-wrap gap-md mb-lg animate-scale-in">
+            <button class="btn btn-primary btn-xs">XSmall</button>
+            <button class="btn btn-primary btn-sm">Small</button>
+            <button class="btn btn-primary">Normal</button>
+            <button class="btn btn-primary btn-lg">Large</button>
+            <button class="btn btn-primary btn-xl">XLarge</button>
+          </div>
+
+          <h3
+            class="text-xl font-semibold mt-lg mb-md text-default animate-fade-in"
+          >
+            Button Group
+          </h3>
+          <div class="btn-group animate-slide-up">
+            <button class="btn btn-primary">Left</button>
+            <button class="btn btn-primary">Center</button>
+            <button class="btn btn-primary">Right</button>
+          </div>
+        </section>
+
+        <!-- Cards Section -->
+        <section
+          id="cards"
+          class="mb-3xl p-2xl rounded-lg bg-default text-default border border-default shadow-base animate-slide-up"
+        >
+          <h2
+            class="text-3xl font-bold mb-lg pb-lg border-b-2 border-primary text-primary animate-fade-in"
+          >
+            Cards
+          </h2>
+          <div class="grid grid-cols-3 gap-lg md:grid-cols-1">
+            <div class="card animate-scale-in">
+              <div class="card-header">
+                <h3 class="card-title">Card One</h3>
+                <p class="card-subtitle">Subtitle text</p>
+              </div>
+              <div class="card-body">
+                <p class="card-text">
+                  This is a beautiful card component with header, body, and
+                  footer.
+                </p>
+              </div>
+              <div class="card-footer">
+                <a href="#" class="card-link">Learn more</a>
+                <a href="#" class="card-link">Read more</a>
+              </div>
+            </div>
+
+            <div class="card animate-scale-in">
+              <img
+                src="https://dummyimage.com/300/09f.png/fff"
+                alt="Card image"
+                class="card-img-top"
+              />
+              <div class="card-body">
+                <h3 class="card-title">Card with Image</h3>
+                <p class="card-text">
+                  Cards can include images at the top or bottom.
+                </p>
+              </div>
+              <div class="card-footer">
+                <button class="btn btn-primary btn-sm">Action</button>
+              </div>
+            </div>
+
+            <div class="card card-elevated animate-scale-in">
+              <div class="card-body text-center">
+                <h3 class="card-title">Elevated Card</h3>
+                <p class="card-text">
+                  This card has a shadow for elevation effect.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Spacing Section -->
+        <section
+          class="mb-3xl p-2xl rounded-lg bg-default text-default border border-default shadow-base animate-slide-up"
+        >
+          <h2
+            class="text-3xl font-bold mb-lg pb-lg border-b-2 border-primary text-primary animate-fade-in"
+          >
+            Spacing Utilities
+          </h2>
+          <div class="sample-light p-lg rounded-lg">
+            <div class="bg-default gap-md">
+              <div class="p-xs sample-accent-1 mb-md">p-xs</div>
+              <div class="p-sm sample-accent-2 mb-md">p-sm</div>
+              <div class="p-md sample-accent-1 mb-md">p-md</div>
+              <div class="p-lg sample-accent-2 mb-md">p-lg</div>
+              <div class="p-xl sample-accent-3">p-xl</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Typography Section -->
+        <section
+          class="mb-3xl p-2xl rounded-lg bg-default text-default border border-default shadow-base animate-slide-up"
+        >
+          <h2
+            class="text-3xl font-bold mb-lg pb-lg border-b-2 border-primary text-primary animate-fade-in"
+          >
+            Typography
+          </h2>
+          <h1 class="text-4xl font-bold mb-lg animate-scale-in">
+            Heading 1 (text-4xl)
+          </h1>
+          <h2 class="text-3xl font-bold mt-lg mb-lg animate-scale-in">
+            Heading 2 (text-3xl)
+          </h2>
+          <h3 class="text-2xl font-semibold mt-lg mb-lg animate-scale-in">
+            Heading 3 (text-2xl)
+          </h3>
+
+          <p
+            class="text-lg leading-relaxed mt-lg mb-lg text-default animate-fade-in"
+          >
+            > Large text with relaxed line height. This demonstrates typography
+            utilities for different text sizes and styles.
+          </p>
+
+          <p
+            class="text-sm text-secondary-color leading-tight mt-lg mb-lg animate-fade-in"
+          >
+            Small text with tight line height for captions or footnotes.
+          </p>
+
+          <div class="mt-lg">
+            <span
+              class="uppercase tracking-wide text-xs font-bold text-primary animate-fade-in"
+              >Uppercase small caps</span
+            >
+          </div>
+        </section>
+
+        <!-- Flexbox Section -->
+        <section
+          class="mb-3xl p-2xl rounded-lg bg-default text-default border border-default shadow-base animate-slide-up"
+        >
+          <h2
+            class="text-3xl font-bold mb-lg pb-lg border-b-2 border-primary text-primary animate-fade-in"
+          >
+            Flexbox Utilities
+          </h2>
+          <div
+            class="flex justify-between items-center gap-md p-lg mb-lg bg-tertiary rounded-lg animate-scale-in"
+          >
+            <div>Item 1</div>
+            <div>Item 2</div>
+            <div>Item 3</div>
+          </div>
+
+          <div
+            class="flex flex-col gap-sm p-lg bg-tertiary rounded-lg animate-scale-in"
+          >
+            <div>Flex Column Item 1</div>
+            <div>Flex Column Item 2</div>
+            <div>Flex Column Item 3</div>
+          </div>
+        </section>
+
+        <!-- Grid Section -->
+        <section
+          class="mb-3xl p-2xl rounded-lg bg-default border border-default shadow-base animate-slide-up"
+        >
+          <h2
+            class="text-3xl font-bold mb-lg pb-lg border-b-2 border-primary text-primary animate-fade-in"
+          >
+            Grid Utilities
+          </h2>
+          <div class="grid grid-cols-4 gap-md lg:grid-cols-2 md:grid-cols-1">
+            <div
+              class="sample-accent-1 p-lg rounded-lg text-center animate-scale-in"
+            >
+              Grid Item 1
+            </div>
+            <div
+              class="sample-accent-2 p-lg rounded-lg text-center animate-scale-in"
+            >
+              Grid Item 2
+            </div>
+            <div
+              class="sample-accent-3 p-lg rounded-lg text-center animate-scale-in"
+            >
+              Grid Item 3
+            </div>
+            <div
+              class="sample-accent-1 p-lg rounded-lg text-center animate-scale-in"
+            >
+              Grid Item 4
+            </div>
+          </div>
+        </section>
+
+        <!-- Modal Section -->
+        <section
+          id="modal"
+          class="mb-3xl p-2xl rounded-lg bg-default border border-default shadow-base animate-slide-up"
+        >
+          <h2
+            class="text-3xl font-bold mb-lg pb-lg border-b-2 border-primary text-primary animate-fade-in"
+          >
+            Modal
+          </h2>
+          <button class="btn btn-primary animate-scale-in" id="openModalBtn">
+            Open Modal
+          </button>
+        </section>
+
+        <!-- Carousel Section -->
+        <section
+          id="carousel"
+          class="mb-3xl p-2xl rounded-lg bg-default text-default border border-default shadow-base animate-slide-up"
+        >
+          <h2
+            class="text-3xl font-bold mb-lg pb-lg border-b-2 border-primary text-primary animate-fade-in"
+          >
+            Carousel
+          </h2>
+          <div
+            id="myCarousel"
+            class="carousel relative overflow-hidden rounded-lg mb-lg"
+            style="max-height: 70vh"
+            data-ride="carousel"
+          >
+            <div class="carousel-item active">
+              <img src="https://dummyimage.com/300/09f.png/fff" alt="Slide 1" />
+            </div>
+            <div class="carousel-item">
+              <img
+                src="https://dummyimage.com/300/8b5cf6.png/fff"
+                alt="Slide 2"
+              />
+            </div>
+            <div class="carousel-item">
+              <img
+                src="https://dummyimage.com/300/10b981.png/fff"
+                alt="Slide 3"
+              />
+            </div>
+
+            <button class="carousel-control-prev">❮</button>
+            <button class="carousel-control-next">❯</button>
+          </div>
+        </section>
+
+        <!-- Colors Section -->
+        <section
+          class="mb-3xl p-2xl rounded-lg bg-default text-default border border-default shadow-base animate-slide-up"
+        >
+          <h2
+            class="text-3xl font-bold mb-lg pb-lg border-b-2 border-primary text-primary animate-fade-in"
+          >
+            Color Utilities
+          </h2>
+          <div class="grid grid-cols-3 gap-md md:grid-cols-1">
+            <div
+              class="bg-primary text-white p-lg rounded-lg text-center animate-scale-in"
+            >
+              Primary
+            </div>
+            <div
+              class="bg-secondary text-white p-lg rounded-lg text-center animate-scale-in"
+            >
+              Secondary
+            </div>
+            <div
+              class="bg-success text-white p-lg rounded-lg text-center animate-scale-in"
+            >
+              Success
+            </div>
+            <div
+              class="bg-danger text-white p-lg rounded-lg text-center animate-scale-in"
+            >
+              Danger
+            </div>
+            <div
+              class="bg-warning text-white p-lg rounded-lg text-center animate-scale-in"
+            >
+              Warning
+            </div>
+            <div
+              class="bg-info text-white p-lg rounded-lg text-center animate-scale-in"
+            >
+              Info
+            </div>
+          </div>
+        </section>
+
+        <!-- Borders and Shadows Section -->
+        <section
+          class="mb-3xl p-2xl rounded-lg bg-default text-default border border-default shadow-base animate-slide-up"
+        >
+          <h2
+            class="text-3xl font-bold mb-lg pb-lg border-b-2 border-primary text-primary animate-fade-in"
+          >
+            Borders & Shadows
+          </h2>
+          <div class="grid grid-cols-3 gap-lg md:grid-cols-1">
+            <div class="border p-lg rounded-lg animate-scale-in">
+              Border Box
+            </div>
+            <div
+              class="border-2 border-primary p-lg rounded-lg bg-default text-default animate-scale-in"
+            >
+              Bold Primary Border
+            </div>
+            <div class="shadow-lg p-lg rounded-lg animate-scale-in">
+              Shadow Large
+            </div>
+          </div>
+        </section>
+
+        <!-- Animations Section -->
+        <section
+          id="animations"
+          class="mb-3xl p-2xl rounded-lg bg-default border border-default shadow-base animate-slide-up"
+        >
+          <h2
+            class="text-3xl font-bold mb-lg pb-lg border-b-2 border-primary text-primary animate-fade-in"
+          >
+            Animations
+          </h2>
+
+          <h3
+            class="text-xl font-semibold mt-lg mb-md text-default animate-fade-in"
+          >
+            Entrance Animations
+          </h3>
+          <div class="flex flex-wrap gap-md mb-lg animate-scale-in">
+            <div class="p-md rounded-lg bg-primary text-white animate-fade-in">
+              Fade In
+            </div>
+            <div class="p-md rounded-lg bg-primary text-white animate-slide-up">
+              Slide Up
+            </div>
+            <div
+              class="p-md rounded-lg bg-primary text-white animate-slide-right"
+            >
+              Slide Right
+            </div>
+            <div class="p-md rounded-lg bg-primary text-white animate-scale-in">
+              Scale In
+            </div>
+          </div>
+
+          <h3
+            class="text-xl font-semibold mt-lg mb-md text-default animate-fade-in"
+          >
+            Continuous Animations
+          </h3>
+          <div class="flex flex-wrap gap-md mb-lg animate-scale-in">
+            <div class="p-md rounded-lg bg-secondary text-white animate-bounce">
+              Bounce
+            </div>
+            <div class="p-md rounded-lg bg-secondary text-white animate-pulse">
+              Pulse
+            </div>
+            <div
+              class="p-md rounded-lg bg-secondary text-white animate-spin text-2xl"
+            >
+              ⚙️
+            </div>
+            <div class="p-md rounded-lg bg-secondary text-white animate-glow">
+              Glow
+            </div>
+            <div class="p-md rounded-lg bg-secondary text-white animate-wiggle">
+              Wiggle
+            </div>
+            <div
+              class="p-md rounded-lg bg-secondary text-white animate-heartbeat"
+            >
+              ❤️
+            </div>
+          </div>
+
+          <h3
+            class="text-xl font-semibold mt-lg mb-md text-default animate-fade-in"
+          >
+            Animation Delays
+          </h3>
+          <div class="flex flex-wrap gap-md animate-scale-in">
+            <div class="p-md rounded-lg bg-info text-white animate-slide-up">
+              No Delay
+            </div>
+            <div
+              class="p-md rounded-lg bg-info text-white animate-slide-up animate-delay-fast"
+            >
+              Fast Delay
+            </div>
+            <div
+              class="p-md rounded-lg bg-info text-white animate-slide-up animate-delay-base"
+            >
+              Base Delay
+            </div>
+            <div
+              class="p-md rounded-lg bg-info text-white animate-slide-up animate-delay-slow"
+            >
+              Slow Delay
+            </div>
+          </div>
+        </section>
+
+        <!-- Animation Durations & Delays Section -->
+        <section
+          id="durations"
+          class="mb-3xl p-2xl rounded-lg bg-default border border-default shadow-base animate-slide-up"
+        >
+          <h2
+            class="text-3xl font-bold mb-lg pb-lg border-b-2 border-primary text-primary animate-fade-in"
+          >
+            Animation Durations & Delays
+          </h2>
+          <p class="mb-lg text-secondary-color animate-fade-in">
+            Tailwind-like utilities for fine-tuning animation and transition
+            timing.
+          </p>
+
+          <h3
+            class="text-xl font-semibold mt-lg mb-md text-default animate-fade-in"
+          >
+            Animation Durations (duration-*)
+          </h3>
+          <div class="grid grid-cols-4 gap-md md:grid-cols-2 mb-lg">
+            <div
+              class="p-md rounded-lg bg-primary text-white text-center animate-pulse duration-75"
+            >
+              75ms
+            </div>
+            <div
+              class="p-md rounded-lg bg-primary text-white text-center animate-pulse duration-150"
+            >
+              150ms
+            </div>
+            <div
+              class="p-md rounded-lg bg-primary text-white text-center animate-pulse duration-300"
+            >
+              300ms (default)
+            </div>
+            <div
+              class="p-md rounded-lg bg-primary text-white text-center animate-pulse duration-1000"
+            >
+              1000ms
+            </div>
+          </div>
+
+          <h3
+            class="text-xl font-semibold mt-lg mb-md text-default animate-fade-in"
+          >
+            Animation Delays (delay-*)
+          </h3>
+          <div class="flex flex-wrap gap-md mb-lg">
+            <div
+              class="p-md rounded-lg bg-secondary text-white animate-slide-up delay-0"
+            >
+              delay-0ms
+            </div>
+            <div
+              class="p-md rounded-lg bg-secondary text-white animate-slide-up delay-75"
+            >
+              delay-75ms
+            </div>
+            <div
+              class="p-md rounded-lg bg-secondary text-white animate-slide-up delay-150"
+            >
+              delay-150ms
+            </div>
+            <div
+              class="p-md rounded-lg bg-secondary text-white animate-slide-up delay-300"
+            >
+              delay-300ms
+            </div>
+            <div
+              class="p-md rounded-lg bg-secondary text-white animate-slide-up delay-500"
+            >
+              delay-500ms
+            </div>
+            <div
+              class="p-md rounded-lg bg-secondary text-white animate-slide-up delay-1000"
+            >
+              delay-1000ms
+            </div>
+          </div>
+
+          <h3
+            class="text-xl font-semibold mt-lg mb-md text-default animate-fade-in"
+          >
+            Transition Durations (transition-*)
+          </h3>
+          <p class="text-sm text-secondary-color mb-md">
+            Hover over cards to see smooth transitions with different durations
+          </p>
+          <div class="grid grid-cols-4 gap-md md:grid-cols-2">
+            <button class="btn btn-primary transition-75">
+              transition-75ms
+            </button>
+            <button class="btn btn-primary transition-150">
+              transition-150ms
+            </button>
+            <button class="btn btn-primary transition-300">
+              transition-300ms (default)
+            </button>
+            <button class="btn btn-primary transition-1000">
+              transition-1000ms
+            </button>
+          </div>
+
+          <h3
+            class="text-xl font-semibold mt-lg mb-md text-default animate-fade-in"
+          >
+            Transition Delays (transition-delay-*)
+          </h3>
+          <p class="text-sm text-secondary-color mb-md">
+            Transitions trigger with staggered delays - hover to see effect
+          </p>
+          <div class="flex flex-wrap gap-md text-default">
+            <div
+              class="p-lg rounded-lg border-2 border-primary bg-default transition-300 transition-delay-0 hover:bg-primary hover:text-white cursor-pointer"
+            >
+              delay-0ms
+            </div>
+            <div
+              class="p-lg rounded-lg border-2 border-primary bg-default transition-300 transition-delay-75 hover:bg-primary hover:text-white cursor-pointer"
+            >
+              delay-75ms
+            </div>
+            <div
+              class="p-lg rounded-lg border-2 border-primary bg-default transition-300 transition-delay-150 hover:bg-primary hover:text-white cursor-pointer"
+            >
+              delay-150ms
+            </div>
+            <div
+              class="p-lg rounded-lg border-2 border-primary bg-default transition-300 transition-delay-300 hover:bg-primary hover:text-white cursor-pointer"
+            >
+              delay-300ms
+            </div>
+          </div>
+        </section>
+
+        <!-- Theme Section -->
+        <section
+          id="theme"
+          class="mb-3xl p-2xl rounded-lg bg-default border border-default shadow-base animate-slide-up"
+        >
+          <h2
+            class="text-3xl font-bold mb-lg pb-lg border-b-2 border-primary text-primary animate-fade-in"
+          >
+            Theme System
+          </h2>
+          <p class="mb-lg text-secondary-color animate-fade-in">
+            Nexus-UI includes built-in light, dark, and high-contrast themes.
+          </p>
+
+          <div class="flex flex-wrap gap-md mb-lg animate-scale-in">
+            <button class="btn btn-primary" id="themeLight">
+              ☀️ Light Theme
+            </button>
+            <button class="btn btn-secondary" id="themeDark">
+              🌙 Dark Theme
+            </button>
+            <button class="btn btn-warning" id="themeHighContrast">
+              ⚡ High Contrast
+            </button>
+            <button class="btn btn-info" id="themeToggle">
+              🔄 Toggle Theme
+            </button>
+          </div>
+
+          <h3
+            class="text-xl font-semibold mt-lg mb-md text-default animate-fade-in"
+          >
+            Current Theme:
+            <span id="themeDisplay" class="text-primary font-bold">light</span>
+          </h3>
+
+          <div
+            class="grid grid-cols-4 gap-lg md:grid-cols-2 mt-lg animate-scale-in"
+          >
+            <div class="p-lg rounded-lg bg-primary text-white text-center">
+              Primary
+            </div>
+            <div class="p-lg rounded-lg bg-secondary text-white text-center">
+              Secondary
+            </div>
+            <div class="p-lg rounded-lg bg-success text-white text-center">
+              Success
+            </div>
+            <div class="p-lg rounded-lg bg-danger text-white text-center">
+              Danger
+            </div>
+          </div>
+
+          <div
+            class="mt-lg p-lg rounded-lg border-2 text-default border-primary bg-default animate-fade-in"
+          >
+            <h4 class="text-lg font-bold mb-md">Dynamic Theme Colors</h4>
+            <p class="mb-md">
+              This box uses CSS custom properties (CSS variables) from the theme
+              system.
+            </p>
+            <p>
+              Change the theme above to see the colors update smoothly with
+              transitions!
+            </p>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Modal Example</h2>
+          <button class="modal-close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p>This is a beautiful modal component from Nexus-UI Framework.</p>
+          <p>
+            It supports various options like backdrop behavior and keyboard
+            shortcuts.
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+
+    <script type="module">
+      import { Navbar, Carousel, Modal, ThemeManager } from "../dist/index.js";
+
+      // Initialize navbar
+      const navbar = new Navbar(".navbar");
+
+      // Initialize carousel
+      const carousel = new Carousel("#myCarousel", {
+        interval: 4000,
+      });
+
+      // Modal functionality
+      const openModalBtn = document.getElementById("openModalBtn");
+      const modal = new Modal("#myModal");
+
+      openModalBtn.addEventListener("click", () => modal.show());
+
+      // Theme management
+      const themeLight = document.getElementById("themeLight");
+      const themeDark = document.getElementById("themeDark");
+      const themeHighContrast = document.getElementById("themeHighContrast");
+      const themeToggle = document.getElementById("themeToggle");
+      const themeDisplay = document.getElementById("themeDisplay");
+      const themeToggleNav = document.getElementById("themeToggleNav");
+
+      // Update theme display
+      const updateThemeDisplay = () => {
+        const current = ThemeManager.getTheme();
+        themeDisplay.textContent = current;
+        const icons = { light: "☀️", dark: "🌙", "high-contrast": "⚡" };
+        themeToggleNav.textContent = icons[current] || "🌙";
+      };
+
+      // Set up theme buttons
+      themeLight.addEventListener("click", () => {
+        ThemeManager.setTheme("light");
+        updateThemeDisplay();
+      });
+
+      themeDark.addEventListener("click", () => {
+        ThemeManager.setTheme("dark");
+        updateThemeDisplay();
+      });
+
+      themeHighContrast.addEventListener("click", () => {
+        ThemeManager.setTheme("high-contrast");
+        updateThemeDisplay();
+      });
+
+      themeToggle.addEventListener("click", () => {
+        ThemeManager.toggle();
+        updateThemeDisplay();
+      });
+
+      themeToggleNav.addEventListener("click", () => {
+        ThemeManager.toggle();
+        updateThemeDisplay();
+      });
+
+      // Listen for theme changes
+      ThemeManager.onChange((theme) => {
+        updateThemeDisplay();
+      });
+
+      // Initial display
+      updateThemeDisplay();
+    </script>
+  </body>
+</html>

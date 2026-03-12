@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nexus-UI CDN Example</title>
+    <!-- Nexus-UI CSS from GitHub Pages CDN -->
+    <link
+      rel="stylesheet"
+      href="https://semsakadanupol.github.io/Nexus-Ui/index.css"
+    />
+  </head>
+  <body class="bg-gradient-light" data-theme="light">
+    <div class="p-2xl">
+      <div class="max-w-2xl mx-auto">
+        <h1 class="text-4xl font-bold mb-lg text-primary animate-fade-in">
+          Nexus-UI CDN Example
+        </h1>
+
+        <section
+          class="mb-3xl p-2xl rounded-lg bg-default border border-default shadow-base animate-slide-up"
+        >
+          <h2 class="text-2xl font-bold mb-lg text-primary">Buttons</h2>
+          <div class="flex flex-wrap gap-md">
+            <button class="btn btn-primary">Primary</button>
+            <button class="btn btn-secondary">Secondary</button>
+            <button class="btn btn-success">Success</button>
+            <button class="btn btn-danger">Danger</button>
+          </div>
+
+          <h3 class="text-xl font-bold mt-lg mb-md text-primary">Colors</h3>
+          <div class="grid grid-cols-4 gap-md">
+            <div class="bg-primary text-white p-lg rounded-lg text-center">
+              Primary
+            </div>
+            <div class="bg-secondary text-white p-lg rounded-lg text-center">
+              Secondary
+            </div>
+            <div class="bg-success text-white p-lg rounded-lg text-center">
+              Success
+            </div>
+            <div class="bg-danger text-white p-lg rounded-lg text-center">
+              Danger
+            </div>
+          </div>
+
+          <h3 class="text-xl font-bold mt-lg mb-md text-primary">Spacing</h3>
+          <div class="sample-light p-lg rounded-lg">
+            <div class="p-xs sample-accent-1 mb-md">p-xs</div>
+            <div class="p-sm sample-accent-2 mb-md">p-sm</div>
+            <div class="p-lg sample-accent-1">p-lg</div>
+          </div>
+
+          <h3 class="text-xl font-bold mt-lg mb-md text-primary">Animations</h3>
+          <div class="flex flex-wrap gap-md">
+            <div class="p-md rounded-lg bg-primary text-white animate-fade-in">
+              Fade In
+            </div>
+            <div class="p-md rounded-lg bg-primary text-white animate-slide-up">
+              Slide Up
+            </div>
+            <div class="p-md rounded-lg bg-primary text-white animate-scale-in">
+              Scale In
+            </div>
+            <div class="p-md rounded-lg bg-secondary text-white animate-bounce">
+              Bounce
+            </div>
+            <div class="p-md rounded-lg bg-secondary text-white animate-pulse">
+              Pulse
+            </div>
+          </div>
+
+          <h3 class="text-xl font-bold mt-lg mb-md text-primary">
+            Theme Switcher
+          </h3>
+          <div class="flex flex-wrap gap-md">
+            <button class="btn btn-primary" id="themeLight">☀️ Light</button>
+            <button class="btn btn-secondary" id="themeDark">🌙 Dark</button>
+            <button class="btn btn-warning" id="themeHighContrast">
+              ⚡ High Contrast
+            </button>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- Nexus-UI JS from GitHub Pages CDN -->
+    <script src="https://semsakadanupol.github.io/Nexus-Ui/index.js"></script>
+    <script>
+      import { ThemeManager } from "https://semsakadanupol.github.io/Nexus-Ui/index.js";
+
+      document.getElementById("themeLight").addEventListener("click", () => {
+        ThemeManager.setTheme("light");
+        document.body.setAttribute("data-theme", "light");
+      });
+
+      document.getElementById("themeDark").addEventListener("click", () => {
+        ThemeManager.setTheme("dark");
+        document.body.setAttribute("data-theme", "dark");
+      });
+
+      document
+        .getElementById("themeHighContrast")
+        .addEventListener("click", () => {
+          ThemeManager.setTheme("high-contrast");
+          document.body.setAttribute("data-theme", "high-contrast");
+        });
+    </script>
+  </body>
+</html>

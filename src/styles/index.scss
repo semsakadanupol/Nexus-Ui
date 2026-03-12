@@ -1,0 +1,29 @@
+// ============================================
+// NEXUS-UI Framework - Main Entry Point
+// Desktop-first utility CSS framework
+// ============================================
+
+@use "./variables" as *;
+@use "./mixins" as *;
+@use "./themes" as *;
+@use "./reset" as *;
+@use "./animations" as *;
+@use "./utilities/spacing" as *;
+@use "./utilities/sizing" as *;
+@use "./utilities/colors" as *;
+@use "./utilities/typography" as *;
+@use "./utilities/flexbox" as *;
+@use "./utilities/grid" as *;
+@use "./utilities/positioning" as *;
+@use "./utilities/display" as *;
+@use "./utilities/borders" as *;
+@use "./utilities/shadows" as *;
+@use "./utilities/gradients" as *;
+@use "./components/buttons" as *;
+@use "./components/cards" as *;
+@use "./components/modals" as *;
+@use "./components/navbars" as *;
+@use "./components/carousel" as *;
+@use "./components/dropdowns" as *;
+@use "./components/tooltips" as *;
+@use "./components/offcanvas" as *;

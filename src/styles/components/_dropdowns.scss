@@ -1,0 +1,137 @@
+// ============================================
+// NEXUS-UI Dropdown Component
+// ============================================
+
+@use "../variables" as *;
+@use "../mixins" as *;
+
+// Dropdown container
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+// Dropdown toggle button
+.dropdown-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-sm;
+  background-color: var(--color-primary);
+  color: white;
+  border: 2px solid var(--color-primary);
+  padding: $spacing-sm $spacing-lg;
+  border-radius: $radius-lg;
+  font-size: $font-size-base;
+  font-weight: $font-weight-medium;
+  cursor: pointer;
+  transition: all $transition-base;
+
+  &::after {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(45deg);
+    transition: transform $transition-base;
+  }
+
+  &:hover:not(:disabled) {
+    background-color: var(--color-primary-dark);
+    border-color: var(--color-primary-dark);
+    box-shadow: 0 4px 12px var(--color-shadow);
+    transform: translateY(-2px);
+  }
+
+  &:disabled {
+    opacity: var(--opacity-disabled);
+    cursor: not-allowed;
+  }
+
+  &[aria-expanded="true"]::after {
+    transform: rotate(225deg);
+  }
+}
+
+// Dropdown menu
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: $spacing-sm;
+  min-width: 200px;
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: $radius-lg;
+  box-shadow: 0 10px 25px var(--color-shadow-dark);
+  z-index: 50;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px) scale(0.95);
+  transform-origin: top left;
+  transition: all $transition-base;
+  animation: fade-out $transition-base ease-out;
+
+  &.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+    animation: fade-in $transition-base ease-out;
+  }
+}
+
+// Dropdown menu items
+.dropdown-item {
+  display: block;
+  width: 100%;
+  padding: $spacing-md $spacing-lg;
+  color: var(--color-text);
+  text-align: left;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: $font-size-base;
+  transition: all $transition-base;
+
+  &:first-child {
+    border-radius: $radius-lg $radius-lg 0 0;
+  }
+
+  &:last-child {
+    border-radius: 0 0 $radius-lg $radius-lg;
+  }
+
+  &:hover:not(:disabled) {
+    background-color: var(--color-bg-hover);
+    color: var(--color-primary);
+    padding-left: calc(#{$spacing-lg} + #{$spacing-sm});
+  }
+
+  &:disabled {
+    opacity: var(--opacity-disabled);
+    cursor: not-allowed;
+  }
+
+  &.active {
+    background-color: var(--color-primary);
+    color: white;
+  }
+}
+
+// Dropdown divider
+.dropdown-divider {
+  height: 1px;
+  background-color: var(--color-border);
+  margin: $spacing-sm 0;
+}
+
+// Dropdown header
+.dropdown-header {
+  padding: $spacing-md $spacing-lg;
+  color: var(--color-text-secondary);
+  font-size: $font-size-sm;
+  font-weight: $font-weight-bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}

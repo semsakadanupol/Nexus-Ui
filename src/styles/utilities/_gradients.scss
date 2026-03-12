@@ -1,0 +1,68 @@
+// ============================================
+// NEXUS-UI Gradient Utilities
+// ============================================
+
+@use "../variables" as *;
+
+// Gradient backgrounds (theme-aware)
+.gradient-primary {
+  background: linear-gradient(
+    135deg,
+    var(--color-primary) 0%,
+    var(--color-secondary) 100%
+  );
+}
+
+.gradient-primary-to-secondary {
+  background: linear-gradient(
+    90deg,
+    var(--color-primary) 0%,
+    var(--color-secondary) 100%
+  );
+}
+
+.gradient-cool {
+  background: linear-gradient(
+    135deg,
+    var(--color-info) 0%,
+    var(--color-primary) 100%
+  );
+}
+
+.gradient-warm {
+  background: linear-gradient(
+    135deg,
+    var(--color-warning) 0%,
+    var(--color-danger) 100%
+  );
+}
+
+.gradient-success {
+  background: linear-gradient(
+    135deg,
+    var(--color-success) 0%,
+    var(--color-info) 100%
+  );
+}
+
+// Background gradients
+.bg-gradient-light {
+  background: linear-gradient(
+    135deg,
+    var(--color-bg) 0%,
+    var(--color-bg-secondary) 100%
+  );
+}
+
+.bg-gradient-dark {
+  background: linear-gradient(
+    135deg,
+    var(--color-bg-secondary) 0%,
+    var(--color-bg-tertiary) 100%
+  );
+}
+
+// Smooth scroll behavior
+html {
+  scroll-behavior: smooth;
+}

@@ -1,0 +1,187 @@
+// ============================================
+// NEXUS-UI Modal Component
+// ============================================
+
+@use "../variables" as *;
+@use "../mixins" as *;
+
+// Modal backdrop
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--color-modal-overlay);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 40;
+  opacity: 0;
+  pointer-events: none;
+  @include transition(opacity);
+  transition: opacity $transition-base;
+
+  &.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+// Modal container
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  pointer-events: none;
+
+  &.active .modal-content {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+  }
+}
+
+// Modal content
+.modal-content {
+  background-color: var(--color-modal-bg);
+  border-radius: $radius-lg;
+  box-shadow: 0 20px 40px var(--color-shadow-dark);
+  max-width: 500px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  opacity: 0;
+  transform: scale(0.95) translateY(-20px);
+  pointer-events: none;
+  transition: all $transition-base;
+
+  .modal.active & {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    pointer-events: auto;
+    animation: scale-in $transition-base ease-out forwards;
+  }
+}
+
+// Modal header
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $spacing-lg;
+  border-bottom: 1px solid var(--color-border);
+  transition: all $transition-base;
+
+  h2 {
+    margin: 0;
+    font-size: $font-size-xl;
+    color: var(--color-text);
+  }
+}
+
+// Modal body
+.modal-body {
+  padding: $spacing-lg;
+  color: var(--color-text);
+  line-height: $line-height-normal;
+
+  p {
+    margin: $spacing-sm 0;
+  }
+}
+
+// Modal footer
+.modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: $spacing-md;
+  padding: $spacing-lg;
+  border-top: 1px solid var(--color-border);
+  background-color: var(--color-bg-secondary);
+  transition: all $transition-base;
+  border-radius: 0 0 $radius-lg $radius-lg;
+}
+
+// Close button
+.modal-close {
+  background: none;
+  border: none;
+  font-size: $font-size-2xl;
+  cursor: pointer;
+  color: var(--color-text-secondary);
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: $radius-sm;
+  transition: all $transition-base;
+
+  &:hover {
+    background-color: var(--color-bg-hover);
+    color: var(--color-text);
+    transform: rotate(90deg) scale(1.1);
+  }
+
+  &:active {
+    transform: rotate(90deg) scale(0.95);
+  }
+}
+
+// Modal sizes
+.modal-sm .modal-content {
+  max-width: 300px;
+}
+
+.modal-lg .modal-content {
+  max-width: 800px;
+}
+
+.modal-xl .modal-content {
+  max-width: 1200px;
+}
+
+.modal-fullscreen .modal-content {
+  max-width: 100%;
+  width: 100%;
+  max-height: 100%;
+  height: 100%;
+  border-radius: 0;
+}
+
+// Responsive modals
+@include respond-to("md") {
+  .modal-content {
+    width: 95%;
+  }
+
+  .modal-lg .modal-content {
+    max-width: 600px;
+  }
+
+  .modal-fullscreen .modal-content {
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+@include respond-to("sm") {
+  .modal-content {
+    width: 100%;
+    max-height: 100%;
+    border-radius: 0;
+  }
+
+  .modal-body {
+    padding: $spacing-md;
+  }
+}
