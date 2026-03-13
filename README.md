@@ -1,9 +1,9 @@
-# Nexus-UI Framework v0.0.1
+# Nexus-UI Framework v0.0.2
 
 > A professional desktop-first utility CSS framework with interactive TypeScript components
 
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![npm version](https://img.shields.io/badge/npm-v0.0.1-blue.svg)](https://www.npmjs.com/package/@cyclone_cm/nexus-ui)
+[![npm version](https://img.shields.io/badge/npm-v0.0.2-blue.svg)](https://www.npmjs.com/package/@cyclone_cm/nexus-ui)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-blue.svg)](https://www.typescriptlang.org/)
 [![Size](https://img.shields.io/badge/minified-68KB-brightgreen.svg)]()
 
@@ -31,13 +31,13 @@ npm install @cyclone_cm/nexus-ui
 ```html
 <link
   rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/@cyclone_cm/nexus-ui@0.0.1/dist/index.css"
+  href="https://cdn.jsdelivr.net/npm/@cyclone_cm/nexus-ui@0.0.2/dist/index.css"
 />
 <script type="module">
   import {
     Modal,
     ThemeManager,
-  } from "https://cdn.jsdelivr.net/npm/@cyclone_cm/nexus-ui@0.0.1/dist/index.js";
+  } from "https://cdn.jsdelivr.net/npm/@cyclone_cm/nexus-ui@0.0.2/dist/index.js";
 </script>
 ```
 
@@ -382,7 +382,7 @@ Contributions are welcome! Please:
 
 - **Issues:** [GitHub Issues](https://github.com/semsakadanupol/Nexus-Ui/issues)
 - **Docs:** [Full Documentation](FRAMEWORK_GUIDE.md)
-- **CDN:** [jsDelivr](https://cdn.jsdelivr.net/npm/@cyclone_cm/nexus-ui@0.0.1/)
+- **CDN:** [jsDelivr](https://cdn.jsdelivr.net/npm/@cyclone_cm/nexus-ui@0.0.2/)
 
 ## 🎉 Getting Started
 
