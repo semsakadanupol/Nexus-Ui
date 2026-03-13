@@ -1,0 +1,208 @@
+// ============================================
+// NEXUS-UI Dynamic/Arbitrary Utilities (Tailwind-style)
+// ============================================
+// Syntax: w-100px, h-50vh, gap-2rem (like Tailwind w-[100px])
+// Generates utilities for any numeric value with common units
+
+@use "../variables" as *;
+
+// ============================================
+// Width - px, rem, vh, vw, em, %
+// ============================================
+@for $i from 1 through 200 {
+  .w-#{$i}px {
+    width: #{$i}px;
+  }
+}
+@for $i from 1 through 50 {
+  .w-#{$i}rem {
+    width: #{$i}rem;
+  }
+}
+@for $i from 1 through 100 {
+  .w-#{$i}vh {
+    width: #{$i}vh;
+  }
+  .w-#{$i}vw {
+    width: #{$i}vw;
+  }
+}
+@for $i from 1 through 20 {
+  .w-#{$i}em {
+    width: #{$i}em;
+  }
+}
+
+// ============================================
+// Height - px, rem, vh, vw, em, %
+// ============================================
+@for $i from 1 through 200 {
+  .h-#{$i}px {
+    height: #{$i}px;
+  }
+}
+@for $i from 1 through 50 {
+  .h-#{$i}rem {
+    height: #{$i}rem;
+  }
+}
+@for $i from 1 through 100 {
+  .h-#{$i}vh {
+    height: #{$i}vh;
+  }
+  .h-#{$i}vw {
+    height: #{$i}vw;
+  }
+}
+@for $i from 1 through 20 {
+  .h-#{$i}em {
+    height: #{$i}em;
+  }
+}
+
+// ============================================
+// Gap/Spacing - px, rem, vh, vw
+// ============================================
+@for $i from 1 through 100 {
+  .gap-#{$i}px {
+    gap: #{$i}px;
+  }
+}
+@for $i from 1 through 20 {
+  .gap-#{$i}rem {
+    gap: #{$i}rem;
+  }
+}
+@for $i from 1 through 50 {
+  .gap-#{$i}vh {
+    gap: #{$i}vh;
+  }
+  .gap-#{$i}vw {
+    gap: #{$i}vw;
+  }
+}
+
+// ============================================
+// Font Size - px, rem
+// ============================================
+@for $i from 1 through 200 {
+  .text-#{$i}px {
+    font-size: #{$i}px;
+  }
+}
+@for $i from 1 through 20 {
+  .text-#{$i}rem {
+    font-size: #{$i}rem;
+  }
+}
+
+// ============================================
+// Border Radius - px, rem
+// ============================================
+@for $i from 0 through 256 {
+  .rounded-#{$i}px {
+    border-radius: #{$i}px;
+  }
+}
+@for $i from 1 through 20 {
+  .rounded-#{$i}rem {
+    border-radius: #{$i}rem;
+  }
+}
+
+// ============================================
+// Max-Width - px, rem
+// ============================================
+@for $i from 1 through 100 {
+  .max-w-#{$i * 10}px {
+    max-width: #{$i * 10}px;
+  }
+}
+@for $i from 5 through 100 {
+  .max-w-#{$i}rem {
+    max-width: #{$i}rem;
+  }
+}
+
+// ============================================
+// Min/Max Heights - px, rem
+// ============================================
+@for $i from 1 through 50 {
+  .min-h-#{$i * 50}px {
+    min-height: #{$i * 50}px;
+  }
+  .max-h-#{$i * 50}px {
+    max-height: #{$i * 50}px;
+  }
+}
+@for $i from 1 through 50 {
+  .min-h-#{$i}rem {
+    min-height: #{$i}rem;
+  }
+  .max-h-#{$i}rem {
+    max-height: #{$i}rem;
+  }
+}
+
+// ============================================
+// Z-Index - 0 to 1000, 10-100 (by 10)
+// ============================================
+@for $i from 0 through 100 {
+  .z-#{$i * 10} {
+    z-index: #{$i * 10};
+  }
+}
+.z-auto {
+  z-index: auto;
+}
+
+// ============================================
+// Line Height - px, rem
+// ============================================
+@for $i from 1 through 100 {
+  .leading-#{$i}px {
+    line-height: #{$i}px;
+  }
+}
+@for $i from 1 through 20 {
+  .leading-#{$i}rem {
+    line-height: #{$i}rem;
+  }
+}
+
+// ============================================
+// Letter Spacing - px, rem
+// ============================================
+@for $i from 1 through 50 {
+  .tracking-#{$i}px {
+    letter-spacing: #{$i}px;
+  }
+}
+@for $i from 1 through 10 {
+  .tracking-#{$i}rem {
+    letter-spacing: #{$i}rem;
+  }
+}
+
+// ============================================
+// Word Spacing - px, rem
+// ============================================
+@for $i from 1 through 50 {
+  .space-#{$i}px {
+    word-spacing: #{$i}px;
+  }
+}
+@for $i from 1 through 10 {
+  .space-#{$i}rem {
+    word-spacing: #{$i}rem;
+  }
+}
+
+// ============================================
+// Opacity - 0, 5, 10, ... 100
+// ============================================
+@for $i from 0 through 20 {
+  .opacity-#{$i * 5} {
+    opacity: #{($i * 5) * 0.01};
+  }
+}

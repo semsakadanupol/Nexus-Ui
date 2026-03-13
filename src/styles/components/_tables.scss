@@ -1,0 +1,108 @@
+// ============================================
+// NEXUS-UI Table Component
+// ============================================
+
+@use "../variables" as *;
+@use "../mixins" as *;
+
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-bottom: $spacing-lg;
+
+  th,
+  td {
+    padding: $spacing-md;
+    text-align: left;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  thead {
+    background-color: var(--color-bg-secondary);
+
+    th {
+      font-weight: 600;
+      color: var(--color-text);
+      border-bottom: 2px solid var(--color-border);
+    }
+  }
+
+  tbody {
+    tr {
+      transition: background-color $transition-base;
+
+      &:hover {
+        background-color: var(--color-bg-hover);
+      }
+
+      &:last-child td {
+        border-bottom: none;
+      }
+    }
+
+    td {
+      color: var(--color-text);
+    }
+  }
+
+  &.table-striped tbody tr:nth-child(odd) {
+    background-color: var(--color-bg-secondary);
+  }
+
+  &.table-bordered {
+    border: 1px solid var(--color-border);
+
+    th,
+    td {
+      border: 1px solid var(--color-border);
+    }
+  }
+
+  &.table-hover tbody tr:hover {
+    background-color: var(--color-bg-secondary);
+  }
+
+  &.table-compact {
+    th,
+    td {
+      padding: $spacing-sm;
+    }
+  }
+
+  // Status variants
+  tbody tr.table-active {
+    background-color: var(--color-primary);
+    color: white;
+  }
+
+  tbody tr.table-success {
+    background-color: var(--color-success);
+    color: white;
+  }
+
+  tbody tr.table-danger {
+    background-color: var(--color-danger);
+    color: white;
+  }
+
+  tbody tr.table-warning {
+    background-color: var(--color-warning);
+    color: var(--color-text);
+  }
+
+  tbody tr.table-info {
+    background-color: var(--color-info);
+    color: white;
+  }
+}
+
+// Responsive table
+.table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+
+  .table {
+    margin-bottom: 0;
+  }
+}

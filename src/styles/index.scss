@@ -8,6 +8,8 @@
 @use "./themes" as *;
 @use "./reset" as *;
 @use "./animations" as *;
+
+// Core Utilities
 @use "./utilities/spacing" as *;
 @use "./utilities/sizing" as *;
 @use "./utilities/colors" as *;
@@ -19,6 +21,15 @@
 @use "./utilities/borders" as *;
 @use "./utilities/shadows" as *;
 @use "./utilities/gradients" as *;
+
+// Advanced Utilities
+@use "./utilities/transforms" as *;
+@use "./utilities/filters" as *;
+@use "./utilities/advanced-sizing" as *;
+@use "./utilities/text-effects" as *;
+@use "./utilities/dynamic-arbitrary" as *;
+
+// Core Components
 @use "./components/buttons" as *;
 @use "./components/cards" as *;
 @use "./components/modals" as *;
@@ -27,3 +38,9 @@
 @use "./components/dropdowns" as *;
 @use "./components/tooltips" as *;
 @use "./components/offcanvas" as *;
+
+// Advanced Components
+@use "./components/tables" as *;
+@use "./components/badges-progress-spinners" as *;
+@use "./components/pagination-breadcrumbs" as *;
+@use "./components/tabs-accordion" as *;

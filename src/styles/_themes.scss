@@ -1,31 +1,48 @@
 // ============================================
-// NEXUS-UI Theme System
+// NEXUS-UI Theme System (Tailwind-style)
 // ============================================
+// Usage: Apply data-theme attribute or use dark: prefix utilities
 
 @use "./variables" as *;
 
-// Default Light Theme
+// ============================================
+// Light Theme (Default)
+// ============================================
 :root,
 [data-theme="light"] {
-  // Primary colors
+  // Primary Palette (Blue)
   --color-primary: #{$primary};
-  --color-primary-light: #3b82f6;
-  --color-primary-dark: #1e40af;
-  --color-primary-rgb: 37, 99, 235;
+  --color-primary-50: #eff6ff;
+  --color-primary-100: #dbeafe;
+  --color-primary-200: #bfdbfe;
+  --color-primary-300: #93c5fd;
+  --color-primary-400: #60a5fa;
+  --color-primary-500: #{$primary};
+  --color-primary-600: #2563eb;
+  --color-primary-700: #1d4ed8;
+  --color-primary-800: #1e40af;
+  --color-primary-900: #1e3a8a;
 
-  // Secondary colors
+  // Secondary Palette (Purple)
   --color-secondary: #{$secondary};
-  --color-secondary-light: #a78bfa;
-  --color-secondary-dark: #7c3aed;
-  --color-secondary-rgb: 139, 92, 246;
+  --color-secondary-50: #faf5ff;
+  --color-secondary-100: #f3e8ff;
+  --color-secondary-200: #e9d5ff;
+  --color-secondary-300: #d8b4fe;
+  --color-secondary-400: #c084fc;
+  --color-secondary-500: #{$secondary};
+  --color-secondary-600: #9333ea;
+  --color-secondary-700: #7e22ce;
+  --color-secondary-800: #6b21a8;
+  --color-secondary-900: #581c87;
 
-  // Semantic colors
+  // Semantic Colors
   --color-success: #{$success};
   --color-danger: #{$danger};
   --color-warning: #{$warning};
   --color-info: #{$info};
 
-  // Neutral colors
+  // Neutral Palette
   --color-text: #{$gray-900};
   --color-text-secondary: #{$gray-600};
   --color-text-muted: #{$gray-500};
@@ -40,14 +57,18 @@
   --color-border-light: #{$gray-100};
   --color-border-dark: #{$gray-300};
 
-  // Shadow colors
+  // Shadow
   --color-shadow: rgba(0, 0, 0, 0.1);
   --color-shadow-dark: rgba(0, 0, 0, 0.2);
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 
-  // Component specific
+  // Component Colors
   --color-input-bg: #ffffff;
   --color-input-border: #{$gray-300};
   --color-input-text: #{$gray-900};
+  --color-input-placeholder: #{$gray-400};
   --color-input-disabled-bg: #{$gray-100};
   --color-input-disabled-text: #{$gray-500};
 
@@ -60,7 +81,6 @@
   --color-modal-overlay: rgba(0, 0, 0, 0.5);
   --color-modal-bg: #ffffff;
 
-  // Carousel colors
   --color-carousel-control-bg: rgba(0, 0, 0, 0.5);
   --color-carousel-control-text: #ffffff;
   --color-carousel-control-hover: rgba(0, 0, 0, 0.7);
@@ -68,33 +88,52 @@
   --color-carousel-indicator: rgba(255, 255, 255, 0.5);
   --color-carousel-indicator-hover: rgba(255, 255, 255, 0.8);
 
-  // Opacity values
+  // Opacity
   --opacity-disabled: 0.6;
   --opacity-hover: 0.9;
-  --opacity-focus: 0.8;
+
+  // Rings (Focus states - Tailwind style)
+  --ring-color: rgba(59, 130, 246, 0.5);
+  --ring-width: 3px;
 }
 
+// ============================================
 // Dark Theme
+// ============================================
 [data-theme="dark"] {
-  // Primary colors
+  // Primary Palette (Light Blues)
   --color-primary: #60a5fa;
-  --color-primary-light: #93c5fd;
-  --color-primary-dark: #3b82f6;
-  --color-primary-rgb: 96, 165, 250;
+  --color-primary-50: #0f172a;
+  --color-primary-100: #1e293b;
+  --color-primary-200: #334155;
+  --color-primary-300: #475569;
+  --color-primary-400: #64748b;
+  --color-primary-500: #60a5fa;
+  --color-primary-600: #3b82f6;
+  --color-primary-700: #1d4ed8;
+  --color-primary-800: #1e40af;
+  --color-primary-900: #1e3a8a;
 
-  // Secondary colors
+  // Secondary Palette (Light Purples)
   --color-secondary: #c4b5fd;
-  --color-secondary-light: #ddd6fe;
-  --color-secondary-dark: #a78bfa;
-  --color-secondary-rgb: 196, 181, 253;
+  --color-secondary-50: #1f2937;
+  --color-secondary-100: #374151;
+  --color-secondary-200: #4b5563;
+  --color-secondary-300: #6b7280;
+  --color-secondary-400: #9ca3af;
+  --color-secondary-500: #c4b5fd;
+  --color-secondary-600: #a78bfa;
+  --color-secondary-700: #8b5cf6;
+  --color-secondary-800: #7c3aed;
+  --color-secondary-900: #6d28d9;
 
-  // Semantic colors
+  // Semantic Colors
   --color-success: #34d399;
   --color-danger: #f87171;
   --color-warning: #fbbf24;
   --color-info: #38bdf8;
 
-  // Neutral colors
+  // Neutral Palette
   --color-text: #{$gray-100};
   --color-text-secondary: #{$gray-300};
   --color-text-muted: #{$gray-400};
@@ -109,14 +148,18 @@
   --color-border-light: #{$gray-600};
   --color-border-dark: #{$gray-800};
 
-  // Shadow colors
+  // Shadow
   --color-shadow: rgba(0, 0, 0, 0.3);
   --color-shadow-dark: rgba(0, 0, 0, 0.5);
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
 
-  // Component specific
+  // Component Colors
   --color-input-bg: #{$gray-800};
   --color-input-border: #{$gray-700};
   --color-input-text: #{$gray-100};
+  --color-input-placeholder: #{$gray-500};
   --color-input-disabled-bg: #{$gray-900};
   --color-input-disabled-text: #{$gray-600};
 
@@ -129,7 +172,6 @@
   --color-modal-overlay: rgba(0, 0, 0, 0.7);
   --color-modal-bg: #{$gray-800};
 
-  // Carousel colors
   --color-carousel-control-bg: rgba(0, 0, 0, 0.6);
   --color-carousel-control-text: #ffffff;
   --color-carousel-control-hover: rgba(0, 0, 0, 0.8);
@@ -137,33 +179,52 @@
   --color-carousel-indicator: rgba(255, 255, 255, 0.4);
   --color-carousel-indicator-hover: rgba(255, 255, 255, 0.7);
 
-  // Opacity values
+  // Opacity
   --opacity-disabled: 0.5;
   --opacity-hover: 1;
-  --opacity-focus: 0.9;
+
+  // Rings
+  --ring-color: rgba(96, 165, 250, 0.5);
+  --ring-width: 3px;
 }
 
+// ============================================
 // High Contrast Theme
+// ============================================
 [data-theme="high-contrast"] {
-  // Primary colors (more vibrant)
+  // Primary (Bright Blue)
   --color-primary: #0000ff;
-  --color-primary-light: #4444ff;
-  --color-primary-dark: #0000aa;
-  --color-primary-rgb: 0, 0, 255;
+  --color-primary-50: #f0f0ff;
+  --color-primary-100: #e0e0ff;
+  --color-primary-200: #c0c0ff;
+  --color-primary-300: #8080ff;
+  --color-primary-400: #4040ff;
+  --color-primary-500: #0000ff;
+  --color-primary-600: #0000dd;
+  --color-primary-700: #0000bb;
+  --color-primary-800: #0000aa;
+  --color-primary-900: #000088;
 
-  // Secondary colors
+  // Secondary (Bright Magenta)
   --color-secondary: #ff00ff;
-  --color-secondary-light: #ff44ff;
-  --color-secondary-dark: #aa00aa;
-  --color-secondary-rgb: 255, 0, 255;
+  --color-secondary-50: #fff0ff;
+  --color-secondary-100: #ffe0ff;
+  --color-secondary-200: #ffc0ff;
+  --color-secondary-300: #ff80ff;
+  --color-secondary-400: #ff40ff;
+  --color-secondary-500: #ff00ff;
+  --color-secondary-600: #dd00dd;
+  --color-secondary-700: #bb00bb;
+  --color-secondary-800: #aa00aa;
+  --color-secondary-900: #880088;
 
-  // Semantic colors
+  // Semantic Colors
   --color-success: #00cc00;
   --color-danger: #ff0000;
   --color-warning: #ff8800;
   --color-info: #0088ff;
 
-  // Neutral colors
+  // Neutral
   --color-text: #000000;
   --color-text-secondary: #333333;
   --color-text-muted: #666666;
@@ -178,14 +239,18 @@
   --color-border-light: #333333;
   --color-border-dark: #000000;
 
-  // Shadow colors
+  // Shadow
   --color-shadow: rgba(0, 0, 0, 0.3);
   --color-shadow-dark: rgba(0, 0, 0, 0.5);
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
 
-  // Component specific
+  // Component Colors
   --color-input-bg: #ffffff;
   --color-input-border: #000000;
   --color-input-text: #000000;
+  --color-input-placeholder: #666666;
   --color-input-disabled-bg: #cccccc;
   --color-input-disabled-text: #666666;
 
@@ -198,7 +263,6 @@
   --color-modal-overlay: rgba(0, 0, 0, 0.8);
   --color-modal-bg: #ffffff;
 
-  // Carousel colors
   --color-carousel-control-bg: rgba(0, 0, 0, 0.9);
   --color-carousel-control-text: #ffffff;
   --color-carousel-control-hover: rgba(0, 0, 0, 1);
@@ -206,34 +270,25 @@
   --color-carousel-indicator: rgba(255, 255, 255, 0.6);
   --color-carousel-indicator-hover: rgba(255, 255, 255, 0.9);
 
-  // Opacity values
+  // Opacity
   --opacity-disabled: 0.5;
   --opacity-hover: 1;
-  --opacity-focus: 0.9;
+
+  // Rings
+  --ring-color: rgba(0, 0, 255, 0.5);
+  --ring-width: 3px;
 }
 
-// Utility classes for theme switching
-.theme-light {
-  color-scheme: light;
-}
-
-.theme-dark {
-  color-scheme: dark;
-}
-
-// Respects prefers-color-scheme for users without explicit theme setting
+// ============================================
+// System preference support (prefers-color-scheme)
+// ============================================
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme]) {
-    // Apply dark theme variables
+    // Apply dark theme when system prefers dark
     --color-primary: #60a5fa;
-    --color-primary-light: #93c5fd;
-    --color-primary-dark: #3b82f6;
-    --color-primary-rgb: 96, 165, 250;
-
+    --color-primary-600: #3b82f6;
     --color-secondary: #c4b5fd;
-    --color-secondary-light: #ddd6fe;
-    --color-secondary-dark: #a78bfa;
-    --color-secondary-rgb: 196, 181, 253;
+    --color-secondary-600: #a78bfa;
 
     --color-success: #34d399;
     --color-danger: #f87171;
@@ -260,6 +315,7 @@
     --color-input-bg: #{$gray-800};
     --color-input-border: #{$gray-700};
     --color-input-text: #{$gray-100};
+    --color-input-placeholder: #{$gray-500};
     --color-input-disabled-bg: #{$gray-900};
     --color-input-disabled-text: #{$gray-600};
 
@@ -272,122 +328,14 @@
     --color-modal-overlay: rgba(0, 0, 0, 0.7);
     --color-modal-bg: #{$gray-800};
 
+    --color-carousel-control-bg: rgba(0, 0, 0, 0.6);
+    --color-carousel-control-text: #ffffff;
+    --color-carousel-control-hover: rgba(0, 0, 0, 0.8);
+    --color-carousel-indicators-bg: rgba(0, 0, 0, 0.5);
+
     --opacity-disabled: 0.5;
     --opacity-hover: 1;
-    --opacity-focus: 0.9;
 
-    color-scheme: dark;
+    --ring-color: rgba(96, 165, 250, 0.5);
   }
-}
-
-// Theme transition support
-.theme-transition,
-.theme-transition *,
-.theme-transition *::before,
-.theme-transition *::after {
-  transition:
-    color 300ms $ease-out,
-    background-color 300ms $ease-out,
-    border-color 300ms $ease-out,
-    box-shadow 300ms $ease-out,
-    fill 300ms $ease-out,
-    stroke 300ms $ease-out !important;
-}
-
-// Disable animations during transitions
-.theme-transition * {
-  animation-duration: 0s !important;
-}
-
-// Theme utilities using CSS variables
-.text-primary {
-  color: var(--color-primary);
-}
-
-.text-secondary {
-  color: var(--color-secondary);
-}
-
-.text-success {
-  color: var(--color-success);
-}
-
-.text-danger {
-  color: var(--color-danger);
-}
-
-.text-warning {
-  color: var(--color-warning);
-}
-
-.text-info {
-  color: var(--color-info);
-}
-
-.text-muted {
-  color: var(--color-text-muted);
-}
-
-.bg-primary {
-  background-color: var(--color-primary);
-  color: #ffffff;
-}
-
-.bg-secondary {
-  background-color: var(--color-secondary);
-  color: #ffffff;
-}
-
-.bg-success {
-  background-color: var(--color-success);
-  color: #ffffff;
-}
-
-.bg-danger {
-  background-color: var(--color-danger);
-  color: #ffffff;
-}
-
-.bg-warning {
-  background-color: var(--color-warning);
-  color: #000000;
-}
-
-.bg-info {
-  background-color: var(--color-info);
-  color: #ffffff;
-}
-
-.bg-light {
-  background-color: var(--color-bg-secondary);
-  color: var(--color-text);
-}
-
-.bg-dark {
-  background-color: var(--color-bg);
-  color: var(--color-text);
-}
-
-.border-primary {
-  border-color: var(--color-primary);
-}
-
-.border-secondary {
-  border-color: var(--color-secondary);
-}
-
-.border-success {
-  border-color: var(--color-success);
-}
-
-.border-danger {
-  border-color: var(--color-danger);
-}
-
-.border-warning {
-  border-color: var(--color-warning);
-}
-
-.border-info {
-  border-color: var(--color-info);
 }
