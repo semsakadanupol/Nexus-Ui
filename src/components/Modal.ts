@@ -1,129 +1,156 @@
-// ============================================
-// Modal Component
-// ============================================
+/**
+ * NEXUS-UI MODAL COMPONENT
+ */
 
 import {
-  select,
-  addClass,
-  removeClass,
+  query,
   on,
   off,
-  trigger,
-} from "../utils/index.js";
+  addClass,
+  removeClass,
+  toggleClass,
+} from "../utils/dom";
+import { ComponentOptions, BaseComponent, DEFAULT_OPTIONS } from "./base";
 
-export interface ModalOptions {
-  backdrop?: boolean | "static";
+export interface ModalOptions extends ComponentOptions {
+  backdrop?: "static" | boolean;
   keyboard?: boolean;
+  focus?: boolean;
 }
 
-export class Modal {
-  private element: Element;
-  private backdrop: Element | null = null;
-  private options: ModalOptions;
+export class Modal extends BaseComponent {
+  private element: HTMLElement | null;
+  private backdrop: HTMLElement | null;
+  private dialog: HTMLElement | null;
+  private closeBtn: HTMLElement | null;
+  private dismissBtn: HTMLElement | null;
   private isShown: boolean = false;
+  protected options: ModalOptions;
 
-  constructor(element: Element | string, options: ModalOptions = {}) {
-    this.element = typeof element === "string" ? select(element)! : element;
-    this.options = { backdrop: true, keyboard: true, ...options };
+  constructor(selector: string, options?: Partial<ModalOptions>) {
+    super(selector, options);
+
+    this.element = query(selector);
+    this.backdrop = this.element?.querySelector(".modal-overlay") || null;
+    this.dialog = this.element?.querySelector(".modal-dialog") || null;
+    this.closeBtn = this.element?.querySelector(".modal-close") || null;
+    this.dismissBtn =
+      this.element?.querySelector('[data-dismiss="modal"]') || null;
+
+    this.options = {
+      ...DEFAULT_OPTIONS,
+      backdrop: true,
+      keyboard: true,
+      focus: true,
+      ...options,
+    };
+
     this.init();
   }
 
+  /**
+   * Initialize modal
+   */
   private init(): void {
     if (!this.element) return;
 
-    // Find or create backdrop
-    this.backdrop = select(".modal-backdrop");
-    if (!this.backdrop) {
-      this.backdrop = document.createElement("div");
-      this.backdrop.className = "modal-backdrop";
-      document.body.appendChild(this.backdrop);
+    // Close button handler
+    if (this.closeBtn) {
+      on(this.closeBtn, "click", () => this.hide());
     }
 
-    // Setup event listeners
-    this.setupEventListeners();
-  }
+    // Dismiss button handler
+    if (this.dismissBtn) {
+      on(this.dismissBtn, "click", () => this.hide());
+    }
 
-  private setupEventListeners(): void {
-    if (!this.element) return;
-
-    const closeButtons = this.element.querySelectorAll(
-      '[data-dismiss="modal"]',
-    );
-    closeButtons.forEach((button: Element) => {
-      on(button, "click", (e: Event) => {
-        if (e instanceof MouseEvent) {
-          e.preventDefault();
-        }
-        this.hide();
-      });
-    });
-
-    // Keyboard support
-    if (this.options.keyboard) {
-      on(document, "keydown", (e: KeyboardEvent | Event) => {
-        if (e instanceof KeyboardEvent && e.key === "Escape" && this.isShown) {
+    // Backdrop click handler
+    if (this.backdrop) {
+      on(this.backdrop, "click", () => {
+        if (this.options.backdrop !== "static") {
           this.hide();
         }
       });
     }
 
-    // Backdrop click
-    if (this.backdrop && this.options.backdrop !== "static") {
-      on(this.backdrop, "click", () => this.hide());
+    // Keyboard handler
+    if (this.options.keyboard) {
+      on(document as unknown as HTMLElement, "keydown", (e: Event) => {
+        const event = e as KeyboardEvent;
+        if (event.key === "Escape" && this.isShown) {
+          this.hide();
+        }
+      });
     }
   }
 
-  show(): void {
-    if (this.isShown) return;
+  /**
+   * Show modal
+   */
+  public show(): void {
+    if (!this.element || this.isShown) return;
 
     this.isShown = true;
+    addClass(this.element, "show");
+    addClass(document.body, "modal-open");
 
-    if (this.backdrop) {
-      addClass(this.backdrop, "active");
+    if (this.options.focus && this.dialog) {
+      this.dialog.focus();
     }
 
-    addClass(this.element, "active");
-    document.body.style.overflow = "hidden";
-
-    trigger(this.element, "show.bs.modal");
+    this.emit("show");
   }
 
-  hide(): void {
-    if (!this.isShown) return;
+  /**
+   * Hide modal
+   */
+  public hide(): void {
+    if (!this.element || !this.isShown) return;
 
     this.isShown = false;
+    removeClass(this.element, "show");
+    removeClass(document.body, "modal-open");
 
+    // Delay for animation
+    setTimeout(() => {
+      if (this.element && !this.isShown) {
+        this.element.style.display = "none";
+      }
+    }, 300);
+
+    this.emit("hide");
+  }
+
+  /**
+   * Toggle modal visibility
+   */
+  public toggle(): void {
+    if (this.isShown) {
+      this.hide();
+    } else {
+      this.show();
+    }
+  }
+
+  /**
+   * Check if modal is shown
+   */
+  public isVisible(): boolean {
+    return this.isShown;
+  }
+
+  /**
+   * Destroy modal
+   */
+  public destroy(): void {
+    if (this.closeBtn) {
+      off(this.closeBtn, "click", () => this.hide());
+    }
+    if (this.dismissBtn) {
+      off(this.dismissBtn, "click", () => this.hide());
+    }
     if (this.backdrop) {
-      removeClass(this.backdrop, "active");
+      off(this.backdrop, "click", () => this.hide());
     }
-
-    removeClass(this.element, "active");
-    document.body.style.overflow = "";
-
-    trigger(this.element, "hide.bs.modal");
-  }
-
-  toggle(): void {
-    this.isShown ? this.hide() : this.show();
-  }
-
-  static getInstance(element: Element | string): Modal | null {
-    const el = typeof element === "string" ? select(element) : element;
-    return el ? (el as any).__modal || null : null;
-  }
-
-  static getOrCreateInstance(
-    element: Element | string,
-    options?: ModalOptions,
-  ): Modal {
-    const el = typeof element === "string" ? select(element)! : element;
-    let instance = (el as any).__modal;
-
-    if (!instance) {
-      instance = new Modal(el, options);
-      (el as any).__modal = instance;
-    }
-
-    return instance;
   }
 }

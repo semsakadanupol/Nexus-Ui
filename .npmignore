@@ -1,0 +1,55 @@
+# Development files
+.git
+.github
+.gitignore
+.vscode
+.editorconfig
+
+# Build files
+node_modules
+*.tsbuildinfo
+tsconfig.json
+tsconfig.*.json
+
+# Source files (optional - include src for transparency)
+# src
+
+# Build scripts & configs
+webpack.config.js
+jest.config.js
+.prettierrc
+.eslintrc
+stylelint.config.js
+
+# Test files
+test/
+tests/
+*.test.ts
+*.spec.ts
+__tests__
+
+# Documentation (not needed in package)
+CONTRIBUTING.md
+CHANGELOG.md
+docs/
+
+# Examples
+examples/
+
+# CI/CD
+.github/workflows
+.gitlab-ci.yml
+.travis.yml
+azure-pipelines.yml
+
+# Misc
+.DS_Store
+Thumbs.db
+*.log
+*.swp
+*.swo
+*~
+
+# Backup files
+*.old.md
+README.old.md

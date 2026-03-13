@@ -1,115 +1,142 @@
-// ============================================
-// Navbar Component
-// ============================================
+/**
+ * NEXUS-UI NAVBAR COMPONENT
+ */
 
-import {
-  select,
-  selectAll,
-  addClass,
-  removeClass,
-  toggleClass,
-  on,
-} from "../utils/index.js";
+import { query, queryAll, on, addClass, removeClass } from "../utils/dom";
+import { BaseComponent, ComponentOptions, DEFAULT_OPTIONS } from "./base";
 
-export class Navbar {
-  private element: Element;
-  private toggler: Element | null;
-  private navMenu: Element | null;
+export interface NavbarOptions extends ComponentOptions {
+  expandAt?: "sm" | "md" | "lg";
+  activeClass?: string;
+}
 
-  constructor(element: Element | string) {
-    this.element = typeof element === "string" ? select(element)! : element;
-    this.toggler = this.element.querySelector(".navbar-toggler");
-    this.navMenu = this.element.querySelector(".navbar-nav");
+export class Navbar extends BaseComponent {
+  private element: HTMLElement | null;
+  private toggler: HTMLElement | null;
+  private collapse: HTMLElement | null;
+  private navLinks: HTMLElement[] = [];
+  protected options: NavbarOptions;
+  private isExpanded: boolean = false;
+
+  constructor(selector: string, options?: Partial<NavbarOptions>) {
+    super(selector, options);
+
+    this.element = query(selector);
+    this.toggler = this.element?.querySelector(".navbar-toggler") || null;
+    this.collapse = this.element?.querySelector(".navbar-collapse") || null;
+    this.navLinks = queryAll(`${selector} .nav-link`);
+
+    this.options = {
+      ...DEFAULT_OPTIONS,
+      expandAt: "md",
+      activeClass: "active",
+      ...options,
+    };
+
     this.init();
   }
 
+  /**
+   * Initialize navbar
+   */
   private init(): void {
-    if (!this.toggler || !this.navMenu) return;
-
-    // Toggle mobile menu
-    on(this.toggler, "click", () => this.toggleMenu());
-
-    // Close menu when clicking link
-    const navLinks = selectAll(".nav-link", this.element);
-    navLinks.forEach((link: Element) => {
-      on(link, "click", () => this.closeMenu());
-    });
-
-    // Setup dropdowns
-    this.setupDropdowns();
-  }
-
-  private setupDropdowns(): void {
-    const dropdowns = selectAll(".nav-dropdown", this.element);
-
-    dropdowns.forEach((dropdown: Element) => {
-      const toggle = dropdown.querySelector(".nav-dropdown-toggle");
-
-      if (toggle) {
-        on(toggle, "click", (e: Event) => {
-          e.preventDefault();
-          this.toggleDropdown(dropdown);
-        });
-      }
-    });
-  }
-
-  private toggleDropdown(dropdown: Element): void {
-    const toggle = dropdown.querySelector(".nav-dropdown-toggle");
-
-    // Close other dropdowns
-    selectAll(".nav-dropdown.active", this.element).forEach((item: Element) => {
-      if (item !== dropdown) {
-        removeClass(item, "active");
-      }
-    });
-
-    // Toggle current dropdown
-    toggleClass(dropdown, "active");
-    if (toggle) {
-      toggleClass(toggle, "active");
+    // Toggle button handler
+    if (this.toggler) {
+      on(this.toggler, "click", () => this.toggleMenu());
     }
+
+    // Nav link handlers
+    this.navLinks.forEach((link) => {
+      on(link, "click", () => {
+        if (window.innerWidth < 768) {
+          this.collapseMenu();
+        }
+        this.setActive(link);
+      });
+    });
+
+    // Window resize handler
+    on(window as any, "resize", () => {
+      if (window.innerWidth >= 768) {
+        this.expandMenu();
+      } else {
+        this.collapseMenu();
+      }
+    });
   }
 
+  /**
+   * Toggle menu visibility
+   */
   private toggleMenu(): void {
-    if (!this.toggler || !this.navMenu) return;
-
-    toggleClass(this.navMenu, "active");
-    toggleClass(this.toggler, "active");
+    if (this.isExpanded) {
+      this.collapseMenu();
+    } else {
+      this.expandMenu();
+    }
   }
 
-  private closeMenu(): void {
-    if (!this.navMenu || !this.toggler) return;
-
-    removeClass(this.navMenu, "active");
-    removeClass(this.toggler, "active");
+  /**
+   * Expand menu
+   */
+  private expandMenu(): void {
+    if (this.collapse) {
+      addClass(this.collapse, "show");
+      this.isExpanded = true;
+      this.emit("expand");
+    }
   }
 
-  setActive(selector: string): void {
-    selectAll(".nav-link.active", this.element).forEach((link: Element) => {
-      removeClass(link, "active");
+  /**
+   * Collapse menu
+   */
+  private collapseMenu(): void {
+    if (this.collapse) {
+      removeClass(this.collapse, "show");
+      this.isExpanded = false;
+      this.emit("collapse");
+    }
+  }
+
+  /**
+   * Set active nav link
+   */
+  public setActive(selector: string | HTMLElement): void {
+    // Remove active from all links
+    this.navLinks.forEach((link) => {
+      removeClass(link, this.options.activeClass!);
     });
 
-    const activeLink = select(selector, this.element);
-    if (activeLink) {
-      addClass(activeLink, "active");
+    // Add active to selected link
+    let targetLink: HTMLElement | null = null;
+
+    if (typeof selector === "string") {
+      targetLink = query(selector);
+    } else {
+      targetLink = selector;
+    }
+
+    if (targetLink) {
+      addClass(targetLink, this.options.activeClass!);
+      this.emit("activeChanged", { target: targetLink });
     }
   }
 
-  static getInstance(element: Element | string): Navbar | null {
-    const el = typeof element === "string" ? select(element) : element;
-    return el ? (el as any).__navbar || null : null;
+  /**
+   * Get active link
+   */
+  public getActive(): HTMLElement | null {
+    return (
+      this.navLinks.find((link) =>
+        link.classList.contains(this.options.activeClass!),
+      ) || null
+    );
   }
 
-  static getOrCreateInstance(element: Element | string): Navbar {
-    const el = typeof element === "string" ? select(element)! : element;
-    let instance = (el as any).__navbar;
-
-    if (!instance) {
-      instance = new Navbar(el);
-      (el as any).__navbar = instance;
-    }
-
-    return instance;
+  /**
+   * Destroy navbar
+   */
+  public destroy(): void {
+    super.dispose();
   }
 }

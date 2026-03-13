@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nexus-UI Component Showcase</title>
+    <link rel="stylesheet" href="../dist/index.css" />
+    <style>
+      .showcase-section {
+        margin-bottom: 3rem;
+        padding-bottom: 2rem;
+        border-bottom: 1px solid var(--color-border, #e5e7eb);
+      }
+
+      .code-block {
+        background: var(--color-code-bg, #f3f4f6);
+        border: 1px solid var(--color-border, #e5e7eb);
+        border-radius: 0.5rem;
+        padding: 1rem;
+        overflow: auto;
+        margin-top: 1rem;
+        font-family: "Courier New", monospace;
+        font-size: 0.875rem;
+      }
+
+      .grid-demo {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        margin: 1rem 0;
+      }
+
+      @media (max-width: 768px) {
+        .grid-demo {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 640px) {
+        .grid-demo {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .demo-box {
+        background: linear-gradient(
+          135deg,
+          var(--color-primary, #3b82f6),
+          var(--color-secondary, #8b5cf6)
+        );
+        color: white;
+        padding: 2rem;
+        border-radius: 0.5rem;
+        text-align: center;
+        min-height: 150px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar bg-primary text-white p-md">
+      <div class="container flex justify-between items-center">
+        <h1 class="m-0 text-2xl font-bold">Nexus-UI</h1>
+        <div class="flex gap-lg">
+          <button class="btn btn-outline text-white" id="themeToggle">
+            🌙 Dark
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container p-2xl">
+      <!-- Buttons Section -->
+      <section class="showcase-section">
+        <h2 class="text-4xl font-bold mb-lg">Components</h2>
+
+        <h3 class="text-2xl font-semibold mt-2xl mb-md">Buttons</h3>
+        <div class="flex flex-wrap gap-md mb-lg">
+          <button class="btn btn-primary">Primary</button>
+          <button class="btn btn-secondary">Secondary</button>
+          <button class="btn btn-success">Success</button>
+          <button class="btn btn-danger">Danger</button>
+          <button class="btn btn-warning">Warning</button>
+          <button class="btn btn-info">Info</button>
+          <button class="btn btn-outline">Outline</button>
+          <button class="btn btn-ghost">Ghost</button>
+        </div>
+
+        <div class="flex flex-wrap gap-md">
+          <button class="btn btn-primary btn-sm">Small</button>
+          <button class="btn btn-primary">Medium</button>
+          <button class="btn btn-primary btn-lg">Large</button>
+          <button class="btn btn-primary w-full">Block</button>
+        </div>
+
+        <div class="code-block">
+          &lt;button class="btn btn-primary"&gt;Primary Button&lt;/button&gt;
+          &lt;button class="btn btn-success btn-lg"&gt;Large
+          Success&lt;/button&gt; &lt;button class="btn btn-outline"&gt;Outline
+          Button&lt;/button&gt;
+        </div>
+      </section>
+
+      <!-- Cards Section -->
+      <section class="showcase-section">
+        <h3 class="text-2xl font-semibold mb-md">Cards</h3>
+        <div class="grid-demo">
+          <div class="card">
+            <div class="card-header">
+              <h4 class="card-title m-0">Card Title</h4>
+            </div>
+            <div class="card-body">
+              <p class="card-text">
+                This is a card with a header, body, and footer.
+              </p>
+            </div>
+            <div class="card-footer">
+              <button class="btn btn-primary btn-sm">Action</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <div
+              class="card-image"
+              style="
+                height: 150px;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+              "
+            ></div>
+            <div class="card-body">
+              <h4 class="card-title">Image Card</h4>
+              <p class="card-text text-sm">Card with hero image</p>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-body">
+              <div class="flex justify-between items-start">
+                <div>
+                  <h4 class="card-title">Interactive</h4>
+                  <p class="card-text text-sm">Hover for effect</p>
+                </div>
+                <span class="badge badge-primary">New</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="code-block">
+          &lt;div class="card"&gt; &lt;div class="card-body"&gt; &lt;h4
+          class="card-title"&gt;Title&lt;/h4&gt; &lt;p
+          class="card-text"&gt;Content&lt;/p&gt; &lt;/div&gt; &lt;/div&gt;
+        </div>
+      </section>
+
+      <!-- Badges Section -->
+      <section class="showcase-section">
+        <h3 class="text-2xl font-semibold mb-md">Badges</h3>
+        <div class="flex flex-wrap gap-md">
+          <span class="badge badge-primary">Primary</span>
+          <span class="badge badge-secondary">Secondary</span>
+          <span class="badge badge-success">Success</span>
+          <span class="badge badge-danger">Danger</span>
+          <span class="badge badge-warning">Warning</span>
+          <span class="badge badge-info">Info</span>
+          <span class="badge badge-outline">Outline</span>
+          <span class="badge badge-dot badge-primary"></span>
+        </div>
+
+        <div class="code-block">
+          &lt;span class="badge badge-primary"&gt;Badge&lt;/span&gt; &lt;span
+          class="badge badge-danger"&gt;Danger&lt;/span&gt;
+        </div>
+      </section>
+
+      <!-- Alerts Section -->
+      <section class="showcase-section">
+        <h3 class="text-2xl font-semibold mb-md">Alerts</h3>
+        <div class="flex flex-col gap-md">
+          <div class="alert alert-primary">
+            <strong>Info:</strong> This is an informational alert message.
+          </div>
+          <div class="alert alert-success">
+            <strong>Success:</strong> Your action was completed successfully!
+          </div>
+          <div class="alert alert-warning">
+            <strong>Warning:</strong> Please check this important information.
+          </div>
+          <div class="alert alert-danger">
+            <strong>Error:</strong> Something went wrong. Please try again.
+          </div>
+        </div>
+
+        <div class="code-block">
+          &lt;div class="alert alert-success"&gt;
+          &lt;strong&gt;Success:&lt;/strong&gt; Message text &lt;/div&gt;
+        </div>
+      </section>
+
+      <!-- Modal Section -->
+      <section class="showcase-section">
+        <h3 class="text-2xl font-semibold mb-md">Modal</h3>
+        <button class="btn btn-primary" id="modalBtn">Open Modal</button>
+
+        <div id="demoModal" class="modal">
+          <div class="modal-overlay"></div>
+          <div class="modal-dialog">
+            <div class="modal-header">
+              <h2 class="modal-title">Modal Example</h2>
+              <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+              <p>
+                This is a modal dialog with smooth animations. Click outside or
+                press ESC to close.
+              </p>
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-secondary" data-dismiss="modal">
+                Close
+              </button>
+              <button class="btn btn-primary">Confirm</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="code-block">
+          &lt;button id="modalBtn"&gt;Open Modal&lt;/button&gt; &lt;script
+          type="module"&gt; import { Modal } from 'nexus-ui'; const modal = new
+          Modal('#demoModal');
+          document.getElementById('modalBtn').addEventListener('click', () =&gt;
+          { modal.show(); }); &lt;/script&gt;
+        </div>
+      </section>
+
+      <!-- Animations Section -->
+      <section class="showcase-section">
+        <h3 class="text-2xl font-semibold mb-md">Animations</h3>
+        <div
+          class="grid"
+          style="
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+          "
+        >
+          <div class="demo-box animate-fade-in">Fade In</div>
+          <div class="demo-box animate-slide-up">Slide Up</div>
+          <div class="demo-box animate-slide-down">Slide Down</div>
+          <div class="demo-box animate-scale-in">Scale In</div>
+          <div class="demo-box animate-bounce">Bounce</div>
+          <div class="demo-box animate-pulse">Pulse</div>
+          <div class="demo-box animate-spin">Spin</div>
+          <div class="demo-box animate-wiggle">Wiggle</div>
+        </div>
+
+        <div class="code-block">
+          &lt;div class="animate-fade-in"&gt;Fades in&lt;/div&gt; &lt;div
+          class="animate-bounce animate-delay-500ms"&gt;Bounces with
+          delay&lt;/div&gt; &lt;div class="animate-spin
+          animate-duration-2s"&gt;Custom speed&lt;/div&gt;
+        </div>
+      </section>
+
+      <!-- Grid System Section -->
+      <section class="showcase-section">
+        <h3 class="text-2xl font-semibold mb-md">Responsive Grid</h3>
+        <p class="text-gray-600 mb-md">
+          Desktop: 4 columns, Tablet: 2 columns, Mobile: 1 column
+        </p>
+        <div class="grid grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-lg">
+          <div class="demo-box">Column 1</div>
+          <div class="demo-box">Column 2</div>
+          <div class="demo-box">Column 3</div>
+          <div class="demo-box">Column 4</div>
+        </div>
+
+        <div class="code-block">
+          &lt;div class="grid grid-cols-4 md:grid-cols-2 sm:grid-cols-1
+          gap-lg"&gt; &lt;div&gt;Item 1&lt;/div&gt; &lt;div&gt;Item
+          2&lt;/div&gt; &lt;div&gt;Item 3&lt;/div&gt; &lt;div&gt;Item
+          4&lt;/div&gt; &lt;/div&gt;
+        </div>
+      </section>
+
+      <!-- Utilities Section -->
+      <section class="showcase-section">
+        <h3 class="text-2xl font-semibold mb-md">Utility Classes</h3>
+
+        <h4 class="text-lg font-semibold mt-lg mb-md">Spacing</h4>
+        <div class="flex gap-md">
+          <div class="bg-primary text-white p-sm rounded">p-sm</div>
+          <div class="bg-primary text-white p-md rounded">p-md</div>
+          <div class="bg-primary text-white p-lg rounded">p-lg</div>
+          <div class="bg-primary text-white p-xl rounded">p-xl</div>
+        </div>
+
+        <h4 class="text-lg font-semibold mt-lg mb-md">Colors</h4>
+        <div class="flex gap-md flex-wrap">
+          <div class="bg-primary text-white p-md rounded">Primary</div>
+          <div class="bg-secondary text-white p-md rounded">Secondary</div>
+          <div class="bg-success text-white p-md rounded">Success</div>
+          <div class="bg-danger text-white p-md rounded">Danger</div>
+        </div>
+
+        <h4 class="text-lg font-semibold mt-lg mb-md">Text Utilities</h4>
+        <div class="flex flex-col gap-md">
+          <p class="text-xs">Extra Small</p>
+          <p class="text-sm">Small</p>
+          <p class="text-base">Base</p>
+          <p class="text-lg">Large</p>
+          <p class="text-2xl font-bold">Bold 2xl</p>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white p-2xl text-center">
+      <p class="m-0">© 2024 Nexus-UI Framework. All rights reserved.</p>
+    </footer>
+
+    <script type="module">
+      import { Modal, ThemeManager } from "../dist/index.js";
+
+      // Modal setup
+      const modal = new Modal("#demoModal");
+      document.getElementById("modalBtn").addEventListener("click", () => {
+        modal.show();
+      });
+
+      // Theme toggle
+      const themeToggle = document.getElementById("themeToggle");
+      const html = document.documentElement;
+
+      themeToggle.addEventListener("click", () => {
+        ThemeManager.toggle();
+        const currentTheme = ThemeManager.getTheme();
+        themeToggle.textContent =
+          currentTheme === "dark" ? "☀️ Light" : "🌙 Dark";
+      });
+
+      // Initialize theme on page load
+      const initialTheme = ThemeManager.getTheme();
+      themeToggle.textContent =
+        initialTheme === "dark" ? "☀️ Light" : "🌙 Dark";
+    </script>
+  </body>
+</html>

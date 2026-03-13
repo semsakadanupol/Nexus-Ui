@@ -1,21 +1,37 @@
-// ============================================
-// NEXUS-UI - Main Entry Point
-// ============================================
+/**
+ * NEXUS-UI MAIN EXPORT
+ * Exports all components, utilities, and types
+ */
 
-export { Modal } from "./components/Modal.js";
-export { Navbar } from "./components/Navbar.js";
-export { Carousel } from "./components/Carousel.js";
-export { Dropdown } from "./components/Dropdown.js";
-export { Tooltip } from "./components/Tooltip.js";
-export { Offcanvas } from "./components/Offcanvas.js";
+// Components
+export { Modal } from "./components/Modal";
+export { Navbar } from "./components/Navbar";
+export { Carousel } from "./components/Carousel";
+export { Dropdown } from "./components/Dropdown";
+export { Tooltip } from "./components/Tooltip";
+export { Accordion } from "./components/Accordion";
+export { Tabs } from "./components/Tabs";
+export { Offcanvas } from "./components/Offcanvas";
 
-export * from "./utils/dom.js";
-export * from "./utils/events.js";
+// Utilities
+export { ThemeManager } from "./utils/theme";
 export {
-  ThemeManager,
-  type ThemeName,
-  type ThemeConfig,
-  type ThemeDefinition,
-  type ThemeColors,
-} from "./utils/theme.js";
-export * from "./utils/arbitrary.js";
+  on,
+  off,
+  addClass,
+  removeClass,
+  toggleClass,
+  hasClass,
+  query,
+  queryAll,
+  styles,
+  attr,
+  trigger,
+} from "./utils/dom";
+export { debounce, throttle, once } from "./utils/events";
+
+// Types
+export type { ComponentOptions, ComponentEventMap } from "./types";
+
+// Version
+export const VERSION = "2.0.0";

@@ -1,341 +1,390 @@
-// ============================================
-// NEXUS-UI Theme System (Tailwind-style)
-// ============================================
-// Usage: Apply data-theme attribute or use dark: prefix utilities
+// =============================================
+// NEXUS-UI THEME SYSTEM
+// =============================================
 
-@use "./variables" as *;
+// =============================================
+// 1. LIGHT THEME (DEFAULT)
+// =============================================
 
-// ============================================
-// Light Theme (Default)
-// ============================================
 :root,
 [data-theme="light"] {
-  // Primary Palette (Blue)
+  // Colors
   --color-primary: #{$primary};
-  --color-primary-50: #eff6ff;
-  --color-primary-100: #dbeafe;
-  --color-primary-200: #bfdbfe;
-  --color-primary-300: #93c5fd;
-  --color-primary-400: #60a5fa;
-  --color-primary-500: #{$primary};
-  --color-primary-600: #2563eb;
-  --color-primary-700: #1d4ed8;
-  --color-primary-800: #1e40af;
-  --color-primary-900: #1e3a8a;
-
-  // Secondary Palette (Purple)
+  --color-primary-dark: #{darken($primary, 10%)};
+  --color-primary-light: #{lighten($primary, 10%)};
   --color-secondary: #{$secondary};
-  --color-secondary-50: #faf5ff;
-  --color-secondary-100: #f3e8ff;
-  --color-secondary-200: #e9d5ff;
-  --color-secondary-300: #d8b4fe;
-  --color-secondary-400: #c084fc;
-  --color-secondary-500: #{$secondary};
-  --color-secondary-600: #9333ea;
-  --color-secondary-700: #7e22ce;
-  --color-secondary-800: #6b21a8;
-  --color-secondary-900: #581c87;
+  --color-accent: #{$accent};
 
-  // Semantic Colors
   --color-success: #{$success};
   --color-danger: #{$danger};
   --color-warning: #{$warning};
   --color-info: #{$info};
 
-  // Neutral Palette
-  --color-text: #{$gray-900};
+  // Grayscale
+  --color-gray-50: #{$gray-50};
+  --color-gray-100: #{$gray-100};
+  --color-gray-200: #{$gray-200};
+  --color-gray-300: #{$gray-300};
+  --color-gray-400: #{$gray-400};
+  --color-gray-500: #{$gray-500};
+  --color-gray-600: #{$gray-600};
+  --color-gray-700: #{$gray-700};
+  --color-gray-800: #{$gray-800};
+  --color-gray-900: #{$gray-900};
+
+  // Background & Text
+  --color-background: #{$white};
+  --color-surface: #{$gray-50};
+  --color-text-primary: #{$gray-900};
   --color-text-secondary: #{$gray-600};
   --color-text-muted: #{$gray-500};
-  --color-text-light: #{$gray-400};
+  --color-border: #{$gray-300};
+  --color-border-light: #{$gray-200};
+  --color-divider: #{$gray-100};
 
-  --color-bg: #ffffff;
-  --color-bg-secondary: #{$gray-50};
-  --color-bg-tertiary: #{$gray-100};
-  --color-bg-hover: #{$gray-100};
+  // Components
+  --color-btn-bg: #{$primary};
+  --color-btn-text: #{$white};
+  --color-btn-hover: #{darken($primary, 10%)};
+  --color-btn-active: #{darken($primary, 15%)};
+  --color-btn-disabled: #{$gray-400};
 
-  --color-border: #{$gray-200};
-  --color-border-light: #{$gray-100};
-  --color-border-dark: #{$gray-300};
-
-  // Shadow
-  --color-shadow: rgba(0, 0, 0, 0.1);
-  --color-shadow-dark: rgba(0, 0, 0, 0.2);
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-
-  // Component Colors
-  --color-input-bg: #ffffff;
+  --color-input-bg: #{$white};
   --color-input-border: #{$gray-300};
+  --color-input-border-focus: #{$primary};
   --color-input-text: #{$gray-900};
-  --color-input-placeholder: #{$gray-400};
-  --color-input-disabled-bg: #{$gray-100};
-  --color-input-disabled-text: #{$gray-500};
+  --color-input-placeholder: #{$gray-500};
 
-  --color-button-hover: #{$gray-100};
-  --color-button-active: #{$gray-200};
-
-  --color-card-bg: #ffffff;
+  --color-card-bg: #{$white};
   --color-card-border: #{$gray-200};
 
+  --color-navbar-bg: #{$white};
+  --color-navbar-text: #{$gray-900};
+  --color-navbar-border: #{$gray-200};
+
+  --color-modal-bg: #{$white};
   --color-modal-overlay: rgba(0, 0, 0, 0.5);
-  --color-modal-bg: #ffffff;
 
+  --color-alert-success-bg: #d1fae5;
+  --color-alert-success-text: #065f46;
+  --color-alert-danger-bg: #fee2e2;
+  --color-alert-danger-text: #7f1d1d;
+  --color-alert-warning-bg: #fef3c7;
+  --color-alert-warning-text: #78350f;
+  --color-alert-info-bg: #cffafe;
+  --color-alert-info-text: #164e63;
+
+  // Carousel
   --color-carousel-control-bg: rgba(0, 0, 0, 0.5);
-  --color-carousel-control-text: #ffffff;
-  --color-carousel-control-hover: rgba(0, 0, 0, 0.7);
-  --color-carousel-indicators-bg: rgba(0, 0, 0, 0.4);
-  --color-carousel-indicator: rgba(255, 255, 255, 0.5);
-  --color-carousel-indicator-hover: rgba(255, 255, 255, 0.8);
+  --color-carousel-control-text: #{$white};
+  --color-carousel-control-hover: rgba(0, 0, 0, 0.75);
 
-  // Opacity
-  --opacity-disabled: 0.6;
-  --opacity-hover: 0.9;
+  // Shadows
+  --shadow-sm: #{$shadow-sm};
+  --shadow-md: #{$shadow-md};
+  --shadow-lg: #{$shadow-lg};
+  --shadow-xl: #{$shadow-xl};
+  --shadow-2xl: #{$shadow-2xl};
 
-  // Rings (Focus states - Tailwind style)
-  --ring-color: rgba(59, 130, 246, 0.5);
-  --ring-width: 3px;
+  // Transitions
+  --transition-fast: #{$transition-fast};
+  --transition-base: #{$transition-base};
+  --transition-slow: #{$transition-slow};
 }
 
-// ============================================
-// Dark Theme
-// ============================================
+// =============================================
+// 2. DARK THEME
+// =============================================
+
 [data-theme="dark"] {
-  // Primary Palette (Light Blues)
-  --color-primary: #60a5fa;
-  --color-primary-50: #0f172a;
-  --color-primary-100: #1e293b;
-  --color-primary-200: #334155;
-  --color-primary-300: #475569;
-  --color-primary-400: #64748b;
-  --color-primary-500: #60a5fa;
-  --color-primary-600: #3b82f6;
-  --color-primary-700: #1d4ed8;
-  --color-primary-800: #1e40af;
-  --color-primary-900: #1e3a8a;
+  // Colors (adjusted for dark mode)
+  --color-primary: #{lighten($primary, 10%)};
+  --color-primary-dark: #{$primary};
+  --color-primary-light: #{lighten($primary, 20%)};
+  --color-secondary: #{lighten($secondary, 10%)};
+  --color-accent: #{lighten($accent, 10%)};
 
-  // Secondary Palette (Light Purples)
-  --color-secondary: #c4b5fd;
-  --color-secondary-50: #1f2937;
-  --color-secondary-100: #374151;
-  --color-secondary-200: #4b5563;
-  --color-secondary-300: #6b7280;
-  --color-secondary-400: #9ca3af;
-  --color-secondary-500: #c4b5fd;
-  --color-secondary-600: #a78bfa;
-  --color-secondary-700: #8b5cf6;
-  --color-secondary-800: #7c3aed;
-  --color-secondary-900: #6d28d9;
+  --color-success: #{lighten($success, 5%)};
+  --color-danger: #{lighten($danger, 5%)};
+  --color-warning: #{lighten($warning, 5%)};
+  --color-info: #{lighten($info, 5%)};
 
-  // Semantic Colors
-  --color-success: #34d399;
-  --color-danger: #f87171;
-  --color-warning: #fbbf24;
-  --color-info: #38bdf8;
+  // Grayscale (inverted)
+  --color-gray-50: #{$gray-900};
+  --color-gray-100: #{$gray-800};
+  --color-gray-200: #{$gray-700};
+  --color-gray-300: #{$gray-600};
+  --color-gray-400: #{$gray-500};
+  --color-gray-500: #{$gray-400};
+  --color-gray-600: #{$gray-300};
+  --color-gray-700: #{$gray-200};
+  --color-gray-800: #{$gray-100};
+  --color-gray-900: #{$gray-50};
 
-  // Neutral Palette
-  --color-text: #{$gray-100};
-  --color-text-secondary: #{$gray-300};
-  --color-text-muted: #{$gray-400};
-  --color-text-light: #{$gray-500};
-
-  --color-bg: #{$gray-900};
-  --color-bg-secondary: #{$gray-800};
-  --color-bg-tertiary: #{$gray-700};
-  --color-bg-hover: #{$gray-800};
-
+  // Background & Text (dark mode)
+  --color-background: #{$gray-900};
+  --color-surface: #{#1a1a2e};
+  --color-text-primary: #{$gray-50};
+  --color-text-secondary: #{$gray-400};
+  --color-text-muted: #{$gray-500};
   --color-border: #{$gray-700};
-  --color-border-light: #{$gray-600};
-  --color-border-dark: #{$gray-800};
+  --color-border-light: #{$gray-800};
+  --color-divider: #{$gray-800};
 
-  // Shadow
-  --color-shadow: rgba(0, 0, 0, 0.3);
-  --color-shadow-dark: rgba(0, 0, 0, 0.5);
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+  // Components (dark mode)
+  --color-btn-bg: #{lighten($primary, 10%)};
+  --color-btn-text: #{$gray-900};
+  --color-btn-hover: #{$primary};
+  --color-btn-active: #{darken($primary, 5%)};
+  --color-btn-disabled: #{$gray-600};
 
-  // Component Colors
   --color-input-bg: #{$gray-800};
   --color-input-border: #{$gray-700};
-  --color-input-text: #{$gray-100};
-  --color-input-placeholder: #{$gray-500};
-  --color-input-disabled-bg: #{$gray-900};
-  --color-input-disabled-text: #{$gray-600};
-
-  --color-button-hover: #{$gray-800};
-  --color-button-active: #{$gray-700};
+  --color-input-border-focus: #{lighten($primary, 10%)};
+  --color-input-text: #{$gray-50};
+  --color-input-placeholder: #{$gray-400};
 
   --color-card-bg: #{$gray-800};
   --color-card-border: #{$gray-700};
 
-  --color-modal-overlay: rgba(0, 0, 0, 0.7);
+  --color-navbar-bg: #{$gray-800};
+  --color-navbar-text: #{$gray-50};
+  --color-navbar-border: #{$gray-700};
+
   --color-modal-bg: #{$gray-800};
+  --color-modal-overlay: rgba(0, 0, 0, 0.7);
 
-  --color-carousel-control-bg: rgba(0, 0, 0, 0.6);
-  --color-carousel-control-text: #ffffff;
-  --color-carousel-control-hover: rgba(0, 0, 0, 0.8);
-  --color-carousel-indicators-bg: rgba(0, 0, 0, 0.5);
-  --color-carousel-indicator: rgba(255, 255, 255, 0.4);
-  --color-carousel-indicator-hover: rgba(255, 255, 255, 0.7);
+  --color-alert-success-bg: #064e3b;
+  --color-alert-success-text: #d1fae5;
+  --color-alert-danger-bg: #7f1d1d;
+  --color-alert-danger-text: #fee2e2;
+  --color-alert-warning-bg: #78350f;
+  --color-alert-warning-text: #fef3c7;
+  --color-alert-info-bg: #164e63;
+  --color-alert-info-text: #cffafe;
 
-  // Opacity
-  --opacity-disabled: 0.5;
-  --opacity-hover: 1;
+  // Carousel (dark mode)
+  --color-carousel-control-bg: rgba(0, 0, 0, 0.7);
+  --color-carousel-control-text: #{$gray-50};
+  --color-carousel-control-hover: rgba(0, 0, 0, 0.9);
 
-  // Rings
-  --ring-color: rgba(96, 165, 250, 0.5);
-  --ring-width: 3px;
+  // Shadows (more prominent in dark mode)
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md:
+    0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+  --shadow-lg:
+    0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+  --shadow-xl:
+    0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
 }
 
-// ============================================
-// High Contrast Theme
-// ============================================
+// =============================================
+// 3. HIGH-CONTRAST THEME (WCAG AAA)
+// =============================================
+
 [data-theme="high-contrast"] {
-  // Primary (Bright Blue)
+  // Maximum contrast colors for accessibility
   --color-primary: #0000ff;
-  --color-primary-50: #f0f0ff;
-  --color-primary-100: #e0e0ff;
-  --color-primary-200: #c0c0ff;
-  --color-primary-300: #8080ff;
-  --color-primary-400: #4040ff;
-  --color-primary-500: #0000ff;
-  --color-primary-600: #0000dd;
-  --color-primary-700: #0000bb;
-  --color-primary-800: #0000aa;
-  --color-primary-900: #000088;
+  --color-primary-dark: #000080;
+  --color-primary-light: #3333ff;
+  --color-secondary: #008000;
+  --color-accent: #ffff00;
 
-  // Secondary (Bright Magenta)
-  --color-secondary: #ff00ff;
-  --color-secondary-50: #fff0ff;
-  --color-secondary-100: #ffe0ff;
-  --color-secondary-200: #ffc0ff;
-  --color-secondary-300: #ff80ff;
-  --color-secondary-400: #ff40ff;
-  --color-secondary-500: #ff00ff;
-  --color-secondary-600: #dd00dd;
-  --color-secondary-700: #bb00bb;
-  --color-secondary-800: #aa00aa;
-  --color-secondary-900: #880088;
-
-  // Semantic Colors
-  --color-success: #00cc00;
+  --color-success: #008000;
   --color-danger: #ff0000;
-  --color-warning: #ff8800;
-  --color-info: #0088ff;
+  --color-warning: #ff8000;
+  --color-info: #0080ff;
 
-  // Neutral
-  --color-text: #000000;
-  --color-text-secondary: #333333;
-  --color-text-muted: #666666;
-  --color-text-light: #999999;
+  // Grayscale (high contrast)
+  --color-gray-50: #ffffff;
+  --color-gray-100: #f0f0f0;
+  --color-gray-200: #e0e0e0;
+  --color-gray-300: #d0d0d0;
+  --color-gray-400: #a0a0a0;
+  --color-gray-500: #808080;
+  --color-gray-600: #606060;
+  --color-gray-700: #404040;
+  --color-gray-800: #202020;
+  --color-gray-900: #000000;
 
-  --color-bg: #ffffff;
-  --color-bg-secondary: #f0f0f0;
-  --color-bg-tertiary: #e0e0e0;
-  --color-bg-hover: #eeeeee;
-
+  // Background & Text
+  --color-background: #ffffff;
+  --color-surface: #f0f0f0;
+  --color-text-primary: #000000;
+  --color-text-secondary: #000000;
+  --color-text-muted: #404040;
   --color-border: #000000;
-  --color-border-light: #333333;
-  --color-border-dark: #000000;
+  --color-border-light: #404040;
+  --color-divider: #d0d0d0;
 
-  // Shadow
-  --color-shadow: rgba(0, 0, 0, 0.3);
-  --color-shadow-dark: rgba(0, 0, 0, 0.5);
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+  // Components
+  --color-btn-bg: #0000ff;
+  --color-btn-text: #ffffff;
+  --color-btn-hover: #000080;
+  --color-btn-active: #000040;
+  --color-btn-disabled: #808080;
 
-  // Component Colors
   --color-input-bg: #ffffff;
   --color-input-border: #000000;
+  --color-input-border-focus: #0000ff;
   --color-input-text: #000000;
-  --color-input-placeholder: #666666;
-  --color-input-disabled-bg: #cccccc;
-  --color-input-disabled-text: #666666;
-
-  --color-button-hover: #e0e0e0;
-  --color-button-active: #cccccc;
+  --color-input-placeholder: #404040;
 
   --color-card-bg: #ffffff;
   --color-card-border: #000000;
 
-  --color-modal-overlay: rgba(0, 0, 0, 0.8);
+  --color-navbar-bg: #ffffff;
+  --color-navbar-text: #000000;
+  --color-navbar-border: #000000;
+
   --color-modal-bg: #ffffff;
+  --color-modal-overlay: rgba(0, 0, 0, 0.8);
 
-  --color-carousel-control-bg: rgba(0, 0, 0, 0.9);
+  --color-alert-success-bg: #008000;
+  --color-alert-success-text: #ffffff;
+  --color-alert-danger-bg: #ff0000;
+  --color-alert-danger-text: #ffffff;
+  --color-alert-warning-bg: #ff8000;
+  --color-alert-warning-text: #000000;
+  --color-alert-info-bg: #0080ff;
+  --color-alert-info-text: #ffffff;
+
+  // Carousel
+  --color-carousel-control-bg: #000000;
   --color-carousel-control-text: #ffffff;
-  --color-carousel-control-hover: rgba(0, 0, 0, 1);
-  --color-carousel-indicators-bg: rgba(0, 0, 0, 0.7);
-  --color-carousel-indicator: rgba(255, 255, 255, 0.6);
-  --color-carousel-indicator-hover: rgba(255, 255, 255, 0.9);
+  --color-carousel-control-hover: #404040;
 
-  // Opacity
-  --opacity-disabled: 0.5;
-  --opacity-hover: 1;
-
-  // Rings
-  --ring-color: rgba(0, 0, 255, 0.5);
-  --ring-width: 3px;
+  // Shadows (strong and visible)
+  --shadow-sm: 0 0 0 2px #000000;
+  --shadow-md: 0 0 0 3px #000000;
+  --shadow-lg: 0 0 0 4px #000000;
+  --shadow-xl: 0 0 0 5px #000000;
+  --shadow-2xl: 0 0 0 6px #000000;
 }
 
-// ============================================
-// System preference support (prefers-color-scheme)
-// ============================================
+// =============================================
+// 4. SEMANTIC COLOR MIXINS FOR COMPONENTS
+// =============================================
+
+@mixin themed-background {
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+}
+
+@mixin themed-surface {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border-light);
+  color: var(--color-text-primary);
+}
+
+@mixin themed-button {
+  background-color: var(--color-btn-bg);
+  color: var(--color-btn-text);
+  border: 2px solid var(--color-btn-bg);
+  transition: all var(--transition-base);
+
+  &:hover {
+    background-color: var(--color-btn-hover);
+    border-color: var(--color-btn-hover);
+  }
+
+  &:active {
+    background-color: var(--color-btn-active);
+    border-color: var(--color-btn-active);
+  }
+
+  &:disabled {
+    background-color: var(--color-btn-disabled);
+    border-color: var(--color-btn-disabled);
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+}
+
+@mixin themed-input {
+  background-color: var(--color-input-bg);
+  border: 1px solid var(--color-input-border);
+  color: var(--color-input-text);
+  transition: all var(--transition-fast);
+
+  &:focus {
+    outline: none;
+    border-color: var(--color-input-border-focus);
+    box-shadow: 0 0 0 3px rgba(var(--color-input-border-focus), 0.1);
+  }
+
+  &::placeholder {
+    color: var(--color-input-placeholder);
+  }
+}
+
+@mixin themed-card {
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-card-border);
+  color: var(--color-text-primary);
+  box-shadow: var(--shadow-md);
+}
+
+@mixin themed-navbar {
+  background-color: var(--color-navbar-bg);
+  border-bottom: 1px solid var(--color-navbar-border);
+  color: var(--color-navbar-text);
+}
+
+@mixin themed-alert($alert-type: "info") {
+  background-color: var(--color-alert-#{$alert-type}-bg);
+  color: var(--color-alert-#{$alert-type}-text);
+  border: 2px solid var(--color-alert-#{$alert-type}-text);
+  padding: $space-md;
+  border-radius: $radius-md;
+}
+
+// =============================================
+// 5. AUTO DARK MODE (PREFERS-COLOR-SCHEME)
+// =============================================
+
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme]) {
-    // Apply dark theme when system prefers dark
-    --color-primary: #60a5fa;
-    --color-primary-600: #3b82f6;
-    --color-secondary: #c4b5fd;
-    --color-secondary-600: #a78bfa;
+  :root:not([data-theme="light"]):not([data-theme="high-contrast"]) {
+    color-scheme: dark;
 
-    --color-success: #34d399;
-    --color-danger: #f87171;
-    --color-warning: #fbbf24;
-    --color-info: #38bdf8;
+    --color-primary: #{lighten($primary, 10%)};
+    --color-primary-dark: #{$primary};
+    --color-primary-light: #{lighten($primary, 20%)};
+    --color-secondary: #{lighten($secondary, 10%)};
+    --color-accent: #{lighten($accent, 10%)};
 
-    --color-text: #{$gray-100};
-    --color-text-secondary: #{$gray-300};
-    --color-text-muted: #{$gray-400};
-    --color-text-light: #{$gray-500};
-
-    --color-bg: #{$gray-900};
-    --color-bg-secondary: #{$gray-800};
-    --color-bg-tertiary: #{$gray-700};
-    --color-bg-hover: #{$gray-800};
-
+    --color-background: #{$gray-900};
+    --color-surface: #{#1a1a2e};
+    --color-text-primary: #{$gray-50};
+    --color-text-secondary: #{$gray-400};
+    --color-text-muted: #{$gray-500};
     --color-border: #{$gray-700};
-    --color-border-light: #{$gray-600};
-    --color-border-dark: #{$gray-800};
-
-    --color-shadow: rgba(0, 0, 0, 0.3);
-    --color-shadow-dark: rgba(0, 0, 0, 0.5);
+    --color-border-light: #{$gray-800};
+    --color-divider: #{$gray-800};
 
     --color-input-bg: #{$gray-800};
     --color-input-border: #{$gray-700};
-    --color-input-text: #{$gray-100};
-    --color-input-placeholder: #{$gray-500};
-    --color-input-disabled-bg: #{$gray-900};
-    --color-input-disabled-text: #{$gray-600};
-
-    --color-button-hover: #{$gray-800};
-    --color-button-active: #{$gray-700};
+    --color-input-border-focus: #{lighten($primary, 10%)};
+    --color-input-text: #{$gray-50};
+    --color-input-placeholder: #{$gray-400};
 
     --color-card-bg: #{$gray-800};
     --color-card-border: #{$gray-700};
 
-    --color-modal-overlay: rgba(0, 0, 0, 0.7);
-    --color-modal-bg: #{$gray-800};
+    --color-navbar-bg: #{$gray-800};
+    --color-navbar-text: #{$gray-50};
+  }
+}
 
-    --color-carousel-control-bg: rgba(0, 0, 0, 0.6);
-    --color-carousel-control-text: #ffffff;
-    --color-carousel-control-hover: rgba(0, 0, 0, 0.8);
-    --color-carousel-indicators-bg: rgba(0, 0, 0, 0.5);
+// =============================================
+// 6. FORCED DARK MODE (RESPECTS USER PREFERENCE)
+// =============================================
 
-    --opacity-disabled: 0.5;
-    --opacity-hover: 1;
-
-    --ring-color: rgba(96, 165, 250, 0.5);
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]):not([data-theme="dark"]):not(
+      [data-theme="high-contrast"]
+    ) {
+    color-scheme: light;
   }
 }

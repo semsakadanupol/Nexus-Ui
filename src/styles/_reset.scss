@@ -1,10 +1,6 @@
-// ============================================
-// NEXUS-UI Reset & Normalize
-// ============================================
-
-@use "sass:color";
-@use "./variables" as *;
-@use "./mixins" as *;
+// =============================================
+// NEXUS-UI CSS RESET & NORMALIZE
+// =============================================
 
 *,
 *::before,
@@ -15,19 +11,23 @@
 }
 
 html {
+  font-family: $font-family-base;
+  font-size: $font-size-base;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  scroll-behavior: smooth;
+  line-height: $line-height-base;
+  color: $color-text-primary;
+  background-color: $color-background;
 }
 
 body {
-  font-family: $font-family-base;
-  font-size: $font-size-base;
-  line-height: $line-height-normal;
-  color: $gray-800;
-  background-color: #fff;
   margin: 0;
   padding: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+  background-color: inherit;
 }
 
 // Headings
@@ -38,56 +38,203 @@ h4,
 h5,
 h6 {
   margin: 0;
-  padding: 0;
   font-weight: $font-weight-bold;
   line-height: $line-height-tight;
 }
 
 h1 {
+  font-size: $font-size-6xl;
+}
+
+h2 {
+  font-size: $font-size-5xl;
+}
+
+h3 {
   font-size: $font-size-4xl;
 }
-h2 {
+
+h4 {
   font-size: $font-size-3xl;
 }
-h3 {
+
+h5 {
   font-size: $font-size-2xl;
 }
-h4 {
-  font-size: $font-size-xl;
-}
-h5 {
-  font-size: $font-size-lg;
-}
+
 h6 {
-  font-size: $font-size-base;
+  font-size: $font-size-xl;
 }
 
 // Paragraphs
 p {
   margin: 0;
+}
+
+// Lists
+ul,
+ol,
+dl {
+  margin: 0;
   padding: 0;
+  list-style: none;
+}
+
+li {
+  list-style: none;
+}
+
+dt {
+  font-weight: $font-weight-bold;
+}
+
+dd {
+  margin: 0;
+}
+
+// Blockquote
+blockquote {
+  margin: 0;
+  padding: $space-md;
+  border-left: 4px solid $primary;
+  background-color: $color-surface;
+  font-style: italic;
+}
+
+// Code
+code,
+pre {
+  font-family: $font-family-mono;
+  font-size: 0.875em;
+}
+
+code {
+  background-color: $color-surface;
+  padding: 0.2em 0.4em;
+  border-radius: $radius-sm;
+}
+
+pre {
+  overflow-x: auto;
+  background-color: $color-surface;
+  padding: $space-md;
+  border-radius: $radius-md;
+  line-height: $line-height-loose;
+
+  code {
+    background-color: transparent;
+    padding: 0;
+  }
 }
 
 // Links
 a {
   color: $primary;
   text-decoration: none;
-  @include transition(color);
+  transition: all $transition-fast;
 
   &:hover {
-    color: color.adjust($primary, $lightness: -10%);
+    color: darken($primary, 10%);
+    text-decoration: underline;
+  }
+
+  &:focus {
+    outline: 2px solid $primary;
+    outline-offset: 2px;
   }
 }
 
-// Lists
-ul,
-ol {
-  list-style: none;
-  margin: 0;
+// Buttons
+button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"] {
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
   padding: 0;
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
 }
 
-// Images
+// Forms
+input,
+textarea,
+select {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="date"],
+input[type="time"],
+input[type="datetime-local"],
+input[type="month"],
+input[type="search"],
+input[type="tel"],
+input[type="url"],
+input[type="week"],
+textarea,
+select {
+  width: 100%;
+  padding: $space-sm;
+  border: 1px solid $color-input-border;
+  border-radius: $radius-md;
+  background-color: $color-input-bg;
+  transition: all $transition-fast;
+
+  &:focus {
+    outline: none;
+    border-color: $color-input-border-focus;
+    box-shadow: 0 0 0 3px rgba($primary, 0.1);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  &::placeholder {
+    color: $color-text-secondary;
+  }
+}
+
+textarea {
+  resize: vertical;
+}
+
+select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236B7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right $space-sm center;
+  background-size: 1.5em 1.5em;
+  padding-right: 2.5rem;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  width: auto;
+  margin-right: $space-sm;
+  cursor: pointer;
+
+  &:focus {
+    outline: 2px solid $primary;
+    outline-offset: 2px;
+  }
+}
+
+// images
 img {
   max-width: 100%;
   height: auto;
@@ -101,79 +248,114 @@ table {
   border-spacing: 0;
 }
 
-th,
-td {
+thead {
+  background-color: $color-surface;
+}
+
+th {
+  padding: $space-md;
   text-align: left;
-  padding: 0;
+  font-weight: $font-weight-bold;
+  border-bottom: 2px solid $color-border;
 }
 
-// Forms
-form {
-  margin: 0;
-  padding: 0;
+td {
+  padding: $space-md;
+  border-bottom: 1px solid $color-border-light;
 }
 
-input,
-button,
-select,
-textarea {
-  font-family: inherit;
-  font-size: inherit;
-  color: inherit;
+tbody tr:last-child td {
+  border-bottom: none;
 }
 
-input,
-textarea {
-  width: 100%;
+// Horizontal rules
+hr {
+  margin: $space-lg 0;
+  border: none;
+  border-top: 1px solid $color-border;
 }
 
-button {
-  cursor: pointer;
+// Videos & Iframes
+iframe,
+video {
+  max-width: 100%;
+  height: auto;
 }
 
-textarea {
-  resize: vertical;
+// Inline elements
+strong,
+b {
+  font-weight: $font-weight-bold;
 }
 
-// Code
-code,
-pre {
-  font-family: $font-family-mono;
-  font-size: $font-size-sm;
+em,
+i {
+  font-style: italic;
 }
 
-code {
-  background-color: $gray-100;
-  padding: 0.125rem 0.25rem;
+small {
+  font-size: 0.875em;
+}
+
+sub,
+sup {
+  position: relative;
+  font-size: 0.75em;
+  line-height: 0;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+// Mark
+mark {
+  background-color: #fff3cd;
+  padding: 0.2em 0.4em;
   border-radius: $radius-sm;
 }
 
-pre {
-  background-color: $gray-900;
-  color: #fff;
-  padding: $spacing-md;
-  border-radius: $radius-lg;
-  overflow-x: auto;
+// Print styles
+@media print {
+  *,
+  *::before,
+  *::after {
+    background: transparent !important;
+    color: #000 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
 
-  code {
-    background-color: transparent;
-    color: inherit;
-    padding: 0;
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+
+  a[href]::after {
+    content: " (" attr(href) ")";
+  }
+
+  img {
+    max-width: 100% !important;
+  }
+
+  @page {
+    margin: 0.5cm;
   }
 }
 
-// HR
-hr {
-  border: none;
-  border-top: 1px solid $gray-300;
-  margin: $spacing-md 0;
-}
-
-// Blockquote
-blockquote {
-  margin: 0;
-  padding: 0;
-  border-left: 4px solid $primary;
-  padding-left: $spacing-md;
-  margin-left: 0;
+// Accessibility: Respect prefers-reduced-motion
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

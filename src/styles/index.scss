@@ -1,46 +1,341 @@
-// ============================================
-// NEXUS-UI Framework - Main Entry Point
-// Desktop-first utility CSS framework
-// ============================================
+// =============================================
+// NEXUS-UI MAIN SCSS ENTRY POINT
+// =============================================
 
-@use "./variables" as *;
-@use "./mixins" as *;
-@use "./themes" as *;
-@use "./reset" as *;
-@use "./animations" as *;
+// 1. Configuration & Variables
+@import "variables";
 
-// Core Utilities
-@use "./utilities/spacing" as *;
-@use "./utilities/sizing" as *;
-@use "./utilities/colors" as *;
-@use "./utilities/typography" as *;
-@use "./utilities/flexbox" as *;
-@use "./utilities/grid" as *;
-@use "./utilities/positioning" as *;
-@use "./utilities/display" as *;
-@use "./utilities/borders" as *;
-@use "./utilities/shadows" as *;
-@use "./utilities/gradients" as *;
+// 2. Mixins & Utilities
+@import "mixins";
 
-// Advanced Utilities
-@use "./utilities/transforms" as *;
-@use "./utilities/filters" as *;
-@use "./utilities/advanced-sizing" as *;
-@use "./utilities/text-effects" as *;
-@use "./utilities/dynamic-arbitrary" as *;
+// 3. Reset & Normalize
+@import "reset";
 
-// Core Components
-@use "./components/buttons" as *;
-@use "./components/cards" as *;
-@use "./components/modals" as *;
-@use "./components/navbars" as *;
-@use "./components/carousel" as *;
-@use "./components/dropdowns" as *;
-@use "./components/tooltips" as *;
-@use "./components/offcanvas" as *;
+// 4. Themes (Light, Dark, High-Contrast)
+@import "themes";
 
-// Advanced Components
-@use "./components/tables" as *;
-@use "./components/badges-progress-spinners" as *;
-@use "./components/pagination-breadcrumbs" as *;
-@use "./components/tabs-accordion" as *;
+// 5. Animations & Transitions
+@import "animations";
+
+// 6. Utility Classes
+@import "utilities";
+
+// 7. Component Styles
+@import "components";
+
+// =============================================
+// GLOBAL STYLES
+// =============================================
+
+// Default styling for semantic elements
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+  color: var(--color-text-primary);
+  background-color: var(--color-background);
+  transition:
+    background-color $transition-base,
+    color $transition-base;
+}
+
+// =============================================
+// UTILITY: ROUNDED VARIANTS WITH RESPONSIVE
+// =============================================
+
+@media (max-width: $breakpoint-md - 1px) {
+  .md\:rounded-none {
+    border-radius: $radius-none;
+  }
+
+  .md\:rounded-sm {
+    border-radius: $radius-sm;
+  }
+
+  .md\:rounded-md {
+    border-radius: $radius-md;
+  }
+
+  .md\:rounded-lg {
+    border-radius: $radius-lg;
+  }
+
+  .md\:rounded-full {
+    border-radius: $radius-full;
+  }
+}
+
+// =============================================
+// UTILITY: COLOR RESPONSIVE VARIANTS
+// =============================================
+
+@media (max-width: $breakpoint-sm - 1px) {
+  .sm\:text-gray-600 {
+    color: var(--color-gray-600);
+  }
+
+  .sm\:bg-gray-50 {
+    background-color: var(--color-gray-50);
+  }
+}
+
+@media (max-width: $breakpoint-md - 1px) {
+  .md\:bg-white {
+    background-color: #{$white};
+  }
+
+  .md\:text-gray-900 {
+    color: var(--color-gray-900);
+  }
+}
+
+// =============================================
+// UTILITY: SPACING RESPONSIVE
+// =============================================
+
+@media (max-width: $breakpoint-lg - 1px) {
+  .lg\:p-md {
+    padding: $space-md !important;
+  }
+
+  .lg\:m-lg {
+    margin: $space-lg !important;
+  }
+
+  .lg\:gap-lg {
+    gap: $space-lg !important;
+  }
+}
+
+// =============================================
+// SEMANTIC COLOR CLASSES FOR QUICK STYLING
+// =============================================
+
+.primary {
+  color: var(--color-primary);
+}
+
+.success {
+  color: var(--color-success);
+}
+
+.danger {
+  color: var(--color-danger);
+}
+
+.warning {
+  color: var(--color-warning);
+}
+
+.info {
+  color: var(--color-info);
+}
+
+.muted {
+  color: var(--color-text-muted);
+}
+
+// =============================================
+// QUICK SPACING HELPERS
+// =============================================
+
+.space-y-sm > * + * {
+  margin-top: $space-sm;
+}
+
+.space-y-md > * + * {
+  margin-top: $space-md;
+}
+
+.space-y-lg > * + * {
+  margin-top: $space-lg;
+}
+
+.space-x-sm > * + * {
+  margin-left: $space-sm;
+}
+
+.space-x-md > * + * {
+  margin-left: $space-md;
+}
+
+.space-x-lg > * + * {
+  margin-left: $space-lg;
+}
+
+// =============================================
+// QUICK DIVIDER CLASSES
+// =============================================
+
+.divide-y > * + * {
+  border-top: 1px solid var(--color-border-light);
+  padding-top: $space-md;
+  margin-top: $space-md;
+}
+
+.divide-x > * + * {
+  border-left: 1px solid var(--color-border-light);
+  padding-left: $space-md;
+  margin-left: $space-md;
+}
+
+// =============================================
+// SAMPLE UTILITY CLASSES FOR DEMO
+// =============================================
+
+.sample-light {
+  background-color: var(--color-gray-100);
+  border: 1px solid var(--color-border-light);
+}
+
+.sample-medium {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+}
+
+.sample-accent-1 {
+  background: linear-gradient(
+    135deg,
+    var(--color-primary),
+    var(--color-secondary)
+  );
+  color: #{$white};
+}
+
+.sample-accent-2 {
+  background: linear-gradient(135deg, var(--color-success), var(--color-info));
+  color: #{$white};
+}
+
+.sample-accent-3 {
+  background: linear-gradient(
+    135deg,
+    var(--color-warning),
+    var(--color-danger)
+  );
+  color: #{$white};
+}
+
+// =============================================
+// GRADIENTS
+// =============================================
+
+.gradient-primary {
+  background: linear-gradient(
+    135deg,
+    var(--color-primary),
+    var(--color-secondary)
+  );
+}
+
+.gradient-success {
+  background: linear-gradient(135deg, var(--color-success), var(--color-info));
+}
+
+.gradient-danger {
+  background: linear-gradient(
+    135deg,
+    var(--color-danger),
+    var(--color-warning)
+  );
+}
+
+.gradient-cool {
+  background: linear-gradient(135deg, var(--color-info), var(--color-primary));
+}
+
+.gradient-warm {
+  background: linear-gradient(
+    135deg,
+    var(--color-warning),
+    var(--color-danger)
+  );
+}
+
+// =============================================
+// FOCUS OUTLINE FOR ACCESSIBILITY
+// =============================================
+
+*:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+// =============================================
+// SMOOTH SCROLLING
+// =============================================
+
+.scroll-smooth {
+  scroll-behavior: smooth;
+}
+
+.scroll-auto {
+  scroll-behavior: auto;
+}
+
+// =============================================
+// TEXT DECORATION OPTIONS
+// =============================================
+
+.underline {
+  text-decoration: underline;
+}
+
+.no-underline {
+  text-decoration: none;
+}
+
+.line-through {
+  text-decoration: line-through;
+}
+
+// =============================================
+// FONT VARIANTS
+// =============================================
+
+.font-mono {
+  font-family: $font-family-mono;
+}
+
+.antialiased {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// =============================================
+// CURSOR VARIANTS (Additional)
+// =============================================
+
+.cursor-grab {
+  cursor: grab;
+
+  &:active {
+    cursor: grabbing;
+  }
+}
+
+.cursor-col-resize {
+  cursor: col-resize;
+}
+
+.cursor-row-resize {
+  cursor: row-resize;
+}
+
+// =============================================
+// SELECTION STYLING
+// =============================================
+
+::selection {
+  background-color: var(--color-primary);
+  color: #{$white};
+}
+
+::-moz-selection {
+  background-color: var(--color-primary);
+  color: #{$white};
+}

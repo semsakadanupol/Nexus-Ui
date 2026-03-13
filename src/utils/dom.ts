@@ -1,162 +1,243 @@
-// ============================================
-// DOM Utilities
-// ============================================
+/**
+ * NEXUS-UI DOM UTILITIES
+ * Helper functions for DOM manipulation
+ */
 
 /**
- * Select a single element
+ * Query a single element
  */
-export function select<T extends Element = Element>(
-  selector: string,
-  parent: Document | Element = document,
-): T | null {
-  return parent.querySelector<T>(selector);
+export function query(selector: string): HTMLElement | null {
+  return document.querySelector(selector);
 }
 
 /**
- * Select multiple elements
+ * Query multiple elements
  */
-export function selectAll<T extends Element = Element>(
-  selector: string,
-  parent: Document | Element = document,
-): T[] {
-  return Array.from(parent.querySelectorAll<T>(selector));
+export function queryAll(selector: string): HTMLElement[] {
+  return Array.from(document.querySelectorAll(selector));
 }
 
 /**
- * Create an element
+ * Add class to element
  */
-export function createElement<K extends keyof HTMLElementTagNameMap>(
-  tag: K,
-  options?: { className?: string; id?: string; innerHTML?: string },
-): HTMLElementTagNameMap[K] {
-  const element = document.createElement(tag);
-
-  if (options?.className) {
-    element.className = options.className;
+export function addClass(el: HTMLElement | null, className: string): void {
+  if (el) {
+    el.classList.add(className);
   }
-
-  if (options?.id) {
-    element.id = options.id;
-  }
-
-  if (options?.innerHTML) {
-    element.innerHTML = options.innerHTML;
-  }
-
-  return element;
 }
 
 /**
- * Add a class to an element
+ * Remove class from element
  */
-export function addClass(element: Element, className: string): void {
-  element.classList.add(...className.split(" "));
+export function removeClass(el: HTMLElement | null, className: string): void {
+  if (el) {
+    el.classList.remove(className);
+  }
 }
 
 /**
- * Remove a class from an element
- */
-export function removeClass(element: Element, className: string): void {
-  element.classList.remove(...className.split(" "));
-}
-
-/**
- * Toggle a class on an element
+ * Toggle class on element
  */
 export function toggleClass(
-  element: Element,
+  el: HTMLElement | null,
   className: string,
   force?: boolean,
 ): boolean {
-  return element.classList.toggle(className, force);
+  if (el) {
+    return el.classList.toggle(className, force);
+  }
+  return false;
 }
 
 /**
- * Check if element has a class
+ * Check if element has class
  */
-export function hasClass(element: Element, className: string): boolean {
-  return element.classList.contains(className);
+export function hasClass(el: HTMLElement | null, className: string): boolean {
+  if (el) {
+    return el.classList.contains(className);
+  }
+  return false;
 }
 
 /**
- * Set attributes on an element
+ * Set multiple styles on element
  */
-export function setAttributes(
-  element: Element,
-  attributes: Record<string, string | number | boolean>,
+export function styles(
+  el: HTMLElement | null,
+  styleObj: Record<string, string>,
 ): void {
-  Object.entries(attributes).forEach(([key, value]) => {
-    if (value === false) {
-      element.removeAttribute(key);
-    } else {
-      element.setAttribute(key, String(value));
+  if (el) {
+    Object.assign(el.style, styleObj);
+  }
+}
+
+/**
+ * Get or set attribute
+ */
+export function attr(
+  el: HTMLElement | null,
+  name: string,
+  value?: string,
+): string | void {
+  if (!el) return;
+
+  if (value !== undefined) {
+    el.setAttribute(name, value);
+  } else {
+    return el.getAttribute(name) || "";
+  }
+}
+
+/**
+ * Add event listener
+ */
+export function on(
+  el: HTMLElement | Document | null,
+  eventName: string,
+  handler: (e: Event) => void,
+): void {
+  if (el) {
+    el.addEventListener(eventName, handler);
+  }
+}
+
+/**
+ * Remove event listener
+ */
+export function off(
+  el: HTMLElement | null,
+  eventName: string,
+  handler: (e: Event) => void,
+): void {
+  if (el) {
+    el.removeEventListener(eventName, handler);
+  }
+}
+
+/**
+ * Trigger custom event
+ */
+export function trigger(el: HTMLElement | null, eventName: string): void {
+  if (el) {
+    el.dispatchEvent(
+      new CustomEvent(eventName, { bubbles: true, cancelable: true }),
+    );
+  }
+}
+
+/**
+ * Call function after DOM is ready
+ */
+export function ready(callback: () => void): void {
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", callback);
+  } else {
+    callback();
+  }
+}
+
+/**
+ * Get element's parent
+ */
+export function parent(
+  el: HTMLElement | null,
+  selector?: string,
+): HTMLElement | null {
+  if (!el) return null;
+
+  if (selector) {
+    return el.closest(selector);
+  }
+
+  return el.parentElement;
+}
+
+/**
+ * Get element's children
+ */
+export function children(
+  el: HTMLElement | null,
+  selector?: string,
+): HTMLElement[] {
+  if (!el) return [];
+
+  if (selector) {
+    return Array.from(el.querySelectorAll(selector));
+  }
+
+  return Array.from(el.children) as HTMLElement[];
+}
+
+/**
+ * Find next sibling
+ */
+export function next(
+  el: HTMLElement | null,
+  selector?: string,
+): HTMLElement | null {
+  if (!el) return null;
+
+  let next = el.nextElementSibling as HTMLElement | null;
+
+  if (selector) {
+    while (next) {
+      if (next.matches(selector)) {
+        return next;
+      }
+      next = next.nextElementSibling as HTMLElement | null;
     }
-  });
+    return null;
+  }
+
+  return next;
 }
 
 /**
- * Get an attribute value
+ * Find previous sibling
  */
-export function getAttribute(
-  element: Element,
-  attribute: string,
-): string | null {
-  return element.getAttribute(attribute);
-}
+export function prev(
+  el: HTMLElement | null,
+  selector?: string,
+): HTMLElement | null {
+  if (!el) return null;
 
-/**
- * Remove element from DOM
- */
-export function remove(element: Element): void {
-  element.remove();
-}
+  let prev = el.previousElementSibling as HTMLElement | null;
 
-/**
- * Add multiple elements to parent
- */
-export function append(
-  parent: Element,
-  ...children: (Element | string)[]
-): void {
-  children.forEach((child) => {
-    if (typeof child === "string") {
-      parent.appendChild(document.createTextNode(child));
-    } else {
-      parent.appendChild(child);
+  if (selector) {
+    while (prev) {
+      if (prev.matches(selector)) {
+        return prev;
+      }
+      prev = prev.previousElementSibling as HTMLElement | null;
     }
-  });
+    return null;
+  }
+
+  return prev;
 }
 
 /**
- * Get closest parent element matching selector
+ * Get element's text content
  */
-export function closest<T extends Element = Element>(
-  element: Element,
-  selector: string,
-): T | null {
-  return element.closest<T>(selector);
+export function text(el: HTMLElement | null, content?: string): string | void {
+  if (!el) return "";
+
+  if (content !== undefined) {
+    el.textContent = content;
+  } else {
+    return el.textContent || "";
+  }
 }
 
 /**
- * Check if element matches selector
+ * Get element's HTML content
  */
-export function matches(element: Element, selector: string): boolean {
-  return element.matches(selector);
-}
+export function html(el: HTMLElement | null, content?: string): string | void {
+  if (!el) return "";
 
-/**
- * Get element position and dimensions
- */
-export function getRect(element: Element): DOMRect {
-  return element.getBoundingClientRect();
-}
-
-/**
- * Scroll element into view
- */
-export function scrollIntoView(
-  element: Element,
-  behavior: ScrollBehavior = "smooth",
-): void {
-  element.scrollIntoView({ behavior });
+  if (content !== undefined) {
+    el.innerHTML = content;
+  } else {
+    return el.innerHTML || "";
+  }
 }

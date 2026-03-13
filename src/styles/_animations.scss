@@ -1,10 +1,11 @@
-// ============================================
-// NEXUS-UI Animations
-// ============================================
+// =============================================
+// NEXUS-UI ANIMATIONS & KEYFRAMES
+// =============================================
 
-@use "./variables" as *;
+// =============================================
+// 1. KEYFRAMES DEFINITIONS
+// =============================================
 
-// Fade animations
 @keyframes fade-in {
   from {
     opacity: 0;
@@ -23,10 +24,9 @@
   }
 }
 
-// Slide animations
-@keyframes slide-in-up {
+@keyframes slide-up {
   from {
-    transform: translateY(1.5rem);
+    transform: translateY(100%);
     opacity: 0;
   }
   to {
@@ -35,9 +35,9 @@
   }
 }
 
-@keyframes slide-in-down {
+@keyframes slide-down {
   from {
-    transform: translateY(-1.5rem);
+    transform: translateY(-100%);
     opacity: 0;
   }
   to {
@@ -46,9 +46,9 @@
   }
 }
 
-@keyframes slide-in-left {
+@keyframes slide-left {
   from {
-    transform: translateX(-1.5rem);
+    transform: translateX(100%);
     opacity: 0;
   }
   to {
@@ -57,9 +57,9 @@
   }
 }
 
-@keyframes slide-in-right {
+@keyframes slide-right {
   from {
-    transform: translateX(1.5rem);
+    transform: translateX(-100%);
     opacity: 0;
   }
   to {
@@ -68,51 +68,6 @@
   }
 }
 
-@keyframes slide-out-up {
-  from {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  to {
-    transform: translateY(-1.5rem);
-    opacity: 0;
-  }
-}
-
-@keyframes slide-out-down {
-  from {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  to {
-    transform: translateY(1.5rem);
-    opacity: 0;
-  }
-}
-
-@keyframes slide-out-left {
-  from {
-    transform: translateX(0);
-    opacity: 1;
-  }
-  to {
-    transform: translateX(-1.5rem);
-    opacity: 0;
-  }
-}
-
-@keyframes slide-out-right {
-  from {
-    transform: translateX(0);
-    opacity: 1;
-  }
-  to {
-    transform: translateX(1.5rem);
-    opacity: 0;
-  }
-}
-
-// Scale animations
 @keyframes scale-in {
   from {
     transform: scale(0.95);
@@ -135,18 +90,16 @@
   }
 }
 
-// Bounce animation
 @keyframes bounce {
   0%,
   100% {
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-0.5rem);
+    transform: translateY(-25%);
   }
 }
 
-// Pulse animation
 @keyframes pulse {
   0%,
   100% {
@@ -157,7 +110,6 @@
   }
 }
 
-// Spin animation
 @keyframes spin {
   from {
     transform: rotate(0deg);
@@ -167,118 +119,97 @@
   }
 }
 
-// Wiggle animation
 @keyframes wiggle {
   0%,
   100% {
     transform: rotate(0deg);
   }
   25% {
-    transform: rotate(-1deg);
+    transform: rotate(-5deg);
   }
   75% {
-    transform: rotate(1deg);
+    transform: rotate(5deg);
   }
 }
 
-// Shake animation
 @keyframes shake {
   0%,
   100% {
     transform: translateX(0);
   }
   25% {
-    transform: translateX(-0.25rem);
+    transform: translateX(-10px);
   }
   75% {
-    transform: translateX(0.25rem);
+    transform: translateX(10px);
   }
 }
 
-// Heartbeat animation
 @keyframes heartbeat {
   0%,
   100% {
     transform: scale(1);
   }
-  14% {
-    transform: scale(1.15);
+  25% {
+    transform: scale(1.3);
   }
-  28% {
+  50% {
     transform: scale(1);
   }
 }
 
-// Glow animation
 @keyframes glow {
   0%,
   100% {
-    box-shadow: 0 0 5px rgba(37, 99, 235, 0.4);
+    box-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
   }
   50% {
-    box-shadow: 0 0 20px rgba(37, 99, 235, 0.8);
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.8);
   }
 }
 
-// Animation utility classes
-.animate-none {
-  animation: none;
-}
+// =============================================
+// 2. ANIMATION UTILITY CLASSES
+// =============================================
 
 .animate-fade-in {
-  animation: fade-in $animation-base $ease-out forwards;
+  animation: fade-in 0.6s ease-in-out forwards;
 }
 
 .animate-fade-out {
-  animation: fade-out $animation-base $ease-in forwards;
+  animation: fade-out 0.6s ease-in-out forwards;
 }
 
 .animate-slide-up {
-  animation: slide-in-up $animation-base $ease-out forwards;
+  animation: slide-up 0.5s ease-out forwards;
 }
 
 .animate-slide-down {
-  animation: slide-in-down $animation-base $ease-out forwards;
+  animation: slide-down 0.5s ease-out forwards;
 }
 
 .animate-slide-left {
-  animation: slide-in-left $animation-base $ease-out forwards;
+  animation: slide-left 0.5s ease-out forwards;
 }
 
 .animate-slide-right {
-  animation: slide-in-right $animation-base $ease-out forwards;
-}
-
-.animate-slide-out-up {
-  animation: slide-out-up $animation-base $ease-in forwards;
-}
-
-.animate-slide-out-down {
-  animation: slide-out-down $animation-base $ease-in forwards;
-}
-
-.animate-slide-out-left {
-  animation: slide-out-left $animation-base $ease-in forwards;
-}
-
-.animate-slide-out-right {
-  animation: slide-out-right $animation-base $ease-in forwards;
+  animation: slide-right 0.5s ease-out forwards;
 }
 
 .animate-scale-in {
-  animation: scale-in $animation-base $ease-out forwards;
+  animation: scale-in 0.4s ease-out forwards;
 }
 
 .animate-scale-out {
-  animation: scale-out $animation-base $ease-in forwards;
+  animation: scale-out 0.4s ease-out forwards;
 }
 
 .animate-bounce {
-  animation: bounce $animation-slower ease-in-out infinite;
+  animation: bounce 1s ease-in-out infinite;
 }
 
 .animate-pulse {
-  animation: pulse $animation-slower ease-in-out infinite;
+  animation: pulse 2s ease-in-out infinite;
 }
 
 .animate-spin {
@@ -286,213 +217,390 @@
 }
 
 .animate-wiggle {
-  animation: wiggle $animation-base ease-in-out infinite;
+  animation: wiggle 0.5s ease-in-out infinite;
 }
 
 .animate-shake {
-  animation: shake $animation-fast ease-in-out infinite;
+  animation: shake 0.5s ease-in-out infinite;
 }
 
 .animate-heartbeat {
-  animation: heartbeat 1.3s ease-in-out infinite;
+  animation: heartbeat 0.6s ease-in-out infinite;
 }
 
 .animate-glow {
-  animation: glow $animation-slower ease-in-out infinite;
+  animation: glow 2s ease-in-out infinite;
 }
 
-// Animation duration utilities (Tailwind-like)
-.duration-75 {
-  animation-duration: $animation-75;
+// =============================================
+// 3. ANIMATION MODIFIER UTILITIES
+// =============================================
+
+// Animation duration modifiers
+.animate-duration-100ms {
+  animation-duration: 100ms !important;
 }
 
-.duration-100 {
-  animation-duration: $animation-100;
+.animate-duration-200ms {
+  animation-duration: 200ms !important;
 }
 
-.duration-150 {
-  animation-duration: $animation-150;
+.animate-duration-300ms {
+  animation-duration: 300ms !important;
 }
 
-.duration-200 {
-  animation-duration: $animation-200;
+.animate-duration-500ms {
+  animation-duration: 500ms !important;
 }
 
-.duration-300 {
-  animation-duration: $animation-300;
+.animate-duration-1s {
+  animation-duration: 1s !important;
 }
 
-.duration-500 {
-  animation-duration: $animation-500;
+.animate-duration-2s {
+  animation-duration: 2s !important;
 }
 
-.duration-700 {
-  animation-duration: $animation-700;
-}
-
-.duration-1000 {
-  animation-duration: $animation-1000;
-}
-
-// Animation delay utilities (Tailwind-like)
-.delay-75 {
-  animation-delay: $animation-delay-75;
-}
-
-.delay-100 {
-  animation-delay: $animation-delay-100;
-}
-
-.delay-150 {
-  animation-delay: $animation-delay-150;
-}
-
-.delay-200 {
-  animation-delay: $animation-delay-200;
-}
-
-.delay-300 {
-  animation-delay: $animation-delay-300;
-}
-
-.delay-500 {
-  animation-delay: $animation-delay-500;
-}
-
-.delay-700 {
-  animation-delay: $animation-delay-700;
-}
-
-.delay-1000 {
-  animation-delay: $animation-delay-1000;
-}
-
-// Legacy animation delay utilities (backward compatibility)
-.animate-delay-none {
-  animation-delay: 0ms;
-}
-
-.animate-delay-fast {
-  animation-delay: $animation-fast;
-}
-
+// Animation delay modifiers
 .animate-delay-base {
-  animation-delay: $animation-base;
+  animation-delay: 100ms;
 }
 
-.animate-delay-slow {
-  animation-delay: $animation-slow;
+.animate-delay-100ms {
+  animation-delay: 100ms;
 }
 
-.animate-delay-slower {
-  animation-delay: $animation-slower;
+.animate-delay-200ms {
+  animation-delay: 200ms;
+}
+
+.animate-delay-300ms {
+  animation-delay: 300ms;
+}
+
+.animate-delay-500ms {
+  animation-delay: 500ms;
+}
+
+.animate-delay-1s {
+  animation-delay: 1s;
 }
 
 // Animation iteration count
-.animate-once {
-  animation-iteration-count: 1;
+.animate-iteration-1 {
+  animation-iteration-count: 1 !important;
 }
 
-.animate-twice {
-  animation-iteration-count: 2;
+.animate-iteration-2 {
+  animation-iteration-count: 2 !important;
 }
 
-.animate-infinite {
-  animation-iteration-count: infinite;
+.animate-iteration-3 {
+  animation-iteration-count: 3 !important;
+}
+
+.animate-iteration-infinite {
+  animation-iteration-count: infinite !important;
 }
 
 // Animation fill mode
-.animate-fill-none {
-  animation-fill-mode: none;
-}
-
 .animate-fill-forwards {
-  animation-fill-mode: forwards;
+  animation-fill-mode: forwards !important;
 }
 
 .animate-fill-backwards {
-  animation-fill-mode: backwards;
+  animation-fill-mode: backwards !important;
 }
 
 .animate-fill-both {
-  animation-fill-mode: both;
+  animation-fill-mode: both !important;
 }
 
-// Animation direction
-.animate-reverse {
-  animation-direction: reverse;
+// Animation easing
+.animate-ease-linear {
+  animation-timing-function: linear !important;
 }
 
-.animate-alternate {
-  animation-direction: alternate;
+.animate-ease-in {
+  animation-timing-function: ease-in !important;
 }
 
-.animate-alternate-reverse {
-  animation-direction: alternate-reverse;
+.animate-ease-out {
+  animation-timing-function: ease-out !important;
 }
 
-// Transition duration utilities (Tailwind-like)
-.transition-75 {
-  transition-duration: 75ms;
+.animate-ease-in-out {
+  animation-timing-function: ease-in-out !important;
 }
 
-.transition-100 {
-  transition-duration: 100ms;
+// Animation play state
+.animate-paused {
+  animation-play-state: paused !important;
 }
 
-.transition-150 {
-  transition-duration: 150ms;
+.animate-running {
+  animation-play-state: running !important;
 }
 
-.transition-200 {
-  transition-duration: 200ms;
+// =============================================
+// 4. TRANSITION UTILITIES
+// =============================================
+
+.transition {
+  transition: all $transition-base;
 }
 
-.transition-300 {
-  transition-duration: 300ms;
+.transition-fast {
+  transition: all $transition-fast;
 }
 
-.transition-500 {
-  transition-duration: 500ms;
+.transition-slow {
+  transition: all $transition-slow;
 }
 
-.transition-700 {
-  transition-duration: 700ms;
+.transition-colors {
+  transition:
+    background-color $transition-base,
+    border-color $transition-base,
+    color $transition-base;
 }
 
-.transition-1000 {
-  transition-duration: 1000ms;
+.transition-opacity {
+  transition: opacity $transition-base;
 }
 
-// Transition delay utilities (Tailwind-like)
-.transition-delay-75 {
-  transition-delay: 75ms;
+.transition-transform {
+  transition: transform $transition-base;
 }
 
-.transition-delay-100 {
-  transition-delay: 100ms;
+// =============================================
+// 5. TRANSFORM UTILITIES
+// =============================================
+
+.rotate-0 {
+  transform: rotate(0deg);
 }
 
-.transition-delay-150 {
-  transition-delay: 150ms;
+.rotate-45 {
+  transform: rotate(45deg);
 }
 
-.transition-delay-200 {
-  transition-delay: 200ms;
+.rotate-90 {
+  transform: rotate(90deg);
 }
 
-.transition-delay-300 {
-  transition-delay: 300ms;
+.rotate-180 {
+  transform: rotate(180deg);
 }
 
-.transition-delay-500 {
-  transition-delay: 500ms;
+.rotate-360 {
+  transform: rotate(360deg);
 }
 
-.transition-delay-700 {
-  transition-delay: 700ms;
+.scale-50 {
+  transform: scale(0.5);
 }
 
-.transition-delay-1000 {
-  transition-delay: 1000ms;
+.scale-75 {
+  transform: scale(0.75);
+}
+
+.scale-100 {
+  transform: scale(1);
+}
+
+.scale-125 {
+  transform: scale(1.25);
+}
+
+.scale-150 {
+  transform: scale(1.5);
+}
+
+.scale-200 {
+  transform: scale(2);
+}
+
+.translate-x-0 {
+  transform: translateX(0);
+}
+
+.translate-x-4 {
+  transform: translateX(1rem);
+}
+
+.translate-x-8 {
+  transform: translateX(2rem);
+}
+
+.translate-x-12 {
+  transform: translateX(3rem);
+}
+
+.translate-y-0 {
+  transform: translateY(0);
+}
+
+.translate-y-4 {
+  transform: translateY(1rem);
+}
+
+.translate-y-8 {
+  transform: translateY(2rem);
+}
+
+.translate-y-12 {
+  transform: translateY(3rem);
+}
+
+.skew-x-0 {
+  transform: skewX(0deg);
+}
+
+.skew-x-6 {
+  transform: skewX(6deg);
+}
+
+.skew-x-12 {
+  transform: skewX(12deg);
+}
+
+.skew-y-0 {
+  transform: skewY(0deg);
+}
+
+.skew-y-6 {
+  transform: skewY(6deg);
+}
+
+.skew-y-12 {
+  transform: skewY(12deg);
+}
+
+// =============================================
+// 6. FILTER UTILITIES
+// =============================================
+
+.blur-none {
+  filter: blur(0);
+}
+
+.blur-2px {
+  filter: blur(2px);
+}
+
+.blur-4px {
+  filter: blur(4px);
+}
+
+.blur-8px {
+  filter: blur(8px);
+}
+
+.brightness-50 {
+  filter: brightness(0.5);
+}
+
+.brightness-75 {
+  filter: brightness(0.75);
+}
+
+.brightness-100 {
+  filter: brightness(1);
+}
+
+.brightness-125 {
+  filter: brightness(1.25);
+}
+
+.brightness-150 {
+  filter: brightness(1.5);
+}
+
+.contrast-50 {
+  filter: contrast(0.5);
+}
+
+.contrast-75 {
+  filter: contrast(0.75);
+}
+
+.contrast-100 {
+  filter: contrast(1);
+}
+
+.contrast-125 {
+  filter: contrast(1.25);
+}
+
+.contrast-150 {
+  filter: contrast(1.5);
+}
+
+.grayscale {
+  filter: grayscale(100%);
+}
+
+.grayscale-0 {
+  filter: grayscale(0%);
+}
+
+.invert {
+  filter: invert(100%);
+}
+
+.saturate-50 {
+  filter: saturate(0.5);
+}
+
+.saturate-100 {
+  filter: saturate(1);
+}
+
+.saturate-150 {
+  filter: saturate(1.5);
+}
+
+.sepia {
+  filter: sepia(100%);
+}
+
+.sepia-0 {
+  filter: sepia(0%);
+}
+
+.hue-rotate-0 {
+  filter: hue-rotate(0deg);
+}
+
+.hue-rotate-90 {
+  filter: hue-rotate(90deg);
+}
+
+.hue-rotate-180 {
+  filter: hue-rotate(180deg);
+}
+
+// =============================================
+// 7. WILL-CHANGE FOR PERFORMANCE
+// =============================================
+
+.will-change-auto {
+  will-change: auto;
+}
+
+.will-change-scroll {
+  will-change: scroll-position;
+}
+
+.will-change-contents {
+  will-change: contents;
+}
+
+.will-change-transform {
+  will-change: transform;
+}
+
+.will-change-opacity {
+  will-change: opacity;
 }

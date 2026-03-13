@@ -1,134 +1,159 @@
-// ============================================
-// Carousel Component
-// ============================================
+/**
+ * NEXUS-UI CAROUSEL COMPONENT
+ */
 
-import {
-  selectAll,
-  addClass,
-  removeClass,
-  on,
-  trigger,
-} from "../utils/index.js";
+import { queryAll, query, addClass, removeClass } from "../utils/dom";
+import { BaseComponent, ComponentOptions, DEFAULT_OPTIONS } from "./base";
 
-export interface CarouselOptions {
-  interval?: number;
-  keyboard?: boolean;
-  pause?: "hover" | false;
-  ride?: "carousel" | false;
+export interface CarouselOptions extends ComponentOptions {
+  autoPlay?: boolean;
+  autoPlayInterval?: number;
+  transitionDuration?: number;
 }
 
-export class Carousel {
-  private element: Element;
-  private items: Element[];
+export class Carousel extends BaseComponent {
+  private element: HTMLElement | null;
+  private items: HTMLElement[] = [];
+  private indicators: HTMLElement[] = [];
   private currentIndex: number = 0;
-  private options: CarouselOptions;
-  private intervalId: NodeJS.Timeout | null = null;
+  protected options: CarouselOptions;
+  private autoPlayInterval: NodeJS.Timeout | null = null;
+  private isAutoPlaying: boolean = false;
 
-  constructor(element: Element | string, options: CarouselOptions = {}) {
-    this.element =
-      typeof element === "string"
-        ? document.querySelector(element) || new HTMLElement()
-        : element;
-    this.items = selectAll(".carousel-item", this.element);
+  constructor(selector: string, options?: Partial<CarouselOptions>) {
+    super(selector, options);
+
+    this.element = query(selector);
+    this.items = queryAll(`${selector} .carousel-item`);
+    this.indicators = queryAll(`${selector} .indicator`);
+
     this.options = {
-      interval: 5000,
-      keyboard: true,
-      pause: "hover",
-      ride: "carousel",
+      ...DEFAULT_OPTIONS,
+      autoPlay: false,
+      autoPlayInterval: 5000,
+      transitionDuration: 500,
       ...options,
     };
+
     this.init();
   }
 
+  /**
+   * Initialize carousel
+   */
   private init(): void {
-    if (this.items.length === 0) return;
+    // Set first item as active
+    if (this.items.length > 0) {
+      addClass(this.items[0], "active");
+    }
+    if (this.indicators.length > 0) {
+      addClass(this.indicators[0], "active");
+    }
 
-    this.showItem(0);
-    this.setupControls();
-    this.setupKeyboard();
+    // Prev/Next button handlers
+    const prevBtn = this.element?.querySelector(".carousel-control.prev");
+    const nextBtn = this.element?.querySelector(".carousel-control.next");
 
-    if (this.options.ride === "carousel") {
+    if (prevBtn) {
+      prevBtn.addEventListener("click", () => this.prev());
+    }
+    if (nextBtn) {
+      nextBtn.addEventListener("click", () => this.next());
+    }
+
+    // Indicator click handlers
+    this.indicators.forEach((indicator, index) => {
+      indicator.addEventListener("click", () => this.go(index));
+    });
+
+    // Auto-play if enabled
+    if (this.options.autoPlay) {
       this.start();
     }
   }
 
-  private setupControls(): void {
-    const prevBtn = this.element.querySelector(".carousel-control-prev");
-    const nextBtn = this.element.querySelector(".carousel-control-next");
-
-    if (prevBtn) {
-      on(prevBtn, "click", () => this.prev());
-    }
-
-    if (nextBtn) {
-      on(nextBtn, "click", () => this.next());
-    }
-
-    // Pause on hover
-    if (this.options.pause === "hover") {
-      on(this.element, "mouseenter", () => this.pause());
-      on(this.element, "mouseleave", () => this.start());
-    }
-  }
-
-  private setupKeyboard(): void {
-    if (this.options.keyboard) {
-      on(document, "keydown", (e: KeyboardEvent) => {
-        if (e.key === "ArrowLeft") this.prev();
-        if (e.key === "ArrowRight") this.next();
-      });
-    }
-  }
-
+  /**
+   * Show item at index
+   */
   private showItem(index: number): void {
-    if (index < 0) {
-      index = this.items.length - 1;
-    } else if (index >= this.items.length) {
-      index = 0;
+    if (index < 0 || index >= this.items.length) return;
+
+    // Remove active from all items
+    this.items.forEach((item) => removeClass(item, "active"));
+    this.indicators.forEach((indicator) => removeClass(indicator, "active"));
+
+    // Add active to current item
+    this.currentIndex = index;
+    addClass(this.items[index], "active");
+    if (this.indicators[index]) {
+      addClass(this.indicators[index], "active");
     }
 
-    this.items.forEach((item, i) => {
-      if (i === index) {
-        addClass(item, "active");
-      } else {
-        removeClass(item, "active");
-      }
-    });
-
-    this.currentIndex = index;
-    trigger(this.element, "slid.bs.carousel");
+    this.emit("slideChange", { index });
   }
 
-  next(): void {
-    this.showItem(this.currentIndex + 1);
+  /**
+   * Go to next slide
+   */
+  public next(): void {
+    const nextIndex = (this.currentIndex + 1) % this.items.length;
+    this.showItem(nextIndex);
   }
 
-  prev(): void {
-    this.showItem(this.currentIndex - 1);
+  /**
+   * Go to previous slide
+   */
+  public prev(): void {
+    const prevIndex =
+      (this.currentIndex - 1 + this.items.length) % this.items.length;
+    this.showItem(prevIndex);
   }
 
-  go(index: number): void {
+  /**
+   * Go to specific slide
+   */
+  public go(index: number): void {
     this.showItem(index);
   }
 
-  start(): void {
-    if (this.intervalId) return;
+  /**
+   * Start auto-play
+   */
+  public start(): void {
+    if (this.isAutoPlaying) return;
 
-    this.intervalId = setInterval(() => {
+    this.isAutoPlaying = true;
+    this.autoPlayInterval = setInterval(() => {
       this.next();
-    }, this.options.interval);
+    }, this.options.autoPlayInterval);
+
+    this.emit("start");
   }
 
-  pause(): void {
-    if (this.intervalId) {
-      clearInterval(this.intervalId);
-      this.intervalId = null;
+  /**
+   * Pause auto-play
+   */
+  public pause(): void {
+    if (this.autoPlayInterval) {
+      clearInterval(this.autoPlayInterval);
+      this.autoPlayInterval = null;
     }
+    this.isAutoPlaying = false;
+    this.emit("pause");
   }
 
-  static getInstance(element: Element | string): Carousel | null {
-    const el =
-      typeof element === "string" ? document.querySelector(element) : element;
-    return el ? (el as any).__carousel || null : null;
+  /**
+   * Get current index
+   */
+  public getCurrentIndex(): number {
+    return this.currentIndex;
+  }
+
+  /**
+   * Destroy carousel
+   */
+  public destroy(): void {
+    this.pause();
+    super.dispose();
   }
 }

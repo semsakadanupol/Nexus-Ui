@@ -1,0 +1,667 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nexus-UI - Revolutionary UI Framework</title>
+    <link rel="stylesheet" href="../dist/index.css" />
+    <style>
+      .hero {
+        background: linear-gradient(
+          135deg,
+          var(--color-primary, #3b82f6) 0%,
+          var(--color-secondary, #8b5cf6) 100%
+        );
+        color: white;
+        padding: 6rem 2rem;
+        text-align: center;
+        animation: fadeIn 0.8s ease-out;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .hero h1 {
+        font-size: 3.5rem;
+        margin-bottom: 1rem;
+        font-weight: bold;
+      }
+
+      .hero p {
+        font-size: 1.25rem;
+        margin-bottom: 2rem;
+        opacity: 0.95;
+      }
+
+      .hero-buttons {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin: 3rem 0;
+      }
+
+      .feature-card {
+        background: white;
+        padding: 2rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        transition:
+          transform 200ms,
+          box-shadow 200ms;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+      }
+
+      .feature-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+      }
+
+      .feature-card h3 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin: 3rem 0;
+      }
+
+      .pricing-card {
+        background: white;
+        border: 2px solid var(--color-border, #e5e7eb);
+        border-radius: 0.5rem;
+        padding: 2rem;
+        text-align: center;
+        transition:
+          border-color 200ms,
+          box-shadow 200ms;
+      }
+
+      .pricing-card:hover {
+        border-color: var(--color-primary, #3b82f6);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .pricing-card.featured {
+        border-color: var(--color-primary, #3b82f6);
+        box-shadow: 0 10px 20px rgba(59, 130, 246, 0.2);
+        transform: scale(1.05);
+      }
+
+      .price {
+        font-size: 2.5rem;
+        font-weight: bold;
+        margin: 1rem 0;
+      }
+
+      .section {
+        padding: 4rem 2rem;
+      }
+
+      .section.dark {
+        background: var(--color-section-bg, #f9fafb);
+      }
+
+      .testimonial-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin: 3rem 0;
+      }
+
+      .testimonial-card {
+        background: white;
+        padding: 2rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border-left: 4px solid var(--color-primary, #3b82f6);
+      }
+
+      .stars {
+        color: #fcd34d;
+        margin-bottom: 1rem;
+        font-size: 1.25rem;
+      }
+
+      .testimonial-author {
+        font-weight: 600;
+        margin-top: 1rem;
+      }
+
+      .nav-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
+        background: white;
+        border-bottom: 1px solid var(--color-border, #e5e7eb);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: var(--color-text-primary, #1f2937);
+        font-weight: 500;
+        transition: color 200ms;
+      }
+
+      .nav-links a:hover {
+        color: var(--color-primary, #3b82f6);
+      }
+
+      @media (max-width: 768px) {
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+
+        .pricing-card.featured {
+          transform: scale(1);
+        }
+
+        .nav-links {
+          gap: 1rem;
+          font-size: 0.875rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="nav-header">
+      <h1 class="m-0 text-2xl font-bold">Nexus-UI</h1>
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#testimonials">Reviews</a>
+        <button class="btn btn-outline" id="themeToggle">🌙</button>
+        <a href="./components.html" class="btn btn-primary">Documentation</a>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <h1>Build Faster. Design Better.</h1>
+      <p>
+        The revolutionary UI framework combining utility-first CSS with powerful
+        components
+      </p>
+      <div class="hero-buttons">
+        <a
+          href="./components.html"
+          class="btn btn-light"
+          style="padding: 0.75rem 2rem"
+          ><strong>Get Started</strong></a
+        >
+        <a
+          href="./components.html"
+          class="btn btn-outline text-white"
+          style="border-color: white; padding: 0.75rem 2rem"
+          ><strong>View Demo</strong></a
+        >
+      </div>
+    </section>
+
+    <!-- Main Content -->
+    <main>
+      <!-- Features Section -->
+      <section class="section" id="features">
+        <div class="container">
+          <h2 class="text-4xl font-bold text-center mb-2xl">
+            Why Choose Nexus-UI?
+          </h2>
+
+          <div class="feature-grid">
+            <div class="feature-card">
+              <div class="feature-icon">🎨</div>
+              <h3>500+ Utilities</h3>
+              <p>
+                Pre-built utility classes for every common design pattern. Build
+                layouts in minutes, not hours.
+              </p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">📦</div>
+              <h3>15+ Components</h3>
+              <p>
+                Pre-built, fully-themed components ready to use. Modal,
+                Carousel, Tabs, and much more.
+              </p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">🌓</div>
+              <h3>Theme System</h3>
+              <p>
+                Light, Dark, and High-Contrast themes built-in. Switch themes
+                with a single line of code.
+              </p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">✨</div>
+              <h3>13 Animations</h3>
+              <p>
+                Smooth, GPU-accelerated animations. Fade, slide, bounce, spin,
+                and more out of the box.
+              </p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">📱</div>
+              <h3>Responsive Design</h3>
+              <p>
+                Desktop-first responsive approach with 5 breakpoints. Mobile
+                support built into every component.
+              </p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">♿</div>
+              <h3>Accessible</h3>
+              <p>
+                WCAG AAA compliant by default. Keyboard navigation, semantic
+                HTML, and screen reader support.
+              </p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">⚡</div>
+              <h3>Only 39KB</h3>
+              <p>
+                Minified and gzipped. Extremely lightweight without sacrificing
+                functionality.
+              </p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">🔧</div>
+              <h3>Easy to Customize</h3>
+              <p>
+                CSS variables and SCSS mixins make customization simple and
+                straightforward.
+              </p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">📚</div>
+              <h3>Great Documentation</h3>
+              <p>
+                Comprehensive docs, examples, and API reference to get you up
+                and running quickly.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Code Example Section -->
+      <section class="section dark">
+        <div class="container">
+          <h2 class="text-4xl font-bold text-center mb-2xl">Simple to Use</h2>
+
+          <div class="grid grid-cols-2 md:grid-cols-1 gap-2xl">
+            <div>
+              <h3 class="text-2xl font-semibold mb-md">Utility Classes</h3>
+              <pre
+                style="
+                  background: #1f2937;
+                  color: #f3f4f6;
+                  padding: 1rem;
+                  border-radius: 0.5rem;
+                  overflow-x: auto;
+                "
+              ><code>&lt;div class="grid grid-cols-3 gap-lg p-2xl bg-primary text-white rounded-lg"&gt;
+  &lt;div class="text-center"&gt;
+    &lt;h3 class="font-bold"&gt;Card&lt;/h3&gt;
+    &lt;p&gt;Simple layout&lt;/p&gt;
+  &lt;/div&gt;
+  ...
+&lt;/div&gt;</code></pre>
+            </div>
+
+            <div>
+              <h3 class="text-2xl font-semibold mb-md">
+                TypeScript Components
+              </h3>
+              <pre
+                style="
+                  background: #1f2937;
+                  color: #f3f4f6;
+                  padding: 1rem;
+                  border-radius: 0.5rem;
+                  overflow-x: auto;
+                "
+              ><code>import { Modal } from 'nexus-ui';
+
+const modal = new Modal('#myModal');
+modal.show();
+
+modal.on('hide', () =&gt; {
+  console.log('Modal closed');
+});
+</code></pre>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Pricing Section -->
+      <section class="section" id="pricing">
+        <div class="container">
+          <h2 class="text-4xl font-bold text-center mb-2xl">
+            Simple, Transparent Pricing
+          </h2>
+
+          <div class="pricing-grid">
+            <div class="pricing-card">
+              <h3 class="text-2xl font-bold">Free</h3>
+              <p class="text-gray-600">Perfect for getting started</p>
+              <div class="price">$0</div>
+              <ul style="text-align: left; margin: 2rem 0">
+                <li>✓ All utilities and components</li>
+                <li>✓ Theme system</li>
+                <li>✓ Community support</li>
+                <li>✓ MIT Licensed</li>
+              </ul>
+              <button class="btn btn-outline w-full">Get Started</button>
+            </div>
+
+            <div class="pricing-card featured">
+              <span
+                class="badge badge-primary"
+                style="position: absolute; top: -10px; left: 20px"
+                >Most Popular</span
+              >
+              <h3 class="text-2xl font-bold">Professional</h3>
+              <p class="text-gray-600">For professional developers</p>
+              <div class="price">
+                $9<span style="font-size: 1rem">/month</span>
+              </div>
+              <ul style="text-align: left; margin: 2rem 0">
+                <li>✓ Everything in Free</li>
+                <li>✓ Priority support</li>
+                <li>✓ Custom themes</li>
+                <li>✓ Advanced documentation</li>
+                <li>✓ CLI tools</li>
+              </ul>
+              <button class="btn btn-primary w-full">Start Free Trial</button>
+            </div>
+
+            <div class="pricing-card">
+              <h3 class="text-2xl font-bold">Enterprise</h3>
+              <p class="text-gray-600">For large teams</p>
+              <div class="price">Custom</div>
+              <ul style="text-align: left; margin: 2rem 0">
+                <li>✓ Everything in Professional</li>
+                <li>✓ Dedicated support</li>
+                <li>✓ Custom development</li>
+                <li>✓ Team training</li>
+                <li>✓ SLA guarantee</li>
+              </ul>
+              <button class="btn btn-outline w-full">Contact Sales</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Testimonials Section -->
+      <section class="section dark" id="testimonials">
+        <div class="container">
+          <h2 class="text-4xl font-bold text-center mb-2xl">
+            What Developers Say
+          </h2>
+
+          <div class="testimonial-grid">
+            <div class="testimonial-card">
+              <div class="stars">★★★★★</div>
+              <p>
+                "Nexus-UI saved me hours of development time. The component
+                system is intuitive and the theme switching is seamless."
+              </p>
+              <p class="testimonial-author">Sarah Johnson, Senior Developer</p>
+            </div>
+
+            <div class="testimonial-card">
+              <div class="stars">★★★★★</div>
+              <p>
+                "Finally, a framework that combines the best of both worlds.
+                Utilities when I need them, components when I want them."
+              </p>
+              <p class="testimonial-author">Mike Chen, Full Stack Developer</p>
+            </div>
+
+            <div class="testimonial-card">
+              <div class="stars">★★★★★</div>
+              <p>
+                "The accessibility features are outstanding. WCAG AAA compliance
+                out of the box is a game-changer."
+              </p>
+              <p class="testimonial-author">
+                Emma Williams, Accessibility Specialist
+              </p>
+            </div>
+
+            <div class="testimonial-card">
+              <div class="stars">★★★★★</div>
+              <p>
+                "Documentation is clear, examples are practical, and the
+                community is incredibly helpful. Highly recommended!"
+              </p>
+              <p class="testimonial-author">David Martinez, Startup Founder</p>
+            </div>
+
+            <div class="testimonial-card">
+              <div class="stars">★★★★★</div>
+              <p>
+                "Only 39KB minified? Are you kidding? This is exactly what I
+                needed for my performance-critical projects."
+              </p>
+              <p class="testimonial-author">
+                Lisa Anderson, Performance Engineer
+              </p>
+            </div>
+
+            <div class="testimonial-card">
+              <div class="stars">★★★★★</div>
+              <p>
+                "The theme system is brilliant. Switching between light and dark
+                mode for our users is now trivial."
+              </p>
+              <p class="testimonial-author">Tom Wilson, Product Manager</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA Section -->
+      <section
+        class="section"
+        style="
+          background: linear-gradient(
+            135deg,
+            var(--color-primary, #3b82f6) 0%,
+            var(--color-secondary, #8b5cf6) 100%
+          );
+          color: white;
+          text-align: center;
+        "
+      >
+        <div class="container">
+          <h2 class="text-4xl font-bold mb-md">Ready to Get Started?</h2>
+          <p class="text-xl mb-2xl">
+            Join thousands of developers using Nexus-UI
+          </p>
+          <div class="flex gap-md justify-center flex-wrap">
+            <a
+              href="./components.html"
+              class="btn btn-light"
+              style="padding: 0.75rem 2rem"
+            >
+              <strong>View Documentation</strong>
+            </a>
+            <a
+              href="#"
+              class="btn btn-outline text-white"
+              style="border-color: white; padding: 0.75rem 2rem"
+            >
+              <strong>Download Now</strong>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white p-2xl">
+      <div class="container">
+        <div
+          class="grid grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-2xl mb-2xl"
+        >
+          <div>
+            <h3 class="font-bold mb-md">Product</h3>
+            <ul style="list-style: none; padding: 0; margin: 0">
+              <li>
+                <a href="#" style="color: #9ca3af; text-decoration: none"
+                  >Features</a
+                >
+              </li>
+              <li>
+                <a href="#" style="color: #9ca3af; text-decoration: none"
+                  >Pricing</a
+                >
+              </li>
+              <li>
+                <a href="#" style="color: #9ca3af; text-decoration: none"
+                  >Demo</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="font-bold mb-md">Developers</h3>
+            <ul style="list-style: none; padding: 0; margin: 0">
+              <li>
+                <a href="#" style="color: #9ca3af; text-decoration: none"
+                  >Documentation</a
+                >
+              </li>
+              <li>
+                <a href="#" style="color: #9ca3af; text-decoration: none"
+                  >API Reference</a
+                >
+              </li>
+              <li>
+                <a href="#" style="color: #9ca3af; text-decoration: none"
+                  >GitHub</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="font-bold mb-md">Company</h3>
+            <ul style="list-style: none; padding: 0; margin: 0">
+              <li>
+                <a href="#" style="color: #9ca3af; text-decoration: none"
+                  >About</a
+                >
+              </li>
+              <li>
+                <a href="#" style="color: #9ca3af; text-decoration: none"
+                  >Blog</a
+                >
+              </li>
+              <li>
+                <a href="#" style="color: #9ca3af; text-decoration: none"
+                  >Contact</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="font-bold mb-md">Legal</h3>
+            <ul style="list-style: none; padding: 0; margin: 0">
+              <li>
+                <a href="#" style="color: #9ca3af; text-decoration: none"
+                  >Privacy</a
+                >
+              </li>
+              <li>
+                <a href="#" style="color: #9ca3af; text-decoration: none"
+                  >Terms</a
+                >
+              </li>
+              <li>
+                <a href="#" style="color: #9ca3af; text-decoration: none"
+                  >License</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div
+          style="
+            border-top: 1px solid #374151;
+            padding-top: 2rem;
+            text-align: center;
+          "
+        >
+          <p class="m-0">© 2024 Nexus-UI Framework. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script type="module">
+      import { ThemeManager } from "../dist/index.js";
+
+      const themeToggle = document.getElementById("themeToggle");
+
+      themeToggle.addEventListener("click", () => {
+        ThemeManager.toggle();
+        const currentTheme = ThemeManager.getTheme();
+        themeToggle.textContent = currentTheme === "dark" ? "☀️" : "🌙";
+      });
+
+      // Smooth scroll for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          if (this.getAttribute("href") !== "#") {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute("href"));
+            if (target) {
+              target.scrollIntoView({ behavior: "smooth" });
+            }
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
