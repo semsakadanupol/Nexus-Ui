@@ -1,25 +1,26 @@
-export interface CarouselOptions {
-    interval?: number;
-    keyboard?: boolean;
-    pause?: "hover" | false;
-    ride?: "carousel" | false;
+import { BaseComponent, ComponentOptions } from "./base";
+export interface CarouselOptions extends ComponentOptions {
+    autoPlay?: boolean;
+    autoPlayInterval?: number;
+    transitionDuration?: number;
 }
-export declare class Carousel {
+export declare class Carousel extends BaseComponent {
     private element;
     private items;
+    private indicators;
     private currentIndex;
-    private options;
-    private intervalId;
-    constructor(element: Element | string, options?: CarouselOptions);
+    protected options: CarouselOptions;
+    private autoPlayInterval;
+    private isAutoPlaying;
+    constructor(selector: string, options?: Partial<CarouselOptions>);
     private init;
-    private setupControls;
-    private setupKeyboard;
     private showItem;
     next(): void;
     prev(): void;
     go(index: number): void;
     start(): void;
     pause(): void;
-    static getInstance(element: Element | string): Carousel | null;
+    getCurrentIndex(): number;
+    destroy(): void;
 }
 //# sourceMappingURL=Carousel.d.ts.map

@@ -34,4 +34,4 @@ export { debounce, throttle, once } from "./utils/events";
 export type { ComponentOptions, ComponentEventMap } from "./types";
 
 // Version
-export const VERSION = "2.0.0";
+export const VERSION = "0.0.2";

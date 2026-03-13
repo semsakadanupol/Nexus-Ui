@@ -1,19 +1,23 @@
-export interface ModalOptions {
-    backdrop?: boolean | "static";
+import { ComponentOptions, BaseComponent } from "./base";
+export interface ModalOptions extends ComponentOptions {
+    backdrop?: "static" | boolean;
     keyboard?: boolean;
+    focus?: boolean;
 }
-export declare class Modal {
+export declare class Modal extends BaseComponent {
     private element;
     private backdrop;
-    private options;
+    private dialog;
+    private closeBtn;
+    private dismissBtn;
     private isShown;
-    constructor(element: Element | string, options?: ModalOptions);
+    protected options: ModalOptions;
+    constructor(selector: string, options?: Partial<ModalOptions>);
     private init;
-    private setupEventListeners;
     show(): void;
     hide(): void;
     toggle(): void;
-    static getInstance(element: Element | string): Modal | null;
-    static getOrCreateInstance(element: Element | string, options?: ModalOptions): Modal;
+    isVisible(): boolean;
+    destroy(): void;
 }
 //# sourceMappingURL=Modal.d.ts.map

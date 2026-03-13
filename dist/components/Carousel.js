@@ -1,103 +1,93 @@
-// ============================================
-// Carousel Component
-// ============================================
-import { selectAll, addClass, removeClass, on, trigger, } from "../utils/index.js";
-export class Carousel {
-    constructor(element, options = {}) {
+import { queryAll, query, addClass, removeClass } from "../utils/dom";
+import { BaseComponent, DEFAULT_OPTIONS } from "./base";
+export class Carousel extends BaseComponent {
+    constructor(selector, options) {
+        super(selector, options);
+        this.items = [];
+        this.indicators = [];
         this.currentIndex = 0;
-        this.intervalId = null;
-        this.element =
-            typeof element === "string"
-                ? document.querySelector(element) || new HTMLElement()
-                : element;
-        this.items = selectAll(".carousel-item", this.element);
+        this.autoPlayInterval = null;
+        this.isAutoPlaying = false;
+        this.element = query(selector);
+        this.items = queryAll(`${selector} .carousel-item`);
+        this.indicators = queryAll(`${selector} .indicator`);
         this.options = {
-            interval: 5000,
-            keyboard: true,
-            pause: "hover",
-            ride: "carousel",
+            ...DEFAULT_OPTIONS,
+            autoPlay: false,
+            autoPlayInterval: 5000,
+            transitionDuration: 500,
             ...options,
         };
         this.init();
     }
     init() {
-        if (this.items.length === 0)
-            return;
-        this.showItem(0);
-        this.setupControls();
-        this.setupKeyboard();
-        if (this.options.ride === "carousel") {
+        if (this.items.length > 0) {
+            addClass(this.items[0], "active");
+        }
+        if (this.indicators.length > 0) {
+            addClass(this.indicators[0], "active");
+        }
+        const prevBtn = this.element?.querySelector(".carousel-control.prev");
+        const nextBtn = this.element?.querySelector(".carousel-control.next");
+        if (prevBtn) {
+            prevBtn.addEventListener("click", () => this.prev());
+        }
+        if (nextBtn) {
+            nextBtn.addEventListener("click", () => this.next());
+        }
+        this.indicators.forEach((indicator, index) => {
+            indicator.addEventListener("click", () => this.go(index));
+        });
+        if (this.options.autoPlay) {
             this.start();
         }
     }
-    setupControls() {
-        const prevBtn = this.element.querySelector(".carousel-control-prev");
-        const nextBtn = this.element.querySelector(".carousel-control-next");
-        if (prevBtn) {
-            on(prevBtn, "click", () => this.prev());
-        }
-        if (nextBtn) {
-            on(nextBtn, "click", () => this.next());
-        }
-        // Pause on hover
-        if (this.options.pause === "hover") {
-            on(this.element, "mouseenter", () => this.pause());
-            on(this.element, "mouseleave", () => this.start());
-        }
-    }
-    setupKeyboard() {
-        if (this.options.keyboard) {
-            on(document, "keydown", (e) => {
-                if (e.key === "ArrowLeft")
-                    this.prev();
-                if (e.key === "ArrowRight")
-                    this.next();
-            });
-        }
-    }
     showItem(index) {
-        if (index < 0) {
-            index = this.items.length - 1;
-        }
-        else if (index >= this.items.length) {
-            index = 0;
-        }
-        this.items.forEach((item, i) => {
-            if (i === index) {
-                addClass(item, "active");
-            }
-            else {
-                removeClass(item, "active");
-            }
-        });
+        if (index < 0 || index >= this.items.length)
+            return;
+        this.items.forEach((item) => removeClass(item, "active"));
+        this.indicators.forEach((indicator) => removeClass(indicator, "active"));
         this.currentIndex = index;
-        trigger(this.element, "slid.bs.carousel");
+        addClass(this.items[index], "active");
+        if (this.indicators[index]) {
+            addClass(this.indicators[index], "active");
+        }
+        this.emit("slideChange", { index });
     }
     next() {
-        this.showItem(this.currentIndex + 1);
+        const nextIndex = (this.currentIndex + 1) % this.items.length;
+        this.showItem(nextIndex);
     }
     prev() {
-        this.showItem(this.currentIndex - 1);
+        const prevIndex = (this.currentIndex - 1 + this.items.length) % this.items.length;
+        this.showItem(prevIndex);
     }
     go(index) {
         this.showItem(index);
     }
     start() {
-        if (this.intervalId)
+        if (this.isAutoPlaying)
             return;
-        this.intervalId = setInterval(() => {
+        this.isAutoPlaying = true;
+        this.autoPlayInterval = setInterval(() => {
             this.next();
-        }, this.options.interval);
+        }, this.options.autoPlayInterval);
+        this.emit("start");
     }
     pause() {
-        if (this.intervalId) {
-            clearInterval(this.intervalId);
-            this.intervalId = null;
+        if (this.autoPlayInterval) {
+            clearInterval(this.autoPlayInterval);
+            this.autoPlayInterval = null;
         }
+        this.isAutoPlaying = false;
+        this.emit("pause");
     }
-    static getInstance(element) {
-        const el = typeof element === "string" ? document.querySelector(element) : element;
-        return el ? el.__carousel || null : null;
+    getCurrentIndex() {
+        return this.currentIndex;
+    }
+    destroy() {
+        this.pause();
+        super.dispose();
     }
 }
 //# sourceMappingURL=Carousel.js.map

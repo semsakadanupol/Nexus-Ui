@@ -1,65 +1,19 @@
-/**
- * Select a single element
- */
-export declare function select<T extends Element = Element>(selector: string, parent?: Document | Element): T | null;
-/**
- * Select multiple elements
- */
-export declare function selectAll<T extends Element = Element>(selector: string, parent?: Document | Element): T[];
-/**
- * Create an element
- */
-export declare function createElement<K extends keyof HTMLElementTagNameMap>(tag: K, options?: {
-    className?: string;
-    id?: string;
-    innerHTML?: string;
-}): HTMLElementTagNameMap[K];
-/**
- * Add a class to an element
- */
-export declare function addClass(element: Element, className: string): void;
-/**
- * Remove a class from an element
- */
-export declare function removeClass(element: Element, className: string): void;
-/**
- * Toggle a class on an element
- */
-export declare function toggleClass(element: Element, className: string, force?: boolean): boolean;
-/**
- * Check if element has a class
- */
-export declare function hasClass(element: Element, className: string): boolean;
-/**
- * Set attributes on an element
- */
-export declare function setAttributes(element: Element, attributes: Record<string, string | number | boolean>): void;
-/**
- * Get an attribute value
- */
-export declare function getAttribute(element: Element, attribute: string): string | null;
-/**
- * Remove element from DOM
- */
-export declare function remove(element: Element): void;
-/**
- * Add multiple elements to parent
- */
-export declare function append(parent: Element, ...children: (Element | string)[]): void;
-/**
- * Get closest parent element matching selector
- */
-export declare function closest<T extends Element = Element>(element: Element, selector: string): T | null;
-/**
- * Check if element matches selector
- */
-export declare function matches(element: Element, selector: string): boolean;
-/**
- * Get element position and dimensions
- */
-export declare function getRect(element: Element): DOMRect;
-/**
- * Scroll element into view
- */
-export declare function scrollIntoView(element: Element, behavior?: ScrollBehavior): void;
+export declare function query(selector: string): HTMLElement | null;
+export declare function queryAll(selector: string): HTMLElement[];
+export declare function addClass(el: HTMLElement | null, className: string): void;
+export declare function removeClass(el: HTMLElement | null, className: string): void;
+export declare function toggleClass(el: HTMLElement | null, className: string, force?: boolean): boolean;
+export declare function hasClass(el: HTMLElement | null, className: string): boolean;
+export declare function styles(el: HTMLElement | null, styleObj: Record<string, string>): void;
+export declare function attr(el: HTMLElement | null, name: string, value?: string): string | void;
+export declare function on(el: HTMLElement | Document | null, eventName: string, handler: (e: Event) => void): void;
+export declare function off(el: HTMLElement | null, eventName: string, handler: (e: Event) => void): void;
+export declare function trigger(el: HTMLElement | null, eventName: string): void;
+export declare function ready(callback: () => void): void;
+export declare function parent(el: HTMLElement | null, selector?: string): HTMLElement | null;
+export declare function children(el: HTMLElement | null, selector?: string): HTMLElement[];
+export declare function next(el: HTMLElement | null, selector?: string): HTMLElement | null;
+export declare function prev(el: HTMLElement | null, selector?: string): HTMLElement | null;
+export declare function text(el: HTMLElement | null, content?: string): string | void;
+export declare function html(el: HTMLElement | null, content?: string): string | void;
 //# sourceMappingURL=dom.d.ts.map

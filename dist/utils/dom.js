@@ -1,118 +1,133 @@
-// ============================================
-// DOM Utilities
-// ============================================
-/**
- * Select a single element
- */
-export function select(selector, parent = document) {
-    return parent.querySelector(selector);
+export function query(selector) {
+    return document.querySelector(selector);
 }
-/**
- * Select multiple elements
- */
-export function selectAll(selector, parent = document) {
-    return Array.from(parent.querySelectorAll(selector));
+export function queryAll(selector) {
+    return Array.from(document.querySelectorAll(selector));
 }
-/**
- * Create an element
- */
-export function createElement(tag, options) {
-    const element = document.createElement(tag);
-    if (options?.className) {
-        element.className = options.className;
+export function addClass(el, className) {
+    if (el) {
+        el.classList.add(className);
     }
-    if (options?.id) {
-        element.id = options.id;
+}
+export function removeClass(el, className) {
+    if (el) {
+        el.classList.remove(className);
     }
-    if (options?.innerHTML) {
-        element.innerHTML = options.innerHTML;
+}
+export function toggleClass(el, className, force) {
+    if (el) {
+        return el.classList.toggle(className, force);
     }
-    return element;
+    return false;
 }
-/**
- * Add a class to an element
- */
-export function addClass(element, className) {
-    element.classList.add(...className.split(" "));
+export function hasClass(el, className) {
+    if (el) {
+        return el.classList.contains(className);
+    }
+    return false;
 }
-/**
- * Remove a class from an element
- */
-export function removeClass(element, className) {
-    element.classList.remove(...className.split(" "));
+export function styles(el, styleObj) {
+    if (el) {
+        Object.assign(el.style, styleObj);
+    }
 }
-/**
- * Toggle a class on an element
- */
-export function toggleClass(element, className, force) {
-    return element.classList.toggle(className, force);
+export function attr(el, name, value) {
+    if (!el)
+        return;
+    if (value !== undefined) {
+        el.setAttribute(name, value);
+    }
+    else {
+        return el.getAttribute(name) || "";
+    }
 }
-/**
- * Check if element has a class
- */
-export function hasClass(element, className) {
-    return element.classList.contains(className);
+export function on(el, eventName, handler) {
+    if (el) {
+        el.addEventListener(eventName, handler);
+    }
 }
-/**
- * Set attributes on an element
- */
-export function setAttributes(element, attributes) {
-    Object.entries(attributes).forEach(([key, value]) => {
-        if (value === false) {
-            element.removeAttribute(key);
+export function off(el, eventName, handler) {
+    if (el) {
+        el.removeEventListener(eventName, handler);
+    }
+}
+export function trigger(el, eventName) {
+    if (el) {
+        el.dispatchEvent(new CustomEvent(eventName, { bubbles: true, cancelable: true }));
+    }
+}
+export function ready(callback) {
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", callback);
+    }
+    else {
+        callback();
+    }
+}
+export function parent(el, selector) {
+    if (!el)
+        return null;
+    if (selector) {
+        return el.closest(selector);
+    }
+    return el.parentElement;
+}
+export function children(el, selector) {
+    if (!el)
+        return [];
+    if (selector) {
+        return Array.from(el.querySelectorAll(selector));
+    }
+    return Array.from(el.children);
+}
+export function next(el, selector) {
+    if (!el)
+        return null;
+    let next = el.nextElementSibling;
+    if (selector) {
+        while (next) {
+            if (next.matches(selector)) {
+                return next;
+            }
+            next = next.nextElementSibling;
         }
-        else {
-            element.setAttribute(key, String(value));
+        return null;
+    }
+    return next;
+}
+export function prev(el, selector) {
+    if (!el)
+        return null;
+    let prev = el.previousElementSibling;
+    if (selector) {
+        while (prev) {
+            if (prev.matches(selector)) {
+                return prev;
+            }
+            prev = prev.previousElementSibling;
         }
-    });
+        return null;
+    }
+    return prev;
 }
-/**
- * Get an attribute value
- */
-export function getAttribute(element, attribute) {
-    return element.getAttribute(attribute);
+export function text(el, content) {
+    if (!el)
+        return "";
+    if (content !== undefined) {
+        el.textContent = content;
+    }
+    else {
+        return el.textContent || "";
+    }
 }
-/**
- * Remove element from DOM
- */
-export function remove(element) {
-    element.remove();
-}
-/**
- * Add multiple elements to parent
- */
-export function append(parent, ...children) {
-    children.forEach((child) => {
-        if (typeof child === "string") {
-            parent.appendChild(document.createTextNode(child));
-        }
-        else {
-            parent.appendChild(child);
-        }
-    });
-}
-/**
- * Get closest parent element matching selector
- */
-export function closest(element, selector) {
-    return element.closest(selector);
-}
-/**
- * Check if element matches selector
- */
-export function matches(element, selector) {
-    return element.matches(selector);
-}
-/**
- * Get element position and dimensions
- */
-export function getRect(element) {
-    return element.getBoundingClientRect();
-}
-/**
- * Scroll element into view
- */
-export function scrollIntoView(element, behavior = "smooth") {
-    element.scrollIntoView({ behavior });
+export function html(el, content) {
+    if (!el)
+        return "";
+    if (content !== undefined) {
+        el.innerHTML = content;
+    }
+    else {
+        return el.innerHTML || "";
+    }
 }
 //# sourceMappingURL=dom.js.map

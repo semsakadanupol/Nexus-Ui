@@ -1,86 +1,86 @@
-// ============================================
-// Navbar Component
-// ============================================
-import { select, selectAll, addClass, removeClass, toggleClass, on, } from "../utils/index.js";
-export class Navbar {
-    constructor(element) {
-        this.element = typeof element === "string" ? select(element) : element;
-        this.toggler = this.element.querySelector(".navbar-toggler");
-        this.navMenu = this.element.querySelector(".navbar-nav");
+import { query, queryAll, on, addClass, removeClass } from "../utils/dom";
+import { BaseComponent, DEFAULT_OPTIONS } from "./base";
+export class Navbar extends BaseComponent {
+    constructor(selector, options) {
+        super(selector, options);
+        this.navLinks = [];
+        this.isExpanded = false;
+        this.element = query(selector);
+        this.toggler = this.element?.querySelector(".navbar-toggler") || null;
+        this.collapse = this.element?.querySelector(".navbar-collapse") || null;
+        this.navLinks = queryAll(`${selector} .nav-link`);
+        this.options = {
+            ...DEFAULT_OPTIONS,
+            expandAt: "md",
+            activeClass: "active",
+            ...options,
+        };
         this.init();
     }
     init() {
-        if (!this.toggler || !this.navMenu)
-            return;
-        // Toggle mobile menu
-        on(this.toggler, "click", () => this.toggleMenu());
-        // Close menu when clicking link
-        const navLinks = selectAll(".nav-link", this.element);
-        navLinks.forEach((link) => {
-            on(link, "click", () => this.closeMenu());
-        });
-        // Setup dropdowns
-        this.setupDropdowns();
-    }
-    setupDropdowns() {
-        const dropdowns = selectAll(".nav-dropdown", this.element);
-        dropdowns.forEach((dropdown) => {
-            const toggle = dropdown.querySelector(".nav-dropdown-toggle");
-            if (toggle) {
-                on(toggle, "click", (e) => {
-                    e.preventDefault();
-                    this.toggleDropdown(dropdown);
-                });
-            }
-        });
-    }
-    toggleDropdown(dropdown) {
-        const toggle = dropdown.querySelector(".nav-dropdown-toggle");
-        // Close other dropdowns
-        selectAll(".nav-dropdown.active", this.element).forEach((item) => {
-            if (item !== dropdown) {
-                removeClass(item, "active");
-            }
-        });
-        // Toggle current dropdown
-        toggleClass(dropdown, "active");
-        if (toggle) {
-            toggleClass(toggle, "active");
+        if (this.toggler) {
+            on(this.toggler, "click", () => this.toggleMenu());
         }
+        this.navLinks.forEach((link) => {
+            on(link, "click", () => {
+                if (window.innerWidth < 768) {
+                    this.collapseMenu();
+                }
+                this.setActive(link);
+            });
+        });
+        on(window, "resize", () => {
+            if (window.innerWidth >= 768) {
+                this.expandMenu();
+            }
+            else {
+                this.collapseMenu();
+            }
+        });
     }
     toggleMenu() {
-        if (!this.toggler || !this.navMenu)
-            return;
-        toggleClass(this.navMenu, "active");
-        toggleClass(this.toggler, "active");
+        if (this.isExpanded) {
+            this.collapseMenu();
+        }
+        else {
+            this.expandMenu();
+        }
     }
-    closeMenu() {
-        if (!this.navMenu || !this.toggler)
-            return;
-        removeClass(this.navMenu, "active");
-        removeClass(this.toggler, "active");
+    expandMenu() {
+        if (this.collapse) {
+            addClass(this.collapse, "show");
+            this.isExpanded = true;
+            this.emit("expand");
+        }
+    }
+    collapseMenu() {
+        if (this.collapse) {
+            removeClass(this.collapse, "show");
+            this.isExpanded = false;
+            this.emit("collapse");
+        }
     }
     setActive(selector) {
-        selectAll(".nav-link.active", this.element).forEach((link) => {
-            removeClass(link, "active");
+        this.navLinks.forEach((link) => {
+            removeClass(link, this.options.activeClass);
         });
-        const activeLink = select(selector, this.element);
-        if (activeLink) {
-            addClass(activeLink, "active");
+        let targetLink = null;
+        if (typeof selector === "string") {
+            targetLink = query(selector);
+        }
+        else {
+            targetLink = selector;
+        }
+        if (targetLink) {
+            addClass(targetLink, this.options.activeClass);
+            this.emit("activeChanged", { target: targetLink });
         }
     }
-    static getInstance(element) {
-        const el = typeof element === "string" ? select(element) : element;
-        return el ? el.__navbar || null : null;
+    getActive() {
+        return (this.navLinks.find((link) => link.classList.contains(this.options.activeClass)) || null);
     }
-    static getOrCreateInstance(element) {
-        const el = typeof element === "string" ? select(element) : element;
-        let instance = el.__navbar;
-        if (!instance) {
-            instance = new Navbar(el);
-            el.__navbar = instance;
-        }
-        return instance;
+    destroy() {
+        super.dispose();
     }
 }
 //# sourceMappingURL=Navbar.js.map

@@ -1,15 +1,22 @@
-export declare class Navbar {
+import { BaseComponent, ComponentOptions } from "./base";
+export interface NavbarOptions extends ComponentOptions {
+    expandAt?: "sm" | "md" | "lg";
+    activeClass?: string;
+}
+export declare class Navbar extends BaseComponent {
     private element;
     private toggler;
-    private navMenu;
-    constructor(element: Element | string);
+    private collapse;
+    private navLinks;
+    protected options: NavbarOptions;
+    private isExpanded;
+    constructor(selector: string, options?: Partial<NavbarOptions>);
     private init;
-    private setupDropdowns;
-    private toggleDropdown;
     private toggleMenu;
-    private closeMenu;
-    setActive(selector: string): void;
-    static getInstance(element: Element | string): Navbar | null;
-    static getOrCreateInstance(element: Element | string): Navbar;
+    private expandMenu;
+    private collapseMenu;
+    setActive(selector: string | HTMLElement): void;
+    getActive(): HTMLElement | null;
+    destroy(): void;
 }
 //# sourceMappingURL=Navbar.d.ts.map
