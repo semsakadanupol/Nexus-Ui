@@ -438,46 +438,48 @@
     </footer>
 
     <!-- Nexus-UI JavaScript from GitHub CDN -->
-    <script src="https://semsakadanupol.github.io/Nexus-Ui/index.js"></script>
-    <script>
+    <script type="module">
+      // Import from CDN
+      import { ThemeManager } from 'https://semsakadanupol.github.io/Nexus-Ui/index.js';
+
+      // Make ThemeManager available globally for debugging
+      window.ThemeManager = ThemeManager;
+
       // Initialize Nexus-UI Theme Manager
-      const { ThemeManager } = window;
+          ThemeManager.init();
 
-      if (ThemeManager) {
-        ThemeManager.init();
+          // Theme buttons
+          document.getElementById("lightBtn").addEventListener("click", () => {
+            ThemeManager.setTheme("light");
+            updateThemeInfo();
+          });
 
-        // Theme buttons
-        document.getElementById("lightBtn").addEventListener("click", () => {
-          ThemeManager.setTheme("light");
-          updateThemeInfo();
-        });
+          document.getElementById("darkBtn").addEventListener("click", () => {
+            ThemeManager.setTheme("dark");
+            updateThemeInfo();
+          });
 
-        document.getElementById("darkBtn").addEventListener("click", () => {
-          ThemeManager.setTheme("dark");
-          updateThemeInfo();
-        });
+          document.getElementById("systemBtn").addEventListener("click", () => {
+            ThemeManager.setTheme("system");
+            updateThemeInfo();
+          });
 
-        document.getElementById("systemBtn").addEventListener("click", () => {
-          ThemeManager.setTheme("system");
-          updateThemeInfo();
-        });
+          // Listen for theme changes
+          ThemeManager.onChange((theme) => {
+            console.log("Theme changed to:", theme);
+            updateThemeInfo();
+          });
 
-        // Listen for theme changes
-        ThemeManager.onChange((theme) => {
-          console.log("Theme changed to:", theme);
-          updateThemeInfo();
-        });
+          function updateThemeInfo() {
+            const current = ThemeManager.getTheme();
+            console.log("Current theme:", current);
+          }
 
-        function updateThemeInfo() {
-          const current = ThemeManager.getTheme();
-          console.log("Current theme:", current);
+          console.log("✓ Theme Manager initialized");
+          console.log("Available themes:", ThemeManager.getAvailableThemes());
+        } else {
+          console.error("✗ ThemeManager not loaded from CDN");
         }
-
-        console.log("✓ Theme Manager initialized");
-        console.log("Available themes:", ThemeManager.getAvailableThemes());
-      } else {
-        console.error("✗ ThemeManager not loaded from CDN");
-      }
     </script>
 
     <style>
