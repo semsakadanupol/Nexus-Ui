@@ -6,5 +6,6 @@ export { Tooltip } from "./components/Tooltip.js";
 export { Offcanvas } from "./components/Offcanvas.js";
 export * from "./utils/dom.js";
 export * from "./utils/events.js";
-export { ThemeManager, type Theme } from "./utils/theme.js";
+export { ThemeManager, type ThemeName, type ThemeConfig, type ThemeDefinition, type ThemeColors, } from "./utils/theme.js";
+export * from "./utils/arbitrary.js";
 //# sourceMappingURL=index.d.ts.map

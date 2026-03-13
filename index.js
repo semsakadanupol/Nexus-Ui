@@ -9,5 +9,6 @@ export { Tooltip } from "./components/Tooltip.js";
 export { Offcanvas } from "./components/Offcanvas.js";
 export * from "./utils/dom.js";
 export * from "./utils/events.js";
-export { ThemeManager } from "./utils/theme.js";
+export { ThemeManager, } from "./utils/theme.js";
+export * from "./utils/arbitrary.js";
 //# sourceMappingURL=index.js.map
